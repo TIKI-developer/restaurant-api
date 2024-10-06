@@ -1408,19 +1408,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sasha\\.nuget\\packages\\": {}
+    "C:\\Users\\sasha\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Restaurant.WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.WebApi\\Restaurant.WebApi.csproj",
       "projectName": "Restaurant.WebApi",
-      "projectPath": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Restaurant.WebApi.csproj",
+      "projectPath": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.WebApi\\Restaurant.WebApi.csproj",
       "packagesPath": "C:\\Users\\sasha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\obj\\",
+      "outputPath": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.WebApi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\sasha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1428,17 +1433,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.Application\\Restaurant.Application.csproj": {
-              "projectPath": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.Application\\Restaurant.Application.csproj"
+            "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Restaurant.Application.csproj": {
+              "projectPath": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Restaurant.Application.csproj"
             },
-            "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.Persistance\\Restaurant.Persistence.csproj": {
-              "projectPath": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.Persistance\\Restaurant.Persistence.csproj"
+            "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Persistance\\Restaurant.Persistence.csproj": {
+              "projectPath": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Persistance\\Restaurant.Persistence.csproj"
             }
           }
         }
@@ -1476,7 +1482,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
