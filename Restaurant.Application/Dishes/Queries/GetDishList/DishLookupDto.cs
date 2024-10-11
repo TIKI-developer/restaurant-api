@@ -9,6 +9,8 @@ namespace Restaurant.Application.Dishes.Queries.GetDishList
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public float Price { get; set; }
+        public byte[] Image { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -18,7 +20,13 @@ namespace Restaurant.Application.Dishes.Queries.GetDishList
                     opt => opt.MapFrom(dish => dish.Id))
 
                 .ForMember(dishDto => dishDto.Name,
-                    opt => opt.MapFrom(dish => dish.Name));
+                    opt => opt.MapFrom(dish => dish.Name))
+
+                .ForMember(dishDto => dishDto.Price,
+                    opt => opt.MapFrom(dish => dish.Price))
+
+                .ForMember(dishDto => dishDto.Image,
+                    opt => opt.MapFrom(dish => dish.Image));
         }
     }
 }

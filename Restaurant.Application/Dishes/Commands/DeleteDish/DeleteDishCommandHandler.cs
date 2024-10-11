@@ -7,9 +7,9 @@ namespace Restaurant.Application.Dishes.Commands.DeleteDish
 {
     public class DeleteDishCommandHandler : IRequestHandler<DeleteDishCommand>
     {
-        private readonly IDishDbContext _dbContext;
+        private readonly IRestaurantDbContext _dbContext;
 
-        public DeleteDishCommandHandler(IDishDbContext dbContext)
+        public DeleteDishCommandHandler(IRestaurantDbContext dbContext)
         {
             _dbContext = dbContext;
         }

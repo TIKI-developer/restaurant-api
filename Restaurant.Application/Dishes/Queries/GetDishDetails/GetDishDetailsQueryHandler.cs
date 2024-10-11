@@ -10,10 +10,10 @@ namespace Restaurant.Application.Dishes.Queries.GetDishDetails
 {
     public class GetDishDetailsQueryHandler : IRequestHandler<GetDishDetailsQuery, DishDetailsViewModel>
     {
-        private readonly IDishDbContext _dbContext;
+        private readonly IRestaurantDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetDishDetailsQueryHandler(IDishDbContext dbContext, IMapper mapper)
+        public GetDishDetailsQueryHandler(IRestaurantDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

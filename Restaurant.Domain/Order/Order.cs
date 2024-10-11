@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Restaurant.Domain
+﻿namespace Restaurant.Domain
 {
     public class Order
     {
         public Guid Id { get; set; }
-        public List<Dish> Products { get; set; }
+        public ICollection<Dish>? Dishes { get; set; }
         public DateTime CreationDateTime { get; set; }
+        public required User Client { get; set; }
     }
 }

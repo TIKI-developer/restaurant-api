@@ -4,14 +4,15 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 
+
 namespace Restaurant.Application.Dishes.Queries.GetDishList
 {
     public class GetDishListQueryHandler : IRequestHandler<GetDishListQuery, DishListViewModel>
     {
-        private readonly IDishDbContext _dbContext;
+        private readonly IRestaurantDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetDishListQueryHandler(IDishDbContext dbContext, IMapper mapper)
+        public GetDishListQueryHandler(IRestaurantDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

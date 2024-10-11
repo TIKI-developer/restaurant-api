@@ -2,9 +2,9 @@
 {
     public class DbInitializer
     {
-        public static void Initialize(DishDbContext dishDbContext)
+        public static void Initialize(RestaurantDbContext restaurantDbContext)
         {
-            dishDbContext.Database.EnsureCreated();
+            restaurantDbContext.Database.EnsureCreated();
         }
     }
 }

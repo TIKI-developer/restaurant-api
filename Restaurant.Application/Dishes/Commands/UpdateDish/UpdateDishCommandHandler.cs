@@ -9,9 +9,9 @@ namespace Restaurant.Application.Dishes.Commands.UpdateDish
 {
     public class UpdateDishCommandHandler : IRequestHandler<UpdateDishCommand>
     {
-        private readonly IDishDbContext _dbContext;
+        private readonly IRestaurantDbContext _dbContext;
 
-        public UpdateDishCommandHandler(IDishDbContext dbContext)
+        public UpdateDishCommandHandler(IRestaurantDbContext dbContext)
         {
             _dbContext = dbContext;
         }

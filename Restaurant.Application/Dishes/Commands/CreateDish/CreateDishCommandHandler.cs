@@ -1,14 +1,15 @@
 ﻿using MediatR;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain;
+using System.Diagnostics;
 
 namespace Restaurant.Application.Dishes.Commands.CreateDish
 {
     public class CreateDishCommandHandler : IRequestHandler<CreateDishCommand, Guid>
     {
-        private readonly IDishDbContext _dbContext;
+        private readonly IRestaurantDbContext _dbContext;
 
-        public CreateDishCommandHandler(IDishDbContext dbContext)
+        public CreateDishCommandHandler(IRestaurantDbContext dbContext)
         {
             _dbContext = dbContext;
         }

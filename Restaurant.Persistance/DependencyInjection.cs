@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Restaurant.Application.Interfaces;
+
 
 namespace Restaurant.Persistence
 {
@@ -9,14 +11,19 @@ namespace Restaurant.Persistence
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration) 
         {
-            var connectionString = configuration["DbConnection"];
+            var connectionString = configuration.GetConnectionString("AppDbConnectionString");
 
-            services.AddDbContext<DishDbContext>(options =>
+            services.AddDbContext<RestaurantDbContext>(options =>
             {
-                options.UseSqlite(connectionString);
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); 
             });
-            services.AddScoped<IDishDbContext>(provider => 
-                provider.GetService<DishDbContext>());
+
+            services.AddScoped<IRestaurantDbContext>(provider => 
+                provider.GetService<RestaurantDbContext>());
+
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<IJwtProvider, JwtProvider>();
+            services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
 
             return services;
         }

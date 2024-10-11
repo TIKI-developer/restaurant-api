@@ -10,6 +10,7 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.HasIndex(x => x.Id).IsUnique();
+            builder.HasMany(x => x.Categories).WithMany(x => x.Dishes);
         }
     }
 }

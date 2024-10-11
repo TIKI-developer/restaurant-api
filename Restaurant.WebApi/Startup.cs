@@ -4,6 +4,8 @@ using Restaurant.Application;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Interfaces;
 using Restaurant.Persistence;
+using Restaurant.WebApi.Extensions;
+
 
 
 namespace Restaurant.WebApi
@@ -19,9 +21,10 @@ namespace Restaurant.WebApi
             services.AddAutoMapper(config =>
             {
                 config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
-                config.AddProfile(new AssemblyMappingProfile(typeof(IDishDbContext).Assembly));
+                config.AddProfile(new AssemblyMappingProfile(typeof(IRestaurantDbContext).Assembly));
             });
 
+            services.AddApiAuthentication(Configuration);
             services.AddApplication();
             services.AddPersistence(Configuration);
             services.AddControllers();
@@ -35,6 +38,7 @@ namespace Restaurant.WebApi
                     policy.AllowAnyOrigin();
                 });
             });
+            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -44,8 +48,16 @@ namespace Restaurant.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.RoutePrefix = string.Empty;
+                config.SwaggerEndpoint("swagger/v1/swagger.json", "Restaurant API");
+            });
+            app.UseAuthentication();
             app.UseCustomExceptionHandler();
             app.UseRouting();
+            app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
 

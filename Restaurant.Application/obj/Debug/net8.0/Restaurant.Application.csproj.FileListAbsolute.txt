@@ -29,3 +29,4 @@ C:\Users\sasha\Documents\GitHub\RestaurantBackend\Restaurant.Application\obj\Deb
 C:\Users\sasha\Documents\GitHub\RestaurantBackend\Restaurant.Application\obj\Debug\net8.0\refint\Restaurant.Application.dll
 C:\Users\sasha\Documents\GitHub\RestaurantBackend\Restaurant.Application\obj\Debug\net8.0\Restaurant.Application.pdb
 C:\Users\sasha\Documents\GitHub\RestaurantBackend\Restaurant.Application\obj\Debug\net8.0\ref\Restaurant.Application.dll
+C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.Application\obj\Debug\net8.0\Restaurant.Application.sourcelink.json

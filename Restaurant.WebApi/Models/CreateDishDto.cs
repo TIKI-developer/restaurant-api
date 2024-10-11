@@ -7,11 +7,11 @@ namespace Restaurant.WebApi.Models
 {
     public class CreateDishDto : IMapWith<CreateDishCommand>
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public required string Name { get; set; }
+        public string? Description { get; set; }
         public float Price { get; set; }
-        public byte[] Image { get; set; }
-        public List<Category> Categories { get; set; }
+        public byte[]? Image { get; set; }
+        public List<Category>? Categories { get; set; }
 
         public void Mapping(Profile profile)
         {

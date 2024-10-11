@@ -1,5 +1,6 @@
 using Restaurant.Persistence;
 
+
 namespace Restaurant.WebApi
 {
     public class Program
@@ -13,8 +14,8 @@ namespace Restaurant.WebApi
                 var serviceProvider = scope.ServiceProvider;
                 try
                 {
-                    var context = serviceProvider.GetRequiredService<DishDbContext>();
-                    DbInitializer.Initialize(context);
+                    var restaurantContext = serviceProvider.GetRequiredService<RestaurantDbContext>();
+                    DbInitializer.Initialize(restaurantContext);
                 }
                 catch (Exception exception)
                 {
