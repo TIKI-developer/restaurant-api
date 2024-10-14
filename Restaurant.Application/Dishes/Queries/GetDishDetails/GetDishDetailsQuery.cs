@@ -9,6 +9,6 @@ namespace Restaurant.Application.Dishes.Queries.GetDishDetails
 {
     public class GetDishDetailsQuery : IRequest<DishDetailsViewModel>
     {
-        public Guid Id { get; set; }
+        public required Guid Id { get; set; }
     }
 }

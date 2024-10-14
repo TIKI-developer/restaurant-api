@@ -4,17 +4,12 @@ using Restaurant.Domain;
 
 namespace Restaurant.Application.Users.Commands.CreateUser
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
+    public class RegisterUserCommandHandler(IRestaurantDbContext dbContext, IPasswordHasher passwordHasher) : IRequestHandler<RegisterUserCommand, Guid>
     {
-        private readonly IRestaurantDbContext _dbContext;
-        private readonly IPasswordHasher _passwordHasher;
+        private readonly IRestaurantDbContext _dbContext = dbContext;
+        private readonly IPasswordHasher _passwordHasher = passwordHasher;
 
-        public CreateUserCommandHandler(IRestaurantDbContext dbContext, IPasswordHasher passwordHasher)
-        {
-            _dbContext = dbContext;
-            _passwordHasher = passwordHasher;
-        }
-        public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var user = new User
             {

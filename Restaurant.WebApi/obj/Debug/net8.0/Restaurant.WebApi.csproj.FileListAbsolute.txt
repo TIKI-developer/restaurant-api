@@ -125,3 +125,9 @@ C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\
 C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\obj\Debug\net8.0\Restaurant.WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

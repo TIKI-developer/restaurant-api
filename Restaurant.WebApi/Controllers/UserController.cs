@@ -14,7 +14,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<Guid>> Register([FromBody] UserRegisterDto userRegisterDto)
         {
-            var command = _mapper.Map<CreateUserCommand>(userRegisterDto);
+            var command = _mapper.Map<RegisterUserCommand>(userRegisterDto);
             var userId = await Mediator.Send(command);
 
             return Ok(userId);

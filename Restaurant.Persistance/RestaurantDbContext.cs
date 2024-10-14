@@ -12,6 +12,7 @@ namespace Restaurant.Persistence
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Category> Categories {  get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options)
             : base(options) { }
@@ -22,6 +23,7 @@ namespace Restaurant.Persistence
             modelBuilder.ApplyConfiguration(new DishConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
