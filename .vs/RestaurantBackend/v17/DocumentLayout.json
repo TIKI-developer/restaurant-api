@@ -1,38 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\",
+  "WorkspaceRootPath": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.persistance\\restaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|solutionrelative:restaurant.persistance\\restaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.persistance\\entitytypeconfigurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|solutionrelative:restaurant.persistance\\entitytypeconfigurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.persistance\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|solutionrelative:restaurant.persistance\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.domain\\user\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\user\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.domain\\dish\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\dish\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.domain\\category\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\category\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.domain\\cart\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\cart\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\unity\\restaurantbackend\\restaurant.webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\unity\\restaurantbackend\\restaurant.webapi\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\unity\\restaurantbackend\\restaurant.webapi\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,111 +21,46 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 200,
+          "DockedHeight": 263,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RestaurantDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\RestaurantDbContext.cs",
-              "RelativeDocumentMoniker": "Restaurant.Persistance\\RestaurantDbContext.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\RestaurantDbContext.cs",
-              "RelativeToolTip": "Restaurant.Persistance\\RestaurantDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T07:34:36.132Z",
+              "WhenOpened": "2024-10-15T16:28:28.851Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\EntityTypeConfigurations\\UserConfiguration.cs",
-              "RelativeDocumentMoniker": "Restaurant.Persistance\\EntityTypeConfigurations\\UserConfiguration.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\EntityTypeConfigurations\\UserConfiguration.cs",
-              "RelativeToolTip": "Restaurant.Persistance\\EntityTypeConfigurations\\UserConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAZAAAAAAAAAA==",
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\OrderController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T07:33:51.576Z",
+              "WhenOpened": "2024-10-15T16:28:13.954Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "Restaurant.Persistance\\DependencyInjection.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\DependencyInjection.cs",
-              "RelativeToolTip": "Restaurant.Persistance\\DependencyInjection.cs",
-              "ViewState": "AgIAAAUAAAAAMzMzMzMbwBIAAAAZAAAAAAAAAA==",
+              "Title": "DishController.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\DishController.cs",
+              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\DishController.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\DishController.cs",
+              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\DishController.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T07:33:25.178Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\User\\User.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\User\\User.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\User\\User.cs",
-              "RelativeToolTip": "Restaurant.Domain\\User\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T07:32:18.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Dish.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Dish\\Dish.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\Dish\\Dish.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Dish\\Dish.cs",
-              "RelativeToolTip": "Restaurant.Domain\\Dish\\Dish.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T07:32:12.367Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Category\\Category.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\Category\\Category.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Category\\Category.cs",
-              "RelativeToolTip": "Restaurant.Domain\\Category\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T07:32:10.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Cart.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Cart\\Cart.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\Cart\\Cart.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Cart\\Cart.cs",
-              "RelativeToolTip": "Restaurant.Domain\\Cart\\Cart.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T07:32:09.278Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAgAAACgMjMzMzMbwBEAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T07:28:11.883Z",
+              "WhenOpened": "2024-10-15T16:27:29.259Z",
               "EditorCaption": ""
             }
           ]

@@ -1,10 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Categories.Commands.CreateCategory;
-using Restaurant.Application.Categories.Queries.GetCategoryList;
-using Restaurant.Application.Categories.Commands.DeleteCategory;
-using Restaurant.WebApi.Models;
-using Restaurant.Application.Categories.Commands.UpdateCategory;
+using Restaurant.Application.Entities.Category.Queries.GetCategoryList;
+using Restaurant.Application.Entities.Category.Commands.DeleteCategory;
+using Restaurant.Application.Entities.Category.Commands.CreateCategory;
+using Restaurant.Application.Entities.Category.Commands.UpdateCategory;
+using Microsoft.AspNetCore.Authorization;
+using Restaurant.Domain.Category;
+using Restaurant.WebApi.Models.Category;
+using Restaurant.WebApi.Models.Dish;
+using Restaurant.Application.Entities.Category.Queries.GetCategory;
+
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -13,15 +18,7 @@ namespace Restaurant.WebApi.Controllers
     {
         private readonly IMapper _mapper = mapper;
 
-        [HttpGet]
-        public async Task<ActionResult<CategoryListViewModel>> GetAll()
-        {
-            var query = new GetCategoryListQuery();
-
-            var vm = await Mediator.Send(query);
-
-            return Ok(vm);
-        }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryDto createCategory)
         {
@@ -30,6 +27,22 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(categoryId);
         }
+        [HttpGet]
+        public async Task<ActionResult<CategoryModel>> Get([FromBody] GetCategoryQuery query)
+        {
+            var vm = await Mediator.Send(query);
+            return Ok(vm);
+        }
+        [HttpGet("all")]
+        public async Task<ActionResult<CategoryListViewModel>> GetCategoryList()
+        {
+            var query = new GetCategoryListQuery();
+
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
+        }
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateDishDto updateCategoryDto)
         {
@@ -38,6 +51,7 @@ namespace Restaurant.WebApi.Controllers
 
             return NoContent();
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

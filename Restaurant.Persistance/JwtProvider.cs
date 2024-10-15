@@ -1,22 +1,18 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain;
+using Restaurant.Domain.User;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 namespace Restaurant.Persistence
 {
-    public class JwtProvider : IJwtProvider
+    public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
     {
-        private readonly JwtOptions _options;
+        private readonly JwtOptions _options = options.Value;
 
-        public JwtProvider(IOptions<JwtOptions> options)
-        {
-            _options = options.Value;
-        }
-        public string Generate(User user)
+        public string Generate(UserModel user)
         {
             Claim[] claims = [new("userId", user.Id.ToString())];
             var signingCredentials = new SigningCredentials(

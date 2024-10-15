@@ -1,14 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Restaurant.Domain;
+using Restaurant.Domain.Cart;
+using Restaurant.Domain.Category;
+using Restaurant.Domain.Dish;
+using Restaurant.Domain.Order;
+using Restaurant.Domain.User;
+
 
 namespace Restaurant.Application.Interfaces
 {
     public interface IRestaurantDbContext
     {
-        DbSet<User> Users { get; set; }
-        DbSet<Dish> Dishes { get; set; }
-        DbSet<Category> Categories { get; set; }
-        DbSet<Order> Orders { get; set; }
+        DbSet<UserModel> Users { get; set; }
+        DbSet<DishModel> Dishes { get; set; }
+        DbSet<CategoryModel> Categories { get; set; }
+        DbSet<OrderModel> Orders { get; set; }
+        DbSet<CartModel> Carts { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

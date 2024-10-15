@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain;
+using Restaurant.Domain.User;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<UserModel>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<UserModel> builder)
         {
             builder
                 .HasKey(x => x.Id);

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Users.Commands.CreateUser;
-using Restaurant.Application.Users.Commands.Login;
-using Restaurant.Application.Users.Queries.GetUserDetails;
-using Restaurant.WebApi.Models;
+using Restaurant.Application.Entities.User.Commands.Login;
+using Restaurant.Application.Entities.User.Commands.Register;
+using Restaurant.Application.Entities.User.Queries.GetUserDetails;
+using Restaurant.WebApi.Models.User;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -40,5 +40,10 @@ namespace Restaurant.WebApi.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
+        //[HttpPut("{id} {token}")]
+        //public async Task<ActionResult<UserEditDto>> Edit(Guid id, string token)
+        //{
+        //    return Ok();
+        //}
     }
 }

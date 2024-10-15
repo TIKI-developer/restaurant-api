@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Dishes.Commands.CreateDish;
-using Restaurant.Application.Dishes.Commands.UpdateDish;
-using Restaurant.Application.Dishes.Commands.DeleteDish;
-using Restaurant.Application.Dishes.Queries.GetDishDetails;
-using Restaurant.Application.Dishes.Queries.GetDishList;
-using Restaurant.WebApi.Models;
+using Restaurant.Application.Entities.Dish.Commands.DeleteDish;
+using Restaurant.Application.Entities.Dish.Queries.GetDishDetails;
+using Restaurant.Application.Entities.Dish.Queries.GetDishList;
 using Microsoft.AspNetCore.Authorization;
+using Restaurant.Application.Entities.Dish.Commands.CreateDish;
+using Restaurant.Application.Entities.Dish.Commands.UpdateDish;
+using Restaurant.WebApi.Models.Dish;
+
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -15,14 +16,14 @@ namespace Restaurant.WebApi.Controllers
     {
         private readonly IMapper _mapper = mapper;
 
-        [HttpGet]
-        public async Task<ActionResult<DishListViewModel>> GetAll()
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateDishDto createDishDro)
         {
-            var query = new GetDishListQuery();
+            var command = _mapper.Map<CreateDishCommand>(createDishDro);
+            var dishId = await Mediator.Send(command);
 
-            var vm = await Mediator.Send(query);
-
-            return Ok(vm);
+            return Ok(dishId);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<DishDetailsViewModel>> Get(Guid id)
@@ -34,14 +35,14 @@ namespace Restaurant.WebApi.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
-        [HttpPost]
-        [Authorize]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateDishDto createDishDro)
+        [HttpGet]
+        public async Task<ActionResult<DishListViewModel>> GetAll()
         {
-            var command = _mapper.Map<CreateDishCommand>(createDishDro);
-            var dishId = await Mediator.Send(command);
+            var query = new GetDishListQuery();
 
-            return Ok(dishId);
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
         }
         [HttpPut]
         [Authorize]

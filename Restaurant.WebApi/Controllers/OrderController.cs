@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Orders.Commands.CreateOrder;
-using Restaurant.WebApi.Models;
+using Restaurant.Application.Entities.Order.Commands.CreateOrder;
+using Restaurant.Application.Entities.Order.Queries.GetClientOrderList;
+using Restaurant.Domain.Order;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -10,20 +12,21 @@ namespace Restaurant.WebApi.Controllers
     {
         private readonly IMapper _mapper = mapper;
 
-        [HttpPost]
-        public async Task<ActionResult<Guid>> Create(CreateOrderDto order)
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<OrderModel>> GetOrderList([FromBody] GetClientOrderListQuery query)
         {
-            var command = _mapper.Map<CreateOrderCommand>(order);
-            var orderId = await Mediator.Send(command);
+            var vm = await Mediator.Send(query);
 
-            return Ok(orderId);
+            return Ok(vm);
         }
-        //[HttpGet("{ id }")]
-        //public async Task<ActionResult<Order>> Get(Guid id)
-        //{
-        //    var query = new
-        //    var vm = await Mediator.Send(query);
-        //    return Ok(vm);
-        //}
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateOrderCommand command)
+        { 
+            var id = await Mediator.Send(command);
+
+            return Ok(id);
+        }
     }
 }
