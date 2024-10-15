@@ -22,3 +22,15 @@ C:\Users\sasha\Documents\GitHub\RestaurantBackend\Restaurant.Domain\obj\Debug\ne
 C:\Users\sasha\Documents\GitHub\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.pdb
 C:\Users\sasha\Documents\GitHub\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\ref\Restaurant.Domain.dll
 C:\Users\sasha\Repositories\Unity\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.sourcelink.json
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\bin\Debug\net8.0\Restaurant.Domain.deps.json
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\bin\Debug\net8.0\Restaurant.Domain.dll
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\bin\Debug\net8.0\Restaurant.Domain.pdb
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.AssemblyInfoInputs.cache
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.AssemblyInfo.cs
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.csproj.CoreCompileInputs.cache
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.sourcelink.json
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.dll
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\refint\Restaurant.Domain.dll
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\Restaurant.Domain.pdb
+C:\Users\sasha\Repositories\RestaurantBackend\Restaurant.Domain\obj\Debug\net8.0\ref\Restaurant.Domain.dll

@@ -8,16 +8,10 @@ using Restaurant.Domain;
 
 namespace Restaurant.Application.Dishes.Queries.GetDishDetails
 {
-    public class GetDishDetailsQueryHandler : IRequestHandler<GetDishDetailsQuery, DishDetailsViewModel>
+    public class GetDishDetailsQueryHandler(IRestaurantDbContext dbContext, IMapper mapper) : IRequestHandler<GetDishDetailsQuery, DishDetailsViewModel>
     {
-        private readonly IRestaurantDbContext _dbContext;
-        private readonly IMapper _mapper;
-
-        public GetDishDetailsQueryHandler(IRestaurantDbContext dbContext, IMapper mapper)
-        {
-            _dbContext = dbContext;
-            _mapper = mapper;
-        }
+        private readonly IRestaurantDbContext _dbContext = dbContext;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<DishDetailsViewModel> Handle(GetDishDetailsQuery request, CancellationToken cancellationToken)
         {

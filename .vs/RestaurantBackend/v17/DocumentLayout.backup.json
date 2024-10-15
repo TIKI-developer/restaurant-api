@@ -1,236 +1,32 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\",
+  "WorkspaceRootPath": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.persistance\\entitytypeconfigurations\\dishconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|solutionrelative:restaurant.persistance\\entitytypeconfigurations\\dishconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.application\\dishes\\commands\\createdish\\createdishcommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\dishes\\commands\\createdish\\createdishcommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.application\\dishes\\commands\\createdish\\createdishcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\dishes\\commands\\createdish\\createdishcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.application\\dishes\\commands\\createdish\\createdishcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\dishes\\commands\\createdish\\createdishcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.webapi\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.application\\dishes\\queries\\getdishlist\\getdishlistquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\dishes\\queries\\getdishlist\\getdishlistquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.application\\dishes\\queries\\getdishlist\\dishlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\dishes\\queries\\getdishlist\\dishlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.application\\dishes\\queries\\getdishlist\\dishlookupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\dishes\\queries\\getdishlist\\dishlookupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.domain\\category\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\category\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.domain\\category\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\category\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.domain\\dish\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\dish\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.domain\\order\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\order\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\documents\\github\\restaurantbackend\\restaurant.domain\\user\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\user\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CreateDishCommandValidator.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommandValidator.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommandValidator.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommandValidator.cs",
-              "RelativeToolTip": "Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommandValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T05:35:44.355Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CreateDishCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommandHandler.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommandHandler.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommandHandler.cs",
-              "RelativeToolTip": "Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommandHandler.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAA1wBcAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T05:35:27.084Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CreateDishCommand.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommand.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommand.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommand.cs",
-              "RelativeToolTip": "Restaurant.Application\\Dishes\\Commands\\CreateDish\\CreateDishCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T05:35:17.264Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DishController.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\DishController.cs",
-              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\DishController.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\DishController.cs",
-              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\DishController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowDEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T05:27:45.759Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GetDishListQuery.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Queries\\GetDishList\\GetDishListQuery.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Dishes\\Queries\\GetDishList\\GetDishListQuery.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Queries\\GetDishList\\GetDishListQuery.cs",
-              "RelativeToolTip": "Restaurant.Application\\Dishes\\Queries\\GetDishList\\GetDishListQuery.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T05:27:18.769Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DishListViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Queries\\GetDishList\\DishListViewModel.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Dishes\\Queries\\GetDishList\\DishListViewModel.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Queries\\GetDishList\\DishListViewModel.cs",
-              "RelativeToolTip": "Restaurant.Application\\Dishes\\Queries\\GetDishList\\DishListViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T05:27:11.96Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DishLookupDto.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Queries\\GetDishList\\DishLookupDto.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Dishes\\Queries\\GetDishList\\DishLookupDto.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Application\\Dishes\\Queries\\GetDishList\\DishLookupDto.cs",
-              "RelativeToolTip": "Restaurant.Application\\Dishes\\Queries\\GetDishList\\DishLookupDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T05:25:00.938Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DishConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Persistance\\EntityTypeConfigurations\\DishConfiguration.cs",
-              "RelativeDocumentMoniker": "Restaurant.Persistance\\EntityTypeConfigurations\\DishConfiguration.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Persistance\\EntityTypeConfigurations\\DishConfiguration.cs",
-              "RelativeToolTip": "Restaurant.Persistance\\EntityTypeConfigurations\\DishConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAgAAACgMjMzMzMbwBEAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T04:51:51.567Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CategoryService.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\Category\\CategoryService.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\Category\\CategoryService.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\Category\\CategoryService.cs",
-              "RelativeToolTip": "Restaurant.Domain\\Category\\CategoryService.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T04:51:34.42Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\Category\\Category.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\Category\\Category.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\Category\\Category.cs",
-              "RelativeToolTip": "Restaurant.Domain\\Category\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T04:51:29.097Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Dish.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\Dish\\Dish.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\Dish\\Dish.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\Dish\\Dish.cs",
-              "RelativeToolTip": "Restaurant.Domain\\Dish\\Dish.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T04:51:25.681Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\Order\\Order.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\Order\\Order.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\Order\\Order.cs",
-              "RelativeToolTip": "Restaurant.Domain\\Order\\Order.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T04:51:18.124Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\User\\User.cs",
-              "RelativeDocumentMoniker": "Restaurant.Domain\\User\\User.cs",
-              "ToolTip": "C:\\Users\\sasha\\Documents\\GitHub\\RestaurantBackend\\Restaurant.Domain\\User\\User.cs",
-              "RelativeToolTip": "Restaurant.Domain\\User\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T03:13:17.353Z",
+              "WhenOpened": "2024-10-15T07:28:11.883Z",
               "EditorCaption": ""
             }
           ]

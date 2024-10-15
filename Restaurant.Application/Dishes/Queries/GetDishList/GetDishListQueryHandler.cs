@@ -7,16 +7,10 @@ using Restaurant.Application.Interfaces;
 
 namespace Restaurant.Application.Dishes.Queries.GetDishList
 {
-    public class GetDishListQueryHandler : IRequestHandler<GetDishListQuery, DishListViewModel>
+    public class GetDishListQueryHandler(IRestaurantDbContext dbContext, IMapper mapper) : IRequestHandler<GetDishListQuery, DishListViewModel>
     {
-        private readonly IRestaurantDbContext _dbContext;
-        private readonly IMapper _mapper;
-
-        public GetDishListQueryHandler(IRestaurantDbContext dbContext, IMapper mapper)
-        {
-            _dbContext = dbContext;
-            _mapper = mapper;
-        }
+        private readonly IRestaurantDbContext _dbContext = dbContext;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<DishListViewModel> Handle(GetDishListQuery request, CancellationToken cancellationToken)
         {

@@ -15,8 +15,10 @@ namespace Restaurant.Persistence
 
             services.AddDbContext<RestaurantDbContext>(options =>
             {
-                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); 
+                //options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); 
+                options.UseSqlite(configuration.GetConnectionString("WebApiDatabase"));
             });
+
 
             services.AddScoped<IRestaurantDbContext>(provider => 
                 provider.GetService<RestaurantDbContext>());

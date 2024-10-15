@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Application.Users.Commands.CreateUser;
 using Restaurant.Application.Users.Commands.Login;
+using Restaurant.Application.Users.Queries.GetUserDetails;
 using Restaurant.WebApi.Models;
 
 namespace Restaurant.WebApi.Controllers
@@ -28,6 +29,16 @@ namespace Restaurant.WebApi.Controllers
             HttpContext.Response.Cookies.Append("creeper", token);
 
             return Ok(token);
+        }
+        [HttpGet("profile")]
+        public async Task<ActionResult<UserDetailsViewModel>> Get([FromBody] GetUserProfileDto getUserProfileDto)
+        {
+            var query = new GetUserDetailsQuery
+            {
+                Id = getUserProfileDto.Id
+            };
+            var vm = await Mediator.Send(query);
+            return Ok(vm);
         }
     }
 }
