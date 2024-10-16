@@ -15,14 +15,21 @@ namespace Restaurant.Application.Entities.Cart.Commands.UpdateCart
             var entity = await
                 _dbContext
                     .Carts
-                    .FirstOrDefaultAsync(e => e.Client.Id == request.ClientId, cancellationToken);
+                    .FirstOrDefaultAsync(e => e.ClientId == request.ClientId, cancellationToken);
 
             if (entity == null)
             {
-                throw new NotFoundException(nameof(CartModel), request.ClientId);
+                throw new NotFoundException(nameof(UserCartModel), request.ClientId);
             }
 
-            entity.Dishes = request.Dishes ?? entity.Dishes;
+            var dishEntities = await
+                _dbContext
+                    .Dishes
+                    .Where(d => request.Dishes.Contains(d.Id))
+                    .ToListAsync(cancellationToken);
+
+
+            entity.Dishes = dishEntities;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }

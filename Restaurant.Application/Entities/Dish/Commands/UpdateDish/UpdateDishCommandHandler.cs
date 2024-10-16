@@ -24,11 +24,17 @@ namespace Restaurant.Application.Entities.Dish.Commands.UpdateDish
                 throw new NotFoundException(nameof(DishModel), request.Id);
             }
 
+            var categoryEntities = await 
+                _dbContext
+                    .Categories
+                    .Where(c => request.Categories.Contains(c.Id))
+                    .ToListAsync(cancellationToken);
+
             entity.Name = request.Name ?? entity.Name;
             entity.Description = request.Description ?? entity.Description;
             entity.Price = request.Price ?? entity.Price;
             entity.Image = request.Image ?? entity.Image;
-            entity.Categories = request.Categories ?? entity.Categories;
+            entity.Categories = categoryEntities;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }

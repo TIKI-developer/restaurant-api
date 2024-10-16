@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.Dish;
 
@@ -10,6 +11,12 @@ namespace Restaurant.Application.Entities.Dish.Commands.CreateDish
 
         public async Task<Guid> Handle(CreateDishCommand request, CancellationToken cancellationToken)
         {
+            var categoryEntites = await
+                _dbContext
+                    .Categories
+                    .Where(c => request.Categories.Contains(c.Id))
+                    .ToListAsync();
+
             var dish = new DishModel
             {
                 Id = Guid.NewGuid(),
@@ -17,7 +24,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.CreateDish
                 Description = request.Description,
                 Price = request.Price,
                 Image = request.Image,
-                Categories = request.Categories
+                Categories = categoryEntites
             };
 
             await _dbContext.Dishes.AddAsync(dish, cancellationToken);

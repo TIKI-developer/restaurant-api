@@ -5,17 +5,18 @@ using Restaurant.Domain.Cart;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class CartConfiguration : IEntityTypeConfiguration<CartModel>
+    public class CartConfiguration : IEntityTypeConfiguration<UserCartModel>
     {
-        public void Configure(EntityTypeBuilder<CartModel> builder)
+        public void Configure(EntityTypeBuilder<UserCartModel> builder)
         {
             builder
-                .HasKey(x => x.Client);
+                .HasKey(c => c.ClientId);
             builder
-                .HasIndex(x => x.Client)
+                .HasIndex(c => c.ClientId)
                 .IsUnique();
             builder
-                .HasMany(x => x.Dishes);
+                .HasMany(c => c.Dishes)
+                .WithMany(d => d.Carts);
         }
     }
 }

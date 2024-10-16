@@ -11,7 +11,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishDetails
         public string? Description { get; set; }
         public required float Price { get; set; }
         public byte[]? Image { get; set; }
-        public ICollection<CategoryModel>? Categories { get; set; }
+        public ICollection<Guid>? Categories { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -28,9 +28,9 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishDetails
 
                 .ForMember(dishVm => dishVm.Image,
                     opt => opt.MapFrom(dish => dish.Image))
-
+                    
                 .ForMember(dishVm => dishVm.Categories,
-                    opt => opt.MapFrom(dish => dish.Categories));
+                    opt => opt.MapFrom(dish => dish.Categories.Select(c => c.Id)));
         }
     }
 }

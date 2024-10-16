@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Application.Entities.Cart.Commands.CreateCart;
 using Restaurant.Application.Entities.User.Commands.Login;
 using Restaurant.Application.Entities.User.Commands.Register;
 using Restaurant.Application.Entities.User.Queries.GetUserDetails;
@@ -17,6 +18,11 @@ namespace Restaurant.WebApi.Controllers
         {
             var command = _mapper.Map<RegisterUserCommand>(userRegisterDto);
             var userId = await Mediator.Send(command);
+            var createCartCommand = new CreateCartCommand
+            {
+                ClientId = userId
+            };
+            await Mediator.Send(createCartCommand);
 
             return Ok(userId);
         }

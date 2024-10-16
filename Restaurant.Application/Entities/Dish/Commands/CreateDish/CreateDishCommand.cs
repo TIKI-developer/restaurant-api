@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Restaurant.Domain.Category;
 
 namespace Restaurant.Application.Entities.Dish.Commands.CreateDish
 {
@@ -9,6 +8,6 @@ namespace Restaurant.Application.Entities.Dish.Commands.CreateDish
         public string? Description { get; set; }
         public required float Price { get; set; }
         public byte[]? Image { get; set; }
-        public ICollection<CategoryModel>? Categories { get; set; }
+        public ICollection<Guid>? Categories { get; set; }
     }
 }

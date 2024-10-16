@@ -16,7 +16,7 @@ namespace Restaurant.Persistence
         public DbSet<DishModel> Dishes { get; set; }
         public DbSet<CategoryModel> Categories {  get; set; }
         public DbSet<OrderModel> Orders { get; set; }
-        public DbSet<CartModel> Carts { get; set; }
+        public DbSet<UserCartModel> Carts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

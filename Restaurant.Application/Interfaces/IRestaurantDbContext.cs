@@ -14,7 +14,7 @@ namespace Restaurant.Application.Interfaces
         DbSet<DishModel> Dishes { get; set; }
         DbSet<CategoryModel> Categories { get; set; }
         DbSet<OrderModel> Orders { get; set; }
-        DbSet<CartModel> Carts { get; set; }
+        DbSet<UserCartModel> Carts { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

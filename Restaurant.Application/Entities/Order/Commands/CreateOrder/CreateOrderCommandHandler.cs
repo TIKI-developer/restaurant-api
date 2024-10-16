@@ -3,8 +3,8 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Application.Common.Exceptions;
-using Restaurant.Domain.User;
 using Restaurant.Domain.Order;
+using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
 {
@@ -15,21 +15,17 @@ namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
 
         public async Task<Guid> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var clientEntity = await
+            var client = await
                 _dbContext
-                .Users
-                .FirstOrDefaultAsync(e => e.Id == request.ClientId, cancellationToken);
+                    .Users
+                    .FirstOrDefaultAsync(u => u.Id == request.ClientId, cancellationToken);
 
-            if (clientEntity == null)
-            {
-                throw new NotFoundException(nameof(UserModel), request.ClientId);
-            }
             var order = new OrderModel
             {
                 Id = Guid.NewGuid(),
                 Dishes = request.Dishes,
                 CreationDateTime = DateTime.UtcNow,
-                Client = (ClientModel)clientEntity
+                Client = client as ClientModel
             };
 
             _dbContext.Orders.Add(order);

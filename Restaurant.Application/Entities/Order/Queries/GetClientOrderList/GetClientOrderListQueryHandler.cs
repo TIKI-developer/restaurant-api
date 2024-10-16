@@ -2,7 +2,9 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
+using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.Order.Queries.GetClientOrderList
 {
@@ -13,6 +15,15 @@ namespace Restaurant.Application.Entities.Order.Queries.GetClientOrderList
 
         public async Task<OrderListViewModel> Handle(GetClientOrderListQuery request, CancellationToken cancellationToken)
         {
+            var client = await
+                _dbContext
+                    .Users
+                    .FirstOrDefaultAsync(u => u.Id == request.ClientId, cancellationToken);
+
+            if (client == null)
+            {
+                throw new NotFoundException(nameof(ClientModel), request.ClientId);
+            }
             var ordersQuery = await
                 _dbContext
                 .Orders

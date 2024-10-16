@@ -10,17 +10,23 @@ namespace Restaurant.WebApi.Controllers
     public class CartController : BaseController
     {
         [Authorize]
-        [HttpGet]
-        public async Task<ActionResult<CartModel>> Get([FromBody] GetCartDetailsQuery query)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CartDetailsViewModel>> Get(Guid id)
         {
-            var vm = Mediator.Send(query);
+            var query = new GetCartDetailsQuery
+            {
+                ClientId = id
+            };
+            var vm = await Mediator.Send(query);
+
             return Ok(vm);
         }
         [Authorize]
-        [HttpPut]
+        [HttpPut("edit")]
         public async Task<IActionResult> Update([FromBody] UpdateCartCommand command)
         {
             await Mediator.Send(command);
+
             return NoContent();
         }
     }

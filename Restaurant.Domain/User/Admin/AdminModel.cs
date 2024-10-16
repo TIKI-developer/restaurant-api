@@ -1,4 +1,4 @@
-﻿namespace Restaurant.Domain.User
+﻿namespace Restaurant.Domain.User.Admin
 {
     public class AdminModel : UserModel
     {

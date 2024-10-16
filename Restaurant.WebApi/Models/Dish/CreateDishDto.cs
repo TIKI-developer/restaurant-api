@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Entities.Dish.Commands.CreateDish;
-using Restaurant.Domain.Category;
 
 
 namespace Restaurant.WebApi.Models.Dish
@@ -12,7 +11,7 @@ namespace Restaurant.WebApi.Models.Dish
         public string? Description { get; set; }
         public float Price { get; set; }
         public byte[]? Image { get; set; }
-        public List<CategoryModel>? Categories { get; set; }
+        public ICollection<Guid>? Categories { get; set; }
 
         public void Mapping(Profile profile)
         {

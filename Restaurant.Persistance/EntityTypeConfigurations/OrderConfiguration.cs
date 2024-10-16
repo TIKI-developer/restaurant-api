@@ -9,12 +9,13 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<OrderModel> builder)
         {
             builder
-                .HasKey(x => x.Id);
+                .HasKey(o => o.Id);
             builder
-                .HasIndex(x => x.Id)
+                .HasIndex(o => o.Id)
                 .IsUnique();
             builder
-                .HasOne(x => x.Client);
+                .HasOne(o => o.Client)
+                .WithMany(c => c.Orders);
         }
     }
 }
