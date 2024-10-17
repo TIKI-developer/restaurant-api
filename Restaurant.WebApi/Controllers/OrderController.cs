@@ -14,19 +14,11 @@ namespace Restaurant.WebApi.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<OrderModel>> GetOrderList([FromBody] GetClientOrderListQuery query)
+        public async Task<ActionResult<OrderListViewModel>> GetOrderList([FromBody] GetClientOrderListQuery query)
         {
             var vm = await Mediator.Send(query);
 
             return Ok(vm);
-        }
-        [Authorize]
-        [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateOrderCommand command)
-        { 
-            var id = await Mediator.Send(command);
-
-            return Ok(id);
         }
     }
 }

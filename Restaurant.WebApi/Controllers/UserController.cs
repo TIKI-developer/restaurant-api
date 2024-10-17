@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Application.Entities.Cart.Commands.UpdateCart;
 using Restaurant.Application.Entities.User.Commands.Login;
 using Restaurant.Application.Entities.User.Commands.Register;
 using Restaurant.Application.Entities.User.Queries.GetUserDetails;
@@ -12,7 +14,7 @@ namespace Restaurant.WebApi.Controllers
     {
         private readonly IMapper _mapper = mapper;
 
-        [HttpPost("register")]
+        [HttpPost("signup")]
         public async Task<ActionResult<Guid>> Register([FromBody] UserRegisterDto userRegisterDto)
         {
             var command = _mapper.Map<RegisterUserCommand>(userRegisterDto);
@@ -30,8 +32,9 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(token);
         }
+        [Authorize]
         [HttpGet("profile")]
-        public async Task<ActionResult<UserDetailsViewModel>> Get([FromBody] GetUserProfileDto getUserProfileDto)
+        public async Task<ActionResult<UserDetailsViewModel>> GetProfile([FromBody] GetUserProfileDto getUserProfileDto)
         {
             var query = new GetUserDetailsQuery
             {
@@ -40,10 +43,20 @@ namespace Restaurant.WebApi.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
-        //[HttpPut("{id} {token}")]
-        //public async Task<ActionResult<UserEditDto>> Edit(Guid id, string token)
+        [Authorize]
+        [HttpGet("cart")]
+        public async Task<ActionResult<UserEditDto>> GetCart()
+        {   
+            return Ok();
+        }
+
+        //[Authorize]
+        //[HttpPut("edit")]
+        //public async Task<IActionResult> Update([FromBody] UpdateCartCommand command)
         //{
-        //    return Ok();
+        //    await Mediator.Send(command);
+
+        //    return NoContent();
         //}
     }
 }

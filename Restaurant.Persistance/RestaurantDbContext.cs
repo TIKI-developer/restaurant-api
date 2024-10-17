@@ -19,12 +19,12 @@ namespace Restaurant.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ClientConfiguration());
+            //modelBuilder.ApplyConfiguration(new ClientProfileConfiguration());
+            //modelBuilder.ApplyConfiguration(new ClientCartConfiguration());
             modelBuilder.ApplyConfiguration(new DishConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
-            modelBuilder.ApplyConfiguration(new ClientCartConfiguration());
-            modelBuilder.ApplyConfiguration(new ClientCartConfiguration());
-            modelBuilder.ApplyConfiguration(new ClientProfileConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
