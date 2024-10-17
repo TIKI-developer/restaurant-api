@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Domain.User;
+using Restaurant.Domain.User.Client;
 
 
 namespace Restaurant.Application.Entities.User.Commands.EditProfile
@@ -16,14 +17,14 @@ namespace Restaurant.Application.Entities.User.Commands.EditProfile
             var entity = await 
                 _dbContext
                     .Users
-                    .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
+                    .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken) as ClientModel;
 
             if (entity == null)
             {
                 throw new NotFoundException(nameof(UserModel), request.Id);
             }
 
-            entity.Name = request.Name ?? entity.Name;
+            entity.Profile.Name = request.Name ?? entity.Profile.Name;
             entity.Number = request.Number ?? entity.Number;
 
             await _dbContext.SaveChangesAsync(cancellationToken);

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Application.Entities.Cart.Commands.UpdateCart;
 using Restaurant.Application.Entities.Cart.Queries.GetCartDetails;
-using Restaurant.Domain.Cart;
 
 namespace Restaurant.WebApi.Controllers
 {

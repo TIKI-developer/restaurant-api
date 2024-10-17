@@ -1,5 +1,5 @@
-﻿using Restaurant.Domain.Cart;
-using Restaurant.Domain.Category;
+﻿using Restaurant.Domain.Category;
+using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Domain.Dish
 {
@@ -11,6 +11,6 @@ namespace Restaurant.Domain.Dish
 		public required float Price { get; set; }
 		public byte[]? Image { get; set; }
 		public ICollection<CategoryModel>? Categories { get; set; } = [];
-		public ICollection<UserCartModel>? Carts { get; set; } = [];
+		public ICollection<ClientModel.CartModel>? Carts { get; set; } = [];
 	} 
 }

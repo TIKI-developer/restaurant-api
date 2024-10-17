@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Application.Common.Exceptions;
-using Restaurant.Domain.Cart;
+using Restaurant.Domain.User;
+using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.Cart.Commands.UpdateCart
 {
@@ -12,14 +13,14 @@ namespace Restaurant.Application.Entities.Cart.Commands.UpdateCart
 
         public async Task Handle(UpdateCartCommand request, CancellationToken cancellationToken)
         {
-            var entity = await
+            var entityClient = await
                 _dbContext
-                    .Carts
-                    .FirstOrDefaultAsync(e => e.ClientId == request.ClientId, cancellationToken);
+                    .Users
+                    .FirstOrDefaultAsync(e => e.Id == request.ClientId, cancellationToken) as ClientModel;
 
-            if (entity == null)
+            if (entityClient == null)
             {
-                throw new NotFoundException(nameof(UserCartModel), request.ClientId);
+                throw new NotFoundException(nameof(UserModel), request.ClientId);
             }
 
             var dishEntities = await
@@ -29,7 +30,7 @@ namespace Restaurant.Application.Entities.Cart.Commands.UpdateCart
                     .ToListAsync(cancellationToken);
 
 
-            entity.Dishes = dishEntities;
+            entityClient.Cart.Dishes = dishEntities;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }

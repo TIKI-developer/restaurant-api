@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.User;
+using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
 {
@@ -14,17 +15,17 @@ namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
 
         public async Task<CartDetailsViewModel> Handle(GetCartDetailsQuery request, CancellationToken cancellationToken)
         {
-            var entity = await
+            var entityClient = await
                 _dbContext
-                    .Carts
-                    .FirstOrDefaultAsync(e => e.ClientId == request.ClientId, cancellationToken);
+                    .Users
+                    .FirstOrDefaultAsync(e => e.Id == request.ClientId, cancellationToken) as ClientModel;
 
-            if (entity == null)
+            if (entityClient == null)
             {
                 throw new NotFoundException(nameof(UserModel), request.ClientId);
             }
-            Console.WriteLine(entity.Dishes.Count);
-            return _mapper.Map<CartDetailsViewModel>(entity);
+            Console.WriteLine(entityClient.Cart.Dishes.Count);
+            return _mapper.Map<CartDetailsViewModel>(entityClient);
         }
     }
 }

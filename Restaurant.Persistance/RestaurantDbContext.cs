@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain.Cart;
 using Restaurant.Domain.Category;
 using Restaurant.Domain.Dish;
 using Restaurant.Domain.Order;
@@ -16,7 +15,6 @@ namespace Restaurant.Persistence
         public DbSet<DishModel> Dishes { get; set; }
         public DbSet<CategoryModel> Categories {  get; set; }
         public DbSet<OrderModel> Orders { get; set; }
-        public DbSet<UserCartModel> Carts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,7 +22,9 @@ namespace Restaurant.Persistence
             modelBuilder.ApplyConfiguration(new DishConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
-            modelBuilder.ApplyConfiguration(new CartConfiguration());
+            modelBuilder.ApplyConfiguration(new ClientCartConfiguration());
+            modelBuilder.ApplyConfiguration(new ClientCartConfiguration());
+            modelBuilder.ApplyConfiguration(new ClientProfileConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -13,9 +13,6 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
             builder
                 .HasIndex(u => u.Id).IsUnique();
             builder
-                .HasMany(u => u.Orders)
-                .WithOne(o => o.Client);
-            builder
                 .HasIndex(u => u.Number)
                 .IsUnique();
         }
