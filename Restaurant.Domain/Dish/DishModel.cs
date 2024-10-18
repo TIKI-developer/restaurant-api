@@ -11,6 +11,5 @@ namespace Restaurant.Domain.Dish
 		public required float Price { get; set; }
 		public byte[]? Image { get; set; }
 		public ICollection<CategoryModel>? Categories { get; set; } = [];
-        public ICollection<ClientModel.CartModel> Carts { get; set; }
     } 
 }

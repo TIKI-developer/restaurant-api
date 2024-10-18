@@ -1,134 +1,8 @@
 [
   {
-    "ContainingType": "Restaurant.WebApi.Controllers.CartController",
-    "Method": "Get",
-    "RelativePath": "api/Cart/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Restaurant.Application.Entities.Cart.Queries.GetCartDetails.CartDetailsViewModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.CartController",
-    "Method": "Update",
-    "RelativePath": "api/Cart/edit",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "command",
-        "Type": "Restaurant.Application.Entities.Cart.Commands.UpdateCart.UpdateCartCommand",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.CategoryController",
-    "Method": "Create",
-    "RelativePath": "api/Category",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "createCategory",
-        "Type": "Restaurant.WebApi.Models.Category.CreateCategoryDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Guid",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.CategoryController",
-    "Method": "Get",
-    "RelativePath": "api/Category",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "Restaurant.Application.Entities.Category.Queries.GetCategory.GetCategoryQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Restaurant.Domain.Category.CategoryModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.CategoryController",
-    "Method": "Update",
-    "RelativePath": "api/Category",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "updateCategoryDto",
-        "Type": "Restaurant.WebApi.Models.Dish.UpdateDishDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.CategoryController",
-    "Method": "Delete",
-    "RelativePath": "api/Category/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Restaurant.WebApi.Controllers.CategoryController",
     "Method": "GetCategoryList",
-    "RelativePath": "api/Category/all",
+    "RelativePath": "api/Category/list",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -147,38 +21,23 @@
   },
   {
     "ContainingType": "Restaurant.WebApi.Controllers.DishController",
-    "Method": "Create",
-    "RelativePath": "api/Dish",
-    "HttpMethod": "POST",
+    "Method": "GetDishesWithCategory",
+    "RelativePath": "api/Dish/list/{categoryId}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "createDishDro",
-        "Type": "Restaurant.WebApi.Models.Dish.CreateDishDto",
+        "Name": "categoryId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "query",
+        "Type": "Restaurant.Application.Entities.Dish.Queries.GetDishList.GetCategoryDishListQuery",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Guid",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.DishController",
-    "Method": "GetAll",
-    "RelativePath": "api/Dish",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "Restaurant.Application.Entities.Dish.Queries.GetDishList.DishListViewModel",
@@ -190,64 +49,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.DishController",
-    "Method": "Update",
-    "RelativePath": "api/Dish",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "updateDishDto",
-        "Type": "Restaurant.WebApi.Models.Dish.UpdateDishDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.DishController",
-    "Method": "Get",
-    "RelativePath": "api/Dish/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Restaurant.Application.Entities.Dish.Queries.GetDishDetails.DishDetailsViewModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Restaurant.WebApi.Controllers.DishController",
-    "Method": "Delete",
-    "RelativePath": "api/Dish/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "Restaurant.WebApi.Controllers.OrderController",
@@ -265,7 +66,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Restaurant.Domain.Order.OrderModel",
+        "Type": "Restaurant.Application.Entities.Order.Queries.GetClientOrderList.OrderListViewModel",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -276,22 +77,16 @@
     ]
   },
   {
-    "ContainingType": "Restaurant.WebApi.Controllers.OrderController",
-    "Method": "Create",
-    "RelativePath": "api/Order",
-    "HttpMethod": "POST",
+    "ContainingType": "Restaurant.WebApi.Controllers.UserController",
+    "Method": "GetCart",
+    "RelativePath": "api/User/cart",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "command",
-        "Type": "Restaurant.Application.Entities.Order.Commands.CreateOrder.CreateOrderCommand",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Guid",
+        "Type": "Restaurant.WebApi.Models.User.UserEditDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -329,7 +124,7 @@
   },
   {
     "ContainingType": "Restaurant.WebApi.Controllers.UserController",
-    "Method": "Get",
+    "Method": "GetProfile",
     "RelativePath": "api/User/profile",
     "HttpMethod": "GET",
     "IsController": true,
@@ -356,7 +151,7 @@
   {
     "ContainingType": "Restaurant.WebApi.Controllers.UserController",
     "Method": "Register",
-    "RelativePath": "api/User/register",
+    "RelativePath": "api/User/signup",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

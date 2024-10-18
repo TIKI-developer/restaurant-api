@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Restaurant.Domain.Dish;
 using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
@@ -14,7 +15,13 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
             builder
                 .OwnsOne(c => c.Cart, cart =>
                 {
-                    cart.WithOwner();
+                    cart
+                        .WithOwner();
+                    cart
+                        .HasOne<ClientModel>()
+                        .WithOne()
+                        .HasForeignKey<ClientModel>(client => client.Id);
+                    cart.Ignore(c => c.Dishes);
                 });
             //builder
             //    .OwnsOne(c => c.Profile, profile =>

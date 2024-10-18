@@ -847,12 +847,18 @@
           "Restaurant.Domain": "1.0.0"
         },
         "runtime": {
-          "Restaurant.Application.dll": {}
+          "Restaurant.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Restaurant.Domain/1.0.0": {
         "runtime": {
-          "Restaurant.Domain.dll": {}
+          "Restaurant.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
