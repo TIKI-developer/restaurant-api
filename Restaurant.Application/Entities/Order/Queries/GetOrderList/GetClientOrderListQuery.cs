@@ -1,7 +1,6 @@
 ﻿using MediatR;
 
-
-namespace Restaurant.Application.Entities.Order.Queries.GetClientOrderList
+namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
 {
     public class GetClientOrderListQuery : IRequest<OrderListViewModel>
     {

@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Restaurant.Domain.Category;
 
 namespace Restaurant.Application.Entities.Dish.Commands.UpdateDish
 {

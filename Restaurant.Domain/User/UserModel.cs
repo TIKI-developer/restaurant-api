@@ -1,5 +1,3 @@
-using Restaurant.Domain.Order;
-
 namespace Restaurant.Domain.User
 {
     public abstract class UserModel
@@ -7,7 +5,12 @@ namespace Restaurant.Domain.User
         public Guid Id { get; set; }
         public required string Number { get; set; }
         public required string PasswordHash { get; set; }
-        public abstract UserRole Role { get; }
+        public string Role { get => InitRole.ToString(); }
+        protected abstract UserRole InitRole { get; }
     }
-
+    public enum UserRole
+    {
+        Client,
+        Admin
+    }
 }

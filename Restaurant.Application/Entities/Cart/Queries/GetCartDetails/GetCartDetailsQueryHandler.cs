@@ -3,8 +3,8 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain.User;
-using Restaurant.Domain.User.Client;
+using Restaurant.Domain.Cart;
+
 
 namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
 {
@@ -15,17 +15,18 @@ namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
 
         public async Task<CartDetailsViewModel> Handle(GetCartDetailsQuery request, CancellationToken cancellationToken)
         {
-            var entityClient = await
+            var cart = await
                 _dbContext
-                    .Users
-                    .FirstOrDefaultAsync(e => e.Id == request.ClientId, cancellationToken) as ClientModel;
+                    .Carts
+                    .Include(c => c.Dishes)
+                    .FirstOrDefaultAsync(e => e.ClientId == request.ClientId, cancellationToken);
 
-            if (entityClient == null)
+            if (cart == null)
             {
-                throw new NotFoundException(nameof(UserModel), request.ClientId);
+                throw new NotFoundException(nameof(CartModel), request.ClientId);
             }
-            Console.WriteLine(entityClient.Cart.Dishes.Count);
-            return _mapper.Map<CartDetailsViewModel>(entityClient);
+
+            return _mapper.Map<CartDetailsViewModel>(cart);
         }
     }
 }

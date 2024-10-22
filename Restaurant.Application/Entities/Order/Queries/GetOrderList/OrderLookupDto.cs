@@ -4,14 +4,15 @@ using Restaurant.Domain.Order;
 using Restaurant.Domain.Dish;
 using Restaurant.Domain.User;
 
-namespace Restaurant.Application.Entities.Order.Queries.GetClientOrderList
+namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
 {
     public class OrderLookupDto : IMapWith<OrderModel>
     {
         public required Guid Id { get; set; }
-        public required ICollection<DishModel> Dishes { get; set; }
+        public required ICollection<Guid> Dishes { get; set; }
+        public required OrderStatus Status { get; set; }
         public required DateTime CreationDateTime { get; set; }
-        public required UserModel Client { get; set; }
+        public required Guid Client { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -21,13 +22,16 @@ namespace Restaurant.Application.Entities.Order.Queries.GetClientOrderList
                     opt => opt.MapFrom(order => order.Id))
 
                 .ForMember(orderDto => orderDto.Dishes,
-                    opt => opt.MapFrom(order => order.Dishes))
+                    opt => opt.MapFrom(order => order.Dishes.Select(d => d.Id)))
+
+                .ForMember(orderDto => orderDto.Status,
+                    opt => opt.MapFrom(order => order.Status))
 
                 .ForMember(orderDto => orderDto.CreationDateTime,
                     opt => opt.MapFrom(order => order.CreationDateTime))
 
                 .ForMember(orderDto => orderDto.Client,
-                    opt => opt.MapFrom(order => order.Client));
+                    opt => opt.MapFrom(order => order.Client.Id));
         }
     }
 }

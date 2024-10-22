@@ -14,15 +14,25 @@ namespace Restaurant.Persistence
 
         public string Generate(UserModel user)
         {
-            Claim[] claims = [new("userId", user.Id.ToString())];
+            var claims = new List<Claim>
+            {
+                new(ClaimTypes.Role, user.Role),     
+                new("userId", user.Id.ToString())    
+            };
+
             var signingCredentials = new SigningCredentials(
+
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)), 
+
                     SecurityAlgorithms.HmacSha256
                 );
 
             var token = new JwtSecurityToken(
+
                     claims: claims,
+
                     signingCredentials: signingCredentials,
+
                     expires: DateTime.UtcNow.AddHours(_options.ExpiresHours)
                 );
 

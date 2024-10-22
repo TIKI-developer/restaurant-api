@@ -16,6 +16,12 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
             builder
                 .HasMany(d => d.Categories)
                 .WithMany(c => c.Dishes);
+            builder
+                .HasMany(d => d.Carts)
+                .WithMany(c => c.Dishes);
+            builder
+                .HasMany(d => d.Orders)
+                .WithMany(o => o.Dishes);
         }
     }
 }

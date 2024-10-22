@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace Restaurant.Application.Entities.User.Commands.Register
+namespace Restaurant.Application.Entities.User.Commands.RegisterClient
 {
-    public class RegisterUserCommand : IRequest<Guid>
+    public class RegisterClientCommand : IRequest<Guid>
     {
         public string? Name { get; set; }
         public required string Number { get; set; }

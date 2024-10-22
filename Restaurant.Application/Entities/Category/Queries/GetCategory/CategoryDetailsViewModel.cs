@@ -8,6 +8,7 @@ namespace Restaurant.Application.Entities.Category.Queries.GetCategory
     {
         public required string Name { get; set; }
         public byte[]? Image {  get; set; }
+        public List<Guid>? Dishes { get; set; }  
 
         public void Mapping(Profile profile)
         {
@@ -17,7 +18,10 @@ namespace Restaurant.Application.Entities.Category.Queries.GetCategory
                     opt => opt.MapFrom(category => category.Name))
 
                 .ForMember(categoryVm => categoryVm.Image,
-                    opt => opt.MapFrom(category => category.Image));
+                    opt => opt.MapFrom(category => category.Image))
+
+                .ForMember(categoryVm => categoryVm.Dishes,
+                    opt => opt.MapFrom(category => category.Dishes.Select(d => d.Id)));
         }
     }
 }

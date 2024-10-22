@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
@@ -18,6 +19,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
                 _dbContext
                     .Dishes
                     .Where(d => d.Categories.Any(c => c.Id == request.CategoryId))
+                    .ProjectTo<DishLookupDto>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
 
             if (dishList == null)
@@ -25,7 +27,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
                 throw new NotFoundException(nameof(DishModel), request.CategoryId);
             }
 
-            return _mapper.Map<DishListViewModel>(dishList);
+            return new DishListViewModel { Dishes = dishList };
         }
     }
 }

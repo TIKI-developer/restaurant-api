@@ -1,23 +1,35 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Entities.Cart.Commands.UpdateCart;
+﻿using Restaurant.Application.Entities.Cart.Commands.CartAddDish;
+using Restaurant.Application.Entities.Cart.Queries.GetCartDetails;
+using Restaurant.Application.Entities.User.Commands.EditProfile;
 using Restaurant.Application.Entities.User.Commands.Login;
-using Restaurant.Application.Entities.User.Commands.Register;
+using Restaurant.Application.Entities.User.Commands.RegisterClient;
 using Restaurant.Application.Entities.User.Queries.GetUserDetails;
+using Microsoft.AspNetCore.Authorization;
 using Restaurant.WebApi.Models.User;
+using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using Restaurant.Application.Entities.Cart.Commands.CartDeleteDish;
+using Restaurant.Application.Entities.User.Commands.RegisterAdmin;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     public class UserController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
 
         [HttpPost("signup")]
-        public async Task<ActionResult<Guid>> Register([FromBody] UserRegisterDto userRegisterDto)
+        public async Task<ActionResult<Guid>> Register([FromBody] ClientRegisterDto userRegisterDto)
         {
-            var command = _mapper.Map<RegisterUserCommand>(userRegisterDto);
+            var command = _mapper.Map<RegisterClientCommand>(userRegisterDto);
+            var userId = await Mediator.Send(command);
+
+            return Ok(userId);
+        }
+        [HttpPost("register/admin")]
+        public async Task<ActionResult<Guid>> RegisterAdmin([FromBody] AdminRegisterDto userRegisterDto)
+        {
+            var command = _mapper.Map<RegisterAdminCommand>(userRegisterDto);
             var userId = await Mediator.Send(command);
 
             return Ok(userId);
@@ -32,31 +44,57 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(token);
         }
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpGet("profile")]
-        public async Task<ActionResult<UserDetailsViewModel>> GetProfile([FromBody] GetUserProfileDto getUserProfileDto)
+        public async Task<ActionResult<UserDetailsViewModel>> GetProfile()
         {
+            var userId = Guid.Parse(User.FindFirst("userId")?.Value);
+
             var query = new GetUserDetailsQuery
             {
-                Id = getUserProfileDto.Id
+                Id = userId
             };
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
-        [Authorize]
-        [HttpGet("cart")]
-        public async Task<ActionResult<UserEditDto>> GetCart()
-        {   
-            return Ok();
+        [Authorize(Roles = "Client")]
+        [HttpPut("profile/edit")]
+        public async Task<IActionResult> Update([FromBody] EditProfileCommand command)
+        {
+            command.Id = Guid.Parse(User.FindFirst("userId")?.Value);
+            await Mediator.Send(command);
+
+            return NoContent();
         }
+        [Authorize(Roles = "Client")]
+        [HttpGet("cart")]
+        public async Task<ActionResult<CartDetailsViewModel>> GetCart()
+        {
+            var userId = Guid.Parse(User.FindFirst("userId")?.Value);
 
-        //[Authorize]
-        //[HttpPut("edit")]
-        //public async Task<IActionResult> Update([FromBody] UpdateCartCommand command)
-        //{
-        //    await Mediator.Send(command);
+            var query = new GetCartDetailsQuery
+            {
+                ClientId = userId
+            };
+            var vm = await Mediator.Send(query);
 
-        //    return NoContent();
-        //}
+            return Ok(vm);
+        }
+        [Authorize(Roles = "Client")]
+        [HttpPut("cart/add")]
+        public async Task<IActionResult> AddDish([FromBody] CartAddDishCommand command)
+        {
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
+        [Authorize(Roles = "Client")]
+        [HttpDelete("cart/delete")]
+        public async Task<IActionResult> RemoveDish([FromBody] CartDeleteDishCommand command)
+        {
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
     }
 }

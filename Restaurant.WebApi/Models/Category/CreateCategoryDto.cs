@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Entities.Category.Commands.CreateCategory;
-using Restaurant.Application.Entities.Dish.Commands.CreateDish;
 
 namespace Restaurant.WebApi.Models.Category
 {
@@ -12,7 +11,7 @@ namespace Restaurant.WebApi.Models.Category
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CreateCategoryDto, CreateDishCommand>()
+            profile.CreateMap<CreateCategoryDto, CreateCategoryCommand>()
 
                 .ForMember(categoryVm => categoryVm.Name,
                     opt => opt.MapFrom(category => category.Name))

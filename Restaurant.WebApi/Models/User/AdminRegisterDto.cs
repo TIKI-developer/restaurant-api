@@ -1,22 +1,19 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
-using Restaurant.Application.Entities.User.Commands.Register;
+using Restaurant.Application.Entities.User.Commands.RegisterAdmin;
+
 
 namespace Restaurant.WebApi.Models.User
 {
-    public class UserRegisterDto : IMapWith<RegisterUserCommand>
+    public class AdminRegisterDto : IMapWith<RegisterAdminCommand>
     {
-        public string? Name { get; set; }
         public required string Number { get; set; }
         public required string Password { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile
-                .CreateMap<UserRegisterDto, RegisterUserCommand>()
-
-                    .ForMember(user => user.Name,
-                        opt => opt.MapFrom(userDto => userDto.Name))
+                .CreateMap<AdminRegisterDto, RegisterAdminCommand>()
 
                     .ForMember(user => user.Number,
                         opt => opt.MapFrom(userDto => userDto.Number))

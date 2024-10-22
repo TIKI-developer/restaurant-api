@@ -6,7 +6,7 @@ using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.User.Client;
 
-namespace Restaurant.Application.Entities.Order.Queries.GetClientOrderList
+namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
 {
     public class GetClientOrderListQueryHandler(IMapper mapper, IRestaurantDbContext dbContext) : IRequestHandler<GetClientOrderListQuery, OrderListViewModel>
     {
