@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E+0Vol1fpwtBYA8AnpEsu/It3X0FiWpFrqhHwKMwILm8EZbf4Nv1DzPUHRdCWCImmqUwj1hp76giPHLM8vyB0g==",
+  "dgSpecHash": "ous5r6fzKJM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.Application\\Restaurant.Application.csproj",
+  "projectFilePath": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Restaurant.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sasha\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",

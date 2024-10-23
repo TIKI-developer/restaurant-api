@@ -14,14 +14,13 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartDeleteDish
 
         public async Task Handle(CartDeleteDishCommand request, CancellationToken cancellationToken)
         {
-            var client = await
+            var cart = await
                 _dbContext
-                    .Users
-                    .OfType<ClientModel>()
-                    .Include(u => u.Cart)
-                    .FirstOrDefaultAsync(d => d.Id == request.UserId, cancellationToken);
+                    .Carts
+                    .Include(u => u.Dishes)
+                    .FirstOrDefaultAsync(d => d.ClientId == request.UserId, cancellationToken);
 
-            if (client == null)
+            if (cart == null)
             {
                 throw new NotFoundException(nameof(CartModel), request.UserId);
             }
@@ -36,7 +35,7 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartDeleteDish
                 throw new NotFoundException(nameof(DishModel), request.DishId);
             }
 
-            client.Cart.Dishes.Remove(dish);
+            cart.Dishes.Remove(dish);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

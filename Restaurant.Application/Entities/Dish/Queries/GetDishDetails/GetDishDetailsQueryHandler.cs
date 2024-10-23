@@ -18,6 +18,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishDetails
             var entity = await 
                 _dbContext
                 .Dishes
+                .Include(d => d.Categories)
                 .FirstOrDefaultAsync(dish =>
                 dish.Id == request.Id, cancellationToken);
 
