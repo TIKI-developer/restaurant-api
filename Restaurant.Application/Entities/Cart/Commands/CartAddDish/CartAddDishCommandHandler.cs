@@ -16,6 +16,7 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
                 _dbContext
                     .Carts
                     .Include(c => c.Dishes)
+                    .Include(c => c.CartModelDishModels)
                     .FirstOrDefaultAsync(c => c.ClientId == request.ClientId, cancellationToken);
 
             if (cart == null)
@@ -24,14 +25,27 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
             }
             else
             {
+                var dishCount = request.NewDishes
+                        .GroupBy(id => id)
+                        .ToDictionary(group => group.Key, group => group.Count());
                 var newDishes = await
                     _dbContext
                         .Dishes
                         .Where(c => request.NewDishes.Contains(c.Id))
                         .ToListAsync(cancellationToken);
 
+                foreach (var dish in newDishes)
+                {
+                    var count = dishCount[dish.Id];
 
-                cart.Dishes.AddRange(newDishes);
+                    var cartDish = new CartModelDishModel
+                    {
+                        Dish = dish,
+                        Count = count
+                    };
+
+                    cart.CartModelDishModels.Add(cartDish);
+                }
                 await _dbContext.SaveChangesAsync(cancellationToken);
             }
         }

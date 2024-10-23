@@ -322,8 +322,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "command",
-        "Type": "Restaurant.Application.Entities.Cart.Commands.CartAddDish.CartAddDishCommand",
+        "Name": "dto",
+        "Type": "Restaurant.WebApi.Models.User.CartAddDishDto",
         "IsRequired": true
       }
     ],
@@ -338,8 +338,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "command",
-        "Type": "Restaurant.Application.Entities.Cart.Commands.CartDeleteDish.CartDeleteDishCommand",
+        "Name": "dto",
+        "Type": "Restaurant.WebApi.Models.User.CartDeleteDishDto",
         "IsRequired": true
       }
     ],
@@ -400,8 +400,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "command",
-        "Type": "Restaurant.Application.Entities.User.Commands.EditProfile.EditProfileCommand",
+        "Name": "dto",
+        "Type": "Restaurant.WebApi.Models.User.EditClientProfileDto",
         "IsRequired": true
       }
     ],

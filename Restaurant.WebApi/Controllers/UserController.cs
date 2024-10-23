@@ -59,9 +59,11 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client")]
         [HttpPut("profile/edit")]
-        public async Task<IActionResult> Update([FromBody] EditProfileCommand command)
+        public async Task<IActionResult> Update([FromBody] EditClientProfileDto dto)
         {
+            var command = _mapper.Map<EditProfileCommand>(dto);
             command.Id = Guid.Parse(User.FindFirst("userId")?.Value);
+
             await Mediator.Send(command);
 
             return NoContent();
@@ -82,16 +84,20 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client")]
         [HttpPut("cart/add")]
-        public async Task<IActionResult> AddDish([FromBody] CartAddDishCommand command)
+        public async Task<IActionResult> AddDish([FromBody] CartAddDishDto dto)
         {
+            var command = _mapper.Map<CartAddDishCommand>(dto);
+            command.ClientId = Guid.Parse(User.FindFirst("userId")?.Value);
             await Mediator.Send(command);
 
             return NoContent();
         }
         [Authorize(Roles = "Client")]
         [HttpDelete("cart/delete")]
-        public async Task<IActionResult> RemoveDish([FromBody] CartDeleteDishCommand command)
+        public async Task<IActionResult> RemoveDish([FromBody] CartDeleteDishDto dto)
         {
+            var command = _mapper.Map<CartDeleteDishCommand>(dto);
+            command.UserId = Guid.Parse(User.FindFirst("userId")?.Value);
             await Mediator.Send(command);
 
             return NoContent();

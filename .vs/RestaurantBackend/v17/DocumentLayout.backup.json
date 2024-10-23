@@ -3,40 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\cart\\commands\\cartdeletedish\\cartdeletedishcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\cart\\commands\\cartdeletedish\\cartdeletedishcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\interfaces\\irestaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\interfaces\\irestaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\cart\\queries\\getcartdetails\\getcartdetailsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\cart\\queries\\getcartdetails\\getcartdetailsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\cart\\queries\\getcartdetails\\getcartdetailsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\cart\\queries\\getcartdetails\\getcartdetailsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\cart\\queries\\getcartdetails\\cartdetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\cart\\queries\\getcartdetails\\cartdetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\cart\\commands\\cartadddish\\cartadddishcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\cart\\commands\\cartadddish\\cartadddishcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\dish\\queries\\getdishdetails\\getdishdetailsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\dish\\queries\\getdishdetails\\getdishdetailsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\cart\\commands\\cartadddish\\cartadddishcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\cart\\commands\\cartadddish\\cartadddishcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\dish\\queries\\getdishdetails\\dishdetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\dish\\queries\\getdishdetails\\dishdetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.persistance\\entitytypeconfigurations\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68A804DA-F29A-4E94-B382-059BAFE91345}|Restaurant.Persistance\\Restaurant.Persistence.csproj|solutionrelative:restaurant.persistance\\entitytypeconfigurations\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.webapi\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.domain\\cart\\cartmodeldishmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\cart\\cartmodeldishmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.webapi\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.domain\\cart\\cartmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\cart\\cartmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.application\\entities\\dish\\queries\\getdishlist\\dishlookupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}|Restaurant.Application\\Restaurant.Application.csproj|solutionrelative:restaurant.application\\entities\\dish\\queries\\getdishlist\\dishlookupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.webapi\\models\\dish\\updatedishdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}|Restaurant.WebApi\\Restaurant.WebApi.csproj|solutionrelative:restaurant.webapi\\models\\dish\\updatedishdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|c:\\users\\sasha\\repositories\\restaurantbackend\\restaurant.domain\\dish\\dishmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{511ADE13-22EF-4167-A643-D6A13135D777}|Restaurant.Domain\\Restaurant.Domain.csproj|solutionrelative:restaurant.domain\\dish\\dishmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,121 +55,128 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CartDeleteDishCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Commands\\CartDeleteDish\\CartDeleteDishCommandHandler.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Cart\\Commands\\CartDeleteDish\\CartDeleteDishCommandHandler.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Commands\\CartDeleteDish\\CartDeleteDishCommandHandler.cs",
-              "RelativeToolTip": "Restaurant.Application\\Entities\\Cart\\Commands\\CartDeleteDish\\CartDeleteDishCommandHandler.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwCQAAAAAAAAAAAAAAA==",
+              "Title": "IRestaurantDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Interfaces\\IRestaurantDbContext.cs",
+              "RelativeDocumentMoniker": "Restaurant.Application\\Interfaces\\IRestaurantDbContext.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Interfaces\\IRestaurantDbContext.cs",
+              "RelativeToolTip": "Restaurant.Application\\Interfaces\\IRestaurantDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T04:39:08.155Z",
+              "WhenOpened": "2024-10-23T07:26:07.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetCartDetailsQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\GetCartDetailsQueryHandler.cs",
+              "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\GetCartDetailsQueryHandler.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\GetCartDetailsQueryHandler.cs",
+              "RelativeToolTip": "Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\GetCartDetailsQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T07:25:43.327Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "GetDishDetailsQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Dish\\Queries\\GetDishDetails\\GetDishDetailsQueryHandler.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Dish\\Queries\\GetDishDetails\\GetDishDetailsQueryHandler.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Dish\\Queries\\GetDishDetails\\GetDishDetailsQueryHandler.cs",
-              "RelativeToolTip": "Restaurant.Application\\Entities\\Dish\\Queries\\GetDishDetails\\GetDishDetailsQueryHandler.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Title": "GetCartDetailsQuery.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\GetCartDetailsQuery.cs",
+              "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\GetCartDetailsQuery.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\GetCartDetailsQuery.cs",
+              "RelativeToolTip": "Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\GetCartDetailsQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T04:35:53.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DishController.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\DishController.cs",
-              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\DishController.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\DishController.cs",
-              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\DishController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T04:35:09.88Z",
+              "WhenOpened": "2024-10-23T07:25:42.429Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "DishDetailsViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Dish\\Queries\\GetDishDetails\\DishDetailsViewModel.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Dish\\Queries\\GetDishDetails\\DishDetailsViewModel.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Dish\\Queries\\GetDishDetails\\DishDetailsViewModel.cs",
-              "RelativeToolTip": "Restaurant.Application\\Entities\\Dish\\Queries\\GetDishDetails\\DishDetailsViewModel.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAA1wB4AAAAUAAAAAAAAAA==",
+              "Title": "CartDetailsViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\CartDetailsViewModel.cs",
+              "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\CartDetailsViewModel.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\CartDetailsViewModel.cs",
+              "RelativeToolTip": "Restaurant.Application\\Entities\\Cart\\Queries\\GetCartDetails\\CartDetailsViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T04:34:43.516Z",
+              "WhenOpened": "2024-10-23T07:25:39.047Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\OrderController.cs",
-              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\OrderController.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\OrderController.cs",
-              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\OrderController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA4AAAAkAAAAAAAAAA==",
+              "Title": "CartAddDishCommand.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Commands\\CartAddDish\\CartAddDishCommand.cs",
+              "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Cart\\Commands\\CartAddDish\\CartAddDishCommand.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Commands\\CartAddDish\\CartAddDishCommand.cs",
+              "RelativeToolTip": "Restaurant.Application\\Entities\\Cart\\Commands\\CartAddDish\\CartAddDishCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T17:20:58.559Z",
+              "WhenOpened": "2024-10-23T07:12:44.316Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Restaurant.WebApi\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Restaurant.WebApi\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAE8AAAAAAAAAAAAvwF4AAAAMAAAA",
+              "DocumentIndex": 8,
+              "Title": "CartModel.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Cart\\CartModel.cs",
+              "RelativeDocumentMoniker": "Restaurant.Domain\\Cart\\CartModel.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Cart\\CartModel.cs",
+              "RelativeToolTip": "Restaurant.Domain\\Cart\\CartModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAewAoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T17:15:19.528Z"
+              "WhenOpened": "2024-10-23T07:09:01.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DishModel.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Dish\\DishModel.cs",
+              "RelativeDocumentMoniker": "Restaurant.Domain\\Dish\\DishModel.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Dish\\DishModel.cs",
+              "RelativeToolTip": "Restaurant.Domain\\Dish\\DishModel.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA5wBAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T07:07:21.801Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "DishLookupDto.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Dish\\Queries\\GetDishList\\DishLookupDto.cs",
-              "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Dish\\Queries\\GetDishList\\DishLookupDto.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Dish\\Queries\\GetDishList\\DishLookupDto.cs",
-              "RelativeToolTip": "Restaurant.Application\\Entities\\Dish\\Queries\\GetDishList\\DishLookupDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "CartModelDishModel.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Cart\\CartModelDishModel.cs",
+              "RelativeDocumentMoniker": "Restaurant.Domain\\Cart\\CartModelDishModel.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Domain\\Cart\\CartModelDishModel.cs",
+              "RelativeToolTip": "Restaurant.Domain\\Cart\\CartModelDishModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIAwwAoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T17:11:52.792Z"
+              "WhenOpened": "2024-10-23T06:57:54.914Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UpdateDishDto.cs",
-              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Models\\Dish\\UpdateDishDto.cs",
-              "RelativeDocumentMoniker": "Restaurant.WebApi\\Models\\Dish\\UpdateDishDto.cs",
-              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Models\\Dish\\UpdateDishDto.cs",
-              "RelativeToolTip": "Restaurant.WebApi\\Models\\Dish\\UpdateDishDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 6,
+              "Title": "CartConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\EntityTypeConfigurations\\CartConfiguration.cs",
+              "RelativeDocumentMoniker": "Restaurant.Persistance\\EntityTypeConfigurations\\CartConfiguration.cs",
+              "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\EntityTypeConfigurations\\CartConfiguration.cs",
+              "RelativeToolTip": "Restaurant.Persistance\\EntityTypeConfigurations\\CartConfiguration.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCQAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T17:10:50.884Z"
-            }
-          ]
-        },
-        {
-          "DockedHeight": 263,
-          "SelectedChildIndex": 0,
-          "Children": [
+              "WhenOpened": "2024-10-23T06:34:41.185Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "CartAddDishCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Commands\\CartAddDish\\CartAddDishCommandHandler.cs",
               "RelativeDocumentMoniker": "Restaurant.Application\\Entities\\Cart\\Commands\\CartAddDish\\CartAddDishCommandHandler.cs",
               "ToolTip": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Application\\Entities\\Cart\\Commands\\CartAddDish\\CartAddDishCommandHandler.cs",
               "RelativeToolTip": "Restaurant.Application\\Entities\\Cart\\Commands\\CartAddDish\\CartAddDishCommandHandler.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAmwBAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T04:39:09.846Z",
+              "WhenOpened": "2024-10-23T06:34:24.49Z",
               "EditorCaption": ""
             }
           ]
