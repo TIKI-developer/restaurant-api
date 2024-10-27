@@ -27,7 +27,7 @@ namespace Restaurant.WebApi.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
-        [Authorize(Roles = "Admin, Client")]
+        //[Authorize(Roles = "Admin, Client")]
         [HttpGet("list")]
         public async Task<ActionResult<DishListViewModel>> GetAll()
         {

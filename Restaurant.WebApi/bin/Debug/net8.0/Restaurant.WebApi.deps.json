@@ -594,18 +594,12 @@
           "Restaurant.Domain": "1.0.0"
         },
         "runtime": {
-          "Restaurant.Application.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Restaurant.Application.dll": {}
         }
       },
       "Restaurant.Domain/1.0.0": {
         "runtime": {
-          "Restaurant.Domain.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Restaurant.Domain.dll": {}
         }
       },
       "Restaurant.Persistence/1.0.0": {
@@ -617,10 +611,7 @@
           "Restaurant.Application": "1.0.0"
         },
         "runtime": {
-          "Restaurant.Persistence.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Restaurant.Persistence.dll": {}
         }
       }
     }

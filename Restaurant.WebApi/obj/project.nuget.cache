@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4LShCuPsziI=",
+  "dgSpecHash": "dSplqBxrPzm+8OifPh/TPBRLniXElpQ6JkK1LcRelEoaN9T+Enft59nAtx+9XBdewl6G2yXlEFcau5efwPE0ag==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.WebApi\\Restaurant.WebApi.csproj",
+  "projectFilePath": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.WebApi\\Restaurant.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sasha\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",

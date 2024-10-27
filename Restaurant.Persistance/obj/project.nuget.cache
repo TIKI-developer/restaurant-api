@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AGz8J4i0BHI=",
+  "dgSpecHash": "lODLrMy9svzxENzN42/seXOBddGa4LPjTWsLl7iwHo5XK7RPcN/oTeEcXhH6VhfUpX3Vh1fK8XouIWowFrYwBg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sasha\\Repositories\\RestaurantBackend\\Restaurant.Persistance\\Restaurant.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\sasha\\Repositories\\Unity\\RestaurantBackend\\Restaurant.Persistance\\Restaurant.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sasha\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
