@@ -62,7 +62,7 @@ namespace Restaurant.WebApi
             app.UseCustomExceptionHandler();
             app.UseCors("AllowAll");
             //app.UseCors("AllowSpecificOrigin");
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
