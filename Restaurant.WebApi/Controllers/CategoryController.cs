@@ -39,7 +39,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok(vm);
         }
         [Authorize(Roles = "Admin")]
-        [HttpPost("create")]
+        [HttpPost("admin/create")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryDto createCategory)
         {
             var command = _mapper.Map<CreateCategoryCommand>(createCategory);
@@ -49,7 +49,7 @@ namespace Restaurant.WebApi.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPut("update")]
+        [HttpPut("admin/update")]
         public async Task<IActionResult> Update([FromBody] UpdateCategoryCommand updateCategoryDto)
         {
             var command = _mapper.Map<UpdateCategoryCommand>(updateCategoryDto);
@@ -59,7 +59,7 @@ namespace Restaurant.WebApi.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("admin/delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteCategoryCommand

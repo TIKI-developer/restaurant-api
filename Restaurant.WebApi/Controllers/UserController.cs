@@ -26,7 +26,7 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(userId);
         }
-        [HttpPost("register/admin")]
+        [HttpPost("admin/signup")]
         public async Task<ActionResult<Guid>> RegisterAdmin([FromBody] AdminRegisterDto userRegisterDto)
         {
             var command = _mapper.Map<RegisterAdminCommand>(userRegisterDto);

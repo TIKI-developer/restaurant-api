@@ -27,7 +27,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok(vm);
         }
         [Authorize(Roles = "Admin")]
-        [HttpGet("all")]
+        [HttpGet("admin/all")]
         public async Task<ActionResult<OrderListViewModel>> GetOrderList()
         {
             var query = new GetOrderListQuery();
