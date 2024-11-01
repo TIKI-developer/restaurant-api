@@ -11,7 +11,7 @@ using Restaurant.WebApi.Models.Category;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("api/category")]
+    [Route("category")]
     public class CategoryController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
@@ -37,37 +37,6 @@ namespace Restaurant.WebApi.Controllers
             var vm = await Mediator.Send(query);
              
             return Ok(vm);
-        }
-        [Authorize(Roles = "Admin")]
-        [HttpPost("admin/create")]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryDto createCategory)
-        {
-            var command = _mapper.Map<CreateCategoryCommand>(createCategory);
-            var categoryId = await Mediator.Send(command);
-
-            return Ok(categoryId);
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpPut("admin/update")]
-        public async Task<IActionResult> Update([FromBody] UpdateCategoryCommand updateCategoryDto)
-        {
-            var command = _mapper.Map<UpdateCategoryCommand>(updateCategoryDto);
-            await Mediator.Send(command);
-
-            return NoContent();
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpDelete("admin/delete/{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var command = new DeleteCategoryCommand
-            {
-                Id = id,
-            };
-            await Mediator.Send(command);
-            return NoContent();
         }
     }
 }

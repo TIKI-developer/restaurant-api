@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.Cart;
-using Restaurant.Domain.Dish;
 using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.User.Commands.RegisterClient

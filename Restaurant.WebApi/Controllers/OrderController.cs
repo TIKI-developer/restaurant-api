@@ -7,7 +7,7 @@ using Restaurant.Application.Entities.Order.Queries.GetOrderList;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("api/order")]
+    [Route("order")]
     public class OrderController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
@@ -22,15 +22,6 @@ namespace Restaurant.WebApi.Controllers
             {
                 ClientId = clientId
             };
-            var vm = await Mediator.Send(query);
-
-            return Ok(vm);
-        }
-        [Authorize(Roles = "Admin")]
-        [HttpGet("admin/all")]
-        public async Task<ActionResult<OrderListViewModel>> GetOrderList()
-        {
-            var query = new GetOrderListQuery();
             var vm = await Mediator.Send(query);
 
             return Ok(vm);

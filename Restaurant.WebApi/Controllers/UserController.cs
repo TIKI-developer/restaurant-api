@@ -13,7 +13,7 @@ using Restaurant.Application.Entities.User.Commands.RegisterAdmin;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("api/user")]
+    [Route("user")]
     public class UserController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
@@ -22,14 +22,6 @@ namespace Restaurant.WebApi.Controllers
         public async Task<ActionResult<Guid>> Register([FromBody] ClientRegisterDto userRegisterDto)
         {
             var command = _mapper.Map<RegisterClientCommand>(userRegisterDto);
-            var userId = await Mediator.Send(command);
-
-            return Ok(userId);
-        }
-        [HttpPost("admin/signup")]
-        public async Task<ActionResult<Guid>> RegisterAdmin([FromBody] AdminRegisterDto userRegisterDto)
-        {
-            var command = _mapper.Map<RegisterAdminCommand>(userRegisterDto);
             var userId = await Mediator.Send(command);
 
             return Ok(userId);
