@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Restaurant.Persistence;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Restaurant.Domain.User;
+
 
 namespace Restaurant.WebApi.Extensions
 {
@@ -35,7 +37,11 @@ namespace Restaurant.WebApi.Extensions
                         }
                     };
                 });
-            services.AddAuthorization();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireClientRole", policy => policy.RequireRole("Client"));
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));              
+            });
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Restaurant.Application.Interfaces;
 
 
@@ -15,8 +14,10 @@ namespace Restaurant.Persistence
 
             services.AddDbContext<RestaurantDbContext>(options =>
             {
-                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); 
+                //options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); 
+                options.UseSqlite(configuration.GetConnectionString("WebApiDatabase"));
             });
+
 
             services.AddScoped<IRestaurantDbContext>(provider => 
                 provider.GetService<RestaurantDbContext>());

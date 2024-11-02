@@ -4,7 +4,7 @@ namespace Restaurant.Persistence
 {
     public class PasswordHasher : IPasswordHasher
     {
-        public string Generate(string password)
+        public string Generate(string password) 
         {
             return BCrypt.Net.BCrypt.EnhancedHashPassword(password);
         }
