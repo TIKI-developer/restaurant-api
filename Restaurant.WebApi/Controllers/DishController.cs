@@ -1,22 +1,18 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Entities.Dish.Commands.DeleteDish;
 using Restaurant.Application.Entities.Dish.Queries.GetDishDetails;
 using Restaurant.Application.Entities.Dish.Queries.GetDishList;
-using Microsoft.AspNetCore.Authorization;
-using Restaurant.Application.Entities.Dish.Commands.CreateDish;
-using Restaurant.Application.Entities.Dish.Commands.UpdateDish;
-using Restaurant.WebApi.Models.Dish;
 
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("dish")]
+    [Route("dishes")]
+    [Authorize(Roles = "Admin, Client")]
     public class DishController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
 
-        [Authorize(Roles = "Admin, Client")]
         [HttpGet("{id}")]
         public async Task<ActionResult<DishDetailsViewModel>> Get(Guid id)
         {
@@ -27,8 +23,7 @@ namespace Restaurant.WebApi.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
-        //[Authorize(Roles = "Admin, Client")]
-        [HttpGet("list")]
+        [HttpGet]
         public async Task<ActionResult<DishListViewModel>> GetAll()
         {
             var query = new GetDishListQuery();
@@ -37,8 +32,7 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(vm);
         }
-        [Authorize(Roles = "Admin, Client")]
-        [HttpGet("list/{categoryId}")]
+        [HttpGet("category/{categoryId}")]
         public async Task<ActionResult<DishListViewModel>> GetDishesWithCategory(Guid categoryId)
         {
             var query = new GetCategoryDishListQuery

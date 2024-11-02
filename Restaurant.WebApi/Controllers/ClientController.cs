@@ -1,24 +1,23 @@
-﻿using Restaurant.Application.Entities.Cart.Commands.CartAddDish;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Restaurant.Application.Entities.Cart.Commands.CartAddDish;
+using Restaurant.Application.Entities.Cart.Commands.CartDeleteDish;
 using Restaurant.Application.Entities.Cart.Queries.GetCartDetails;
 using Restaurant.Application.Entities.User.Commands.EditProfile;
 using Restaurant.Application.Entities.User.Commands.Login;
 using Restaurant.Application.Entities.User.Commands.RegisterClient;
 using Restaurant.Application.Entities.User.Queries.GetUserDetails;
-using Microsoft.AspNetCore.Authorization;
 using Restaurant.WebApi.Models.User;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using Restaurant.Application.Entities.Cart.Commands.CartDeleteDish;
-using Restaurant.Application.Entities.User.Commands.RegisterAdmin;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("user")]
-    public class UserController(IMapper mapper) : BaseController
+    [Route("client")]
+    public class ClientController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
 
-        [HttpPost("signup")]
+        [HttpPost("auth/signup")]
         public async Task<ActionResult<Guid>> Register([FromBody] ClientRegisterDto userRegisterDto)
         {
             var command = _mapper.Map<RegisterClientCommand>(userRegisterDto);
@@ -26,7 +25,7 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(userId);
         }
-        [HttpPost("login")]
+        [HttpPost("auth/login")]
         public async Task<ActionResult<string>> Login([FromBody] UserLoginDto userLoginDto)
         {
             var command = _mapper.Map<LoginUserCommand>(userLoginDto);
@@ -50,7 +49,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok(vm);
         }
         [Authorize(Roles = "Client")]
-        [HttpPut("profile/edit")]
+        [HttpPut("profile")]
         public async Task<IActionResult> Update([FromBody] EditClientProfileDto dto)
         {
             var command = _mapper.Map<EditProfileCommand>(dto);
@@ -75,7 +74,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok(vm);
         }
         [Authorize(Roles = "Client")]
-        [HttpPut("cart/add")]
+        [HttpPut("cart")]
         public async Task<IActionResult> AddDish([FromBody] CartAddDishDto dto)
         {
             var command = _mapper.Map<CartAddDishCommand>(dto);
@@ -85,11 +84,17 @@ namespace Restaurant.WebApi.Controllers
             return NoContent();
         }
         [Authorize(Roles = "Client")]
-        [HttpDelete("cart/delete")]
-        public async Task<IActionResult> RemoveDish([FromBody] CartDeleteDishDto dto)
+        [HttpDelete("cart/{dishId}")]
+        public async Task<IActionResult> RemoveDish(Guid dishId)
         {
-            var command = _mapper.Map<CartDeleteDishCommand>(dto);
-            command.UserId = Guid.Parse(User.FindFirst("userId")?.Value);
+            var userId = Guid.Parse(User.FindFirst("userId")?.Value);
+
+            var command = new CartDeleteDishCommand
+            { 
+                UserId = userId,
+                DishId = dishId 
+            };
+            
             await Mediator.Send(command);
 
             return NoContent();

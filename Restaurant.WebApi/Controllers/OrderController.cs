@@ -7,13 +7,13 @@ using Restaurant.Application.Entities.Order.Queries.GetOrderList;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("order")]
+    [Route("orders")]
+    [Authorize(Roles = "Client")]
     public class OrderController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
 
-        [Authorize(Roles = "Client")]
-        [HttpGet("list")]
+        [HttpGet]
         public async Task<ActionResult<OrderListViewModel>> GetClientOrderList()
         {
             var clientId = Guid.Parse(User.FindFirst("userId")?.Value);
@@ -26,8 +26,7 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(vm);
         }
-        [Authorize(Roles = "Client")]
-        [HttpGet("create")]
+        [HttpPost]
         public async Task<ActionResult<Guid>> Create()
         {
             var clientId = Guid.Parse(User.FindFirst("userId")?.Value);

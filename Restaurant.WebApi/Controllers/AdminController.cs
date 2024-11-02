@@ -10,7 +10,7 @@ namespace Restaurant.WebApi.Controllers
     {
         private readonly IMapper _mapper = mapper;
 
-        [HttpPost("signup")]
+        [HttpPost("auth/signup")]
         public async Task<ActionResult<Guid>> RegisterAdmin([FromBody] AdminRegisterDto userRegisterDto)
         {
             var command = _mapper.Map<RegisterAdminCommand>(userRegisterDto);

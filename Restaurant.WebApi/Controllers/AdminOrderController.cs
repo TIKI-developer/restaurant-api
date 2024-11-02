@@ -4,11 +4,11 @@ using Restaurant.Application.Entities.Order.Queries.GetOrderList;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("admin/order")]
+    [Route("admin/orders")]
+    [Authorize(Roles = "Admin")]
     public class AdminOrderController : BaseController
     {
-        [Authorize(Roles = "Admin")]
-        [HttpGet("all")]
+        [HttpGet]
         public async Task<ActionResult<OrderListViewModel>> GetOrderList()
         {
             var query = new GetOrderListQuery();

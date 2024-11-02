@@ -7,7 +7,6 @@ namespace Restaurant.WebApi.Models.Dish
 {
     public class UpdateDishDto : IMapWith<UpdateDishCommand>
     {
-        public required Guid Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public float Price { get; set; }

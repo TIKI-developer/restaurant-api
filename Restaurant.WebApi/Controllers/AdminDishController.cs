@@ -9,13 +9,13 @@ using Restaurant.WebApi.Models.Dish;
 
 namespace Restaurant.WebApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("admin/dish")]
     public class AdminDishController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateDishDto createDishDro)
         {
             var command = _mapper.Map<CreateDishCommand>(createDishDro);
@@ -23,17 +23,17 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(dishId);
         }
-        [Authorize(Roles = "Admin")]
-        [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateDishDto updateDishDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateDishDto updateDishDto)
         {
             var command = _mapper.Map<UpdateDishCommand>(updateDishDto);
+            command.Id = id;
+
             await Mediator.Send(command);
 
             return NoContent();
         }
-        [Authorize(Roles = "Admin")]
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteDishCommand
