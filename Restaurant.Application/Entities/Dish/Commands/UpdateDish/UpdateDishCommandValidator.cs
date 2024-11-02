@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace Restaurant.Application.Entities.Dish.Commands.CreateDish
+namespace Restaurant.Application.Entities.Dish.Commands.UpdateDish
 {
-    public class CreateDishCommandValidator : AbstractValidator<CreateDishCommand>
+    public class UpdateDishCommandValidator : AbstractValidator<UpdateDishCommand>
     {
-        public CreateDishCommandValidator()
+        public UpdateDishCommandValidator()
         {
             RuleFor(command =>
                 command.Name).NotEmpty().MaximumLength(100);

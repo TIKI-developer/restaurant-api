@@ -10,7 +10,7 @@ namespace Restaurant.Domain.Dish
 		public required string Name { get; set; }
 		public required float Price { get; set; }
 		public string? Description { get; set; }
-		public byte[]? Image { get; set; }
+		public string[]? Image { get; set; }
 		public List<CategoryModel>? Categories { get; set; } = [];
         public List<CartModel>? Carts { get; set; }
         public List<OrderModel>? Orders { get; set; }

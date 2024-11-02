@@ -7,7 +7,7 @@ using Restaurant.Application.Entities.Category.Queries.GetCategoryList;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Authorize(Roles = "Admin, Client")]
+    //[Authorize(Roles = "Admin, Client")]
     [Route("categories")]
     public class CategoryController(IMapper mapper) : BaseController
     {
@@ -24,7 +24,7 @@ namespace Restaurant.WebApi.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult<CategoryListViewModel>> GetCategoryList()
         {
             var query = new GetCategoryListQuery();

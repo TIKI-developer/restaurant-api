@@ -1,13 +1,18 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Application.Entities.Order.Commands.UpdateOrderStatus;
 using Restaurant.Application.Entities.Order.Queries.GetOrderList;
+using Restaurant.WebApi.Models.Order;
 
 namespace Restaurant.WebApi.Controllers
 {
     [Route("admin/orders")]
     [Authorize(Roles = "Admin")]
-    public class AdminOrderController : BaseController
+    public class AdminOrderController(IMapper mapper) : BaseController
     {
+        private readonly IMapper _mapper = mapper;  
+
         [HttpGet]
         public async Task<ActionResult<OrderListViewModel>> GetOrderList()
         {
@@ -16,5 +21,16 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(vm);
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateOrderStatus(Guid id, [FromBody] UpdateOrderStatusDto dto)
+        {
+            var command = _mapper.Map<UpdateOrderStatusCommand>(dto);
+            command.Id = id;
+
+            await Mediator.Send(command);
+
+            return Ok();
+        }
+
     }
 }

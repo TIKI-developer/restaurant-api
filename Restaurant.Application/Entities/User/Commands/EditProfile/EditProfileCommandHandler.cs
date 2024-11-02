@@ -25,6 +25,7 @@ namespace Restaurant.Application.Entities.User.Commands.EditProfile
             }
 
             entity.Profile.Name = request.Name ?? entity.Profile.Name;
+            entity.Profile.Address = request.Address ?? entity.Profile.Address;
             entity.Number = request.Number ?? entity.Number;
 
             await _dbContext.SaveChangesAsync(cancellationToken);

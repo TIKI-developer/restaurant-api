@@ -18,13 +18,8 @@ namespace Restaurant.Persistence
                 options.UseSqlite(configuration.GetConnectionString("WebApiDatabase"));
             });
 
-
             services.AddScoped<IRestaurantDbContext>(provider => 
                 provider.GetService<RestaurantDbContext>());
-
-            services.AddScoped<IPasswordHasher, PasswordHasher>();
-            services.AddScoped<IJwtProvider, JwtProvider>();
-            services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
 
             return services;
         }

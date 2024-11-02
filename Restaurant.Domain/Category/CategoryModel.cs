@@ -6,7 +6,7 @@ namespace Restaurant.Domain.Category
 	{
 		public required Guid Id { get; set; }
 		public required string Name { get; set; }
-		public byte[]? Image { get; set; }
+		public string? Image { get; set; }
 		public List<DishModel>? Dishes { get; set; } = [];
     } 
 }

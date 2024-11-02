@@ -9,6 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Restaurant.Application\Restaurant.Application.csproj" />
     <ProjectReference Include="..\Restaurant.Persistance\Restaurant.Persistence.csproj" />
+    <ProjectReference Include="..\Restaurant.Security\Restaurant.Security.csproj" />
+    <ProjectReference Include="..\Restaurant.Services\Restaurant.Validation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

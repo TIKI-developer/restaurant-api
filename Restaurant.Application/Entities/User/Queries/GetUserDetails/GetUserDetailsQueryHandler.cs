@@ -7,12 +7,12 @@ using Restaurant.Domain.User;
 
 namespace Restaurant.Application.Entities.User.Queries.GetUserDetails
 {
-    public class GetUserDetailsQueryHandler(IRestaurantDbContext dbContext, IMapper mapper) : IRequestHandler<GetUserDetailsQuery, UserDetailsViewModel>
+    public class GetUserDetailsQueryHandler(IRestaurantDbContext dbContext, IMapper mapper) : IRequestHandler<GetUserDetailsQuery, ClientDetailsViewModel>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<UserDetailsViewModel> Handle(GetUserDetailsQuery request, CancellationToken cancellationToken)
+        public async Task<ClientDetailsViewModel> Handle(GetUserDetailsQuery request, CancellationToken cancellationToken)
         {
             var entity = await
                 _dbContext
@@ -25,7 +25,7 @@ namespace Restaurant.Application.Entities.User.Queries.GetUserDetails
                 throw new NotFoundException(nameof(UserModel), request.Id);
             }
 
-            return _mapper.Map<UserDetailsViewModel>(entity);
+            return _mapper.Map<ClientDetailsViewModel>(entity);
         }
     }
 }

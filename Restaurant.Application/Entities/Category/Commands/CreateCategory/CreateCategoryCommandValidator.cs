@@ -6,8 +6,8 @@ namespace Restaurant.Application.Entities.Category.Commands.CreateCategory
     {
         public CreateCategoryCommandValidator()
         {
-            RuleFor(createDishCommand =>
-                createDishCommand.Name).NotEmpty().MaximumLength(250);
+            RuleFor(command =>
+                command.Name).NotEmpty().MaximumLength(250);
         }
     }
 }

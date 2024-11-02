@@ -3,7 +3,9 @@ using Notes.WebApi.Middleware;
 using Restaurant.Application;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Interfaces;
+using Restaurant.Validation;
 using Restaurant.Persistence;
+using Restaurant.Security;
 using Restaurant.WebApi.Extensions;
 
 
@@ -24,8 +26,10 @@ namespace Restaurant.WebApi
             });
 
             services.AddApiAuthentication(Configuration);
-            services.AddApplication();
+            services.AddValidation(Configuration);
+            services.AddSecurity(Configuration);
             services.AddPersistence(Configuration);
+            services.AddApplication();
             services.AddControllers();
 
             services.AddCors(options =>
@@ -34,7 +38,7 @@ namespace Restaurant.WebApi
                     builder =>
                     {
                         builder
-                            .WithOrigins("https://restaurant-web-frontend-n8390m1rt-tiki-developers-projects.vercel.app")
+                            .WithOrigins("http://localhost:3000")
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();
@@ -53,7 +57,7 @@ namespace Restaurant.WebApi
             services.AddSwaggerGen();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {

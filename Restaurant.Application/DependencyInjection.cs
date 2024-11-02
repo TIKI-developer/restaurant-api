@@ -16,6 +16,7 @@ namespace Restaurant.Application
                 .AddValidatorsFromAssemblies([Assembly.GetExecutingAssembly()]);
             services.AddTransient(typeof(IPipelineBehavior<,>),
                 typeof(ValidationBehavior<,>));
+
             return services;
         }
     }

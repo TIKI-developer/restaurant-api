@@ -8,6 +8,7 @@ namespace Restaurant.WebApi.Models.User
     {
         public string? Name { get; set; }
         public string? Number { get; set; }
+        public string? Address { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -16,7 +17,10 @@ namespace Restaurant.WebApi.Models.User
                 .ForMember(p => p.Name,
                     opt => opt.MapFrom(pDto => pDto.Name))
                 .ForMember(p => p.Number,
-                    opt => opt.MapFrom(pDto => pDto.Number));
+                    opt => opt.MapFrom(pDto => pDto.Number))
+                .ForMember(p => p.Address,
+                    opt => opt.MapFrom(pDto => pDto.Address));
+
         }
     }
 }
