@@ -33,7 +33,7 @@ namespace Restaurant.WebApi
                 options.AddPolicy("AllowSpecificOrigin",
                     builder =>
                     {
-                        builder.WithOrigins("https://restaurant-web-frontend-rcgy.vercel.app")
+                        builder.WithOrigins("https://restaurant-web-frontend-n8390m1rt-tiki-developers-projects.vercel.app/")
                                .AllowAnyMethod()
                                .AllowAnyHeader()
                                .AllowCredentials();
