@@ -28,27 +28,28 @@ namespace Restaurant.WebApi
             services.AddPersistence(Configuration);
             services.AddControllers();
 
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowSpecificOrigin",
-            //        builder =>
-            //        {
-            //            builder.WithOrigins("http://26.227.223.79:5173")
-            //                   .AllowAnyMethod()
-            //                   .AllowAnyHeader()
-            //                   .AllowCredentials();
-            //        });
-            //});
-
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", policy =>
-                {
-                    policy.AllowAnyHeader();
-                    policy.AllowAnyMethod();
-                    policy.AllowAnyOrigin();
-                });
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://restaurant-web-frontend-rcgy.vercel.app")
+                               .AllowAnyMethod()
+                               .AllowAnyHeader()
+                               .AllowCredentials();
+                    });
             });
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAll", policy =>
+            //    {
+            //        policy.AllowAnyHeader();
+            //        policy.AllowAnyMethod();
+            //        policy.AllowAnyOrigin();
+            //    });
+            //});
+            //app.UseCors("AllowAll");
             services.AddSwaggerGen();
         }
 
@@ -60,9 +61,8 @@ namespace Restaurant.WebApi
             }
 
             app.UseCustomExceptionHandler();
-            app.UseCors("AllowAll");
-            //app.UseCors("AllowSpecificOrigin");
-            //app.UseHttpsRedirection();
+            app.UseCors("AllowSpecificOrigin");
+            app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
