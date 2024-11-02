@@ -33,10 +33,11 @@ namespace Restaurant.WebApi
                 options.AddPolicy("AllowSpecificOrigin",
                     builder =>
                     {
-                        builder.WithOrigins("https://restaurant-web-frontend-n8390m1rt-tiki-developers-projects.vercel.app")
-                               .AllowAnyMethod()
-                               .AllowAnyHeader()
-                               .AllowCredentials();
+                        builder
+                            .WithOrigins("https://restaurant-web-frontend-n8390m1rt-tiki-developers-projects.vercel.app")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
                     });
             });
 
@@ -61,7 +62,7 @@ namespace Restaurant.WebApi
             }
 
             app.UseCustomExceptionHandler();
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseCors("AllowSpecificOrigin");
             app.UseSwagger();
             app.UseSwaggerUI(config =>
