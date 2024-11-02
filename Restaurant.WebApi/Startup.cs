@@ -28,29 +28,28 @@ namespace Restaurant.WebApi
             services.AddPersistence(Configuration);
             services.AddControllers();
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder =>
-                    {
-                        builder
-                            .WithOrigins("https://restaurant-web-frontend-n8390m1rt-tiki-developers-projects.vercel.app")
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            .AllowCredentials();
-                    });
-            });
-
             //services.AddCors(options =>
             //{
-            //    options.AddPolicy("AllowAll", policy =>
-            //    {
-            //        policy.AllowAnyHeader();
-            //        policy.AllowAnyMethod();
-            //        policy.AllowAnyOrigin();
-            //    });
+            //    options.AddPolicy("AllowSpecificOrigin",
+            //        builder =>
+            //        {
+            //            builder
+            //                .WithOrigins("https://restaurant-web-frontend-n8390m1rt-tiki-developers-projects.vercel.app")
+            //                .AllowAnyMethod()
+            //                .AllowAnyHeader()
+            //                .AllowCredentials();
+            //        });
             //});
-            //app.UseCors("AllowAll");
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+            });
             services.AddSwaggerGen();
         }
 
@@ -63,7 +62,8 @@ namespace Restaurant.WebApi
 
             app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
-            app.UseCors("AllowSpecificOrigin");
+            //app.UseCors("AllowSpecificOrigin");
+            app.UseCors("AllowAll");
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
