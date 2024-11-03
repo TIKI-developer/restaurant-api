@@ -69,3 +69,4 @@ LocalDatabase.db
 LocalDatabase.db-shm
 LocalDatabase.db-wal
 /uploads/
+UpgradeLog.htm
