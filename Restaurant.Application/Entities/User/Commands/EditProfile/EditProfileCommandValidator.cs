@@ -1,21 +1,17 @@
 ﻿using FluentValidation;
-using Restaurant.Application.Interfaces;
+using Restaurant.Application.Validation;
 
 namespace Restaurant.Application.Entities.User.Commands.EditProfile
 {
-    public class EditProfileCommandValidator : UserCommandValidator<EditProfileCommand>
+    public class EditProfileCommandValidator : AbstractValidator<EditProfileCommand>
     {
         public EditProfileCommandValidator(
-            IPhoneNumberValidator phoneNumberValidator, 
-            IAddressValidator addressValidator) : base(phoneNumberValidator)
+            ProfileRules profileRules,
+            AuthRules authRules)
         {
-            RuleFor(command => 
-                command.Name)
-                    .Matches(@"^[a-zA-Zа-яА-ЯёЁ]+$");
-            RuleFor(command =>
-                command.Address)
-                    .Must(addressValidator.IsValid)
-                    .WithMessage("Неверный формат адреса");
+            profileRules.Address(RuleFor(c => c.Address)).When(c => c.Address != null);
+            profileRules.Name(RuleFor(c => c.Name)).When(c => c.Name != null);
+            authRules.Number(RuleFor(c => c.Number)).When(c => c.Number != null);
         }
     }
 }

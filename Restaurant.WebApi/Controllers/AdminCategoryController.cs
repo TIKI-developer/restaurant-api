@@ -24,14 +24,14 @@ namespace Restaurant.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCategoryCommand updateCategoryDto)
+        public async Task<ActionResult> Update(Guid id, [FromBody] UpdateCategoryDto updateCategoryDto)
         {
             var command = _mapper.Map<UpdateCategoryCommand>(updateCategoryDto);
             command.Id = id;
 
             await Mediator.Send(command);
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]

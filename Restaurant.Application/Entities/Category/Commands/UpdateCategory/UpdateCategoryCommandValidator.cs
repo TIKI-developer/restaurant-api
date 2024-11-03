@@ -1,13 +1,13 @@
 ﻿using FluentValidation;
+using Restaurant.Application.Validation;
 
 namespace Restaurant.Application.Entities.Category.Commands.UpdateCategory
 {
     public class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand> 
     {
-        public UpdateCategoryCommandValidator()
+        public UpdateCategoryCommandValidator(CategoryRules categoryRules)
         {
-            RuleFor(command =>
-                command.Name).NotEmpty().MaximumLength(250);
+            categoryRules.Name(RuleFor(cat => cat.Name));
         }
     }
 }

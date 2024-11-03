@@ -12,6 +12,7 @@ namespace Restaurant.Validation
                                            @"(,\s*Подъезд\s*(?<entrance>\d+))?$";
         public bool IsValid(string address)
         {
+            Console.WriteLine(address);
             return Regex.IsMatch(address, _pattern);
         }
     }

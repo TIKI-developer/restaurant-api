@@ -2,6 +2,6 @@
 {
     public interface IPhoneNumberValidator
     {
-        bool IsValidPhoneNumber(string phoneNumber);
+        bool IsValidPhoneNumber(string? phoneNumber);
     }
 }

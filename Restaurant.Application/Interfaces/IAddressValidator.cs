@@ -2,6 +2,6 @@
 {
     public interface IAddressValidator
     {
-        bool IsValid(string address);
+        bool IsValid(string? address);
     }
 }

@@ -8,11 +8,11 @@ using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.User.Commands.EditProfile
 {
-    public class EditProfileCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<EditProfileCommand>
+    public class EditProfileCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<EditProfileCommand, Unit>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
 
-        public async Task Handle(EditProfileCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(EditProfileCommand request, CancellationToken cancellationToken)
         {
             var entity = await 
                 _dbContext
@@ -29,6 +29,8 @@ namespace Restaurant.Application.Entities.User.Commands.EditProfile
             entity.Number = request.Number ?? entity.Number;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
         }
     }
 }

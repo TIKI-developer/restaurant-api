@@ -10,7 +10,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
         public required Guid Id { get; set; }
         public required string Name { get; set; }
         public required float Price { get; set; }
-        public byte[]? Image { get; set; }
+        public string[]? Image { get; set; }
 
         public void Mapping(Profile profile)
         {
