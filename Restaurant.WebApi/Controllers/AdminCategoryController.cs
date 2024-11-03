@@ -10,8 +10,9 @@ namespace Restaurant.WebApi.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Route("admin/category")]
-    public class AdminCategoryController(IMapper mapper) : BaseController
+    public class AdminCategoryController(IMapper mapper, FileLoader fileLoader) : BaseController
     {
+        private readonly FileLoader _fileLoader = fileLoader;
         private readonly IMapper _mapper = mapper;
 
         [HttpPost]
@@ -21,7 +22,7 @@ namespace Restaurant.WebApi.Controllers
 
             if (createCategory.Image != null && createCategory.Image.Length > 0)
             {
-                var fileName = SaveFile(createCategory.Image);
+                var fileName = _fileLoader.SaveFile(createCategory.Image, "Images/"); ;
                 command.Image = fileName;
             }
             
@@ -36,7 +37,7 @@ namespace Restaurant.WebApi.Controllers
             var command = _mapper.Map<UpdateCategoryCommand>(updateCategoryDto);
             if (updateCategoryDto.Image != null && updateCategoryDto.Image.Length > 0)
             {
-                var fileName = SaveFile(updateCategoryDto.Image);
+                var fileName = _fileLoader.SaveFile(updateCategoryDto.Image, "Images/");
                 command.Image = fileName;
             }
 
@@ -56,24 +57,6 @@ namespace Restaurant.WebApi.Controllers
             };
             await Mediator.Send(command);
             return NoContent();
-        }
-        private string SaveFile(IFormFile file)
-        {
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads/Categories");
-            if (!Directory.Exists(uploadsFolder))
-            {
-                Directory.CreateDirectory(uploadsFolder);
-            }
-
-            var uniqueFileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                file.CopyTo(stream);
-            }
-
-            return uniqueFileName;
         }
     }
 }

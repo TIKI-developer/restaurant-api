@@ -25,6 +25,7 @@ namespace Restaurant.WebApi
                 config.AddProfile(new AssemblyMappingProfile(typeof(IRestaurantDbContext).Assembly));
             });
 
+            services.AddScoped<FileLoader>();
             services.AddApiAuthentication(Configuration);
             services.AddValidation(Configuration);
             services.AddSecurity(Configuration);
