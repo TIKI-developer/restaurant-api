@@ -1,18 +1,14 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Application.Entities.Dish.Queries.GetDishDetails;
 using Restaurant.Application.Entities.Dish.Queries.GetDishList;
 
-
 namespace Restaurant.WebApi.Controllers
 {
     [Route("dishes")]
-    //[Authorize(Roles = "Admin, Client")]
-    public class DishController(IMapper mapper) : BaseController
+    [Authorize(Roles = "Admin, Client")]
+    public class DishController : BaseController
     {
-        private readonly IMapper _mapper = mapper;
-
         [HttpGet("{id}")]
         public async Task<ActionResult<DishDetailsViewModel>> Get(Guid id)
         {

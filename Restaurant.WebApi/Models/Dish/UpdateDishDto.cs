@@ -10,7 +10,7 @@ namespace Restaurant.WebApi.Models.Dish
         public string? Name { get; set; }
         public string? Description { get; set; }
         public float Price { get; set; }
-        public string[]? Image { get; set; }
+        public IFormFile[] Images { get; set; } = [];
         public ICollection<Guid>? Categories { get; set; }
 
         public void Mapping(Profile profile)
@@ -26,8 +26,8 @@ namespace Restaurant.WebApi.Models.Dish
                 .ForMember(dishVm => dishVm.Price,
                     opt => opt.MapFrom(dish => dish.Price))
 
-                .ForMember(dishVm => dishVm.Image,
-                    opt => opt.MapFrom(dish => dish.Image))
+                .ForMember(dishVm => dishVm.Images,
+                    opt => opt.MapFrom(dish => dish.Images))
 
                 .ForMember(dishVm => dishVm.Categories,
                     opt => opt.MapFrom(dish => dish.Categories));

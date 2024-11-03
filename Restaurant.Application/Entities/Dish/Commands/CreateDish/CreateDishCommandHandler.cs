@@ -23,7 +23,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.CreateDish
                 Name = request.Name,
                 Description = request.Description,
                 Price = request.Price,
-                Image = request.Image,
+                Images = request.Images,
                 Categories = categoryEntites
             };
 

@@ -26,7 +26,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
                     opt => opt.MapFrom(dish => dish.Price))
 
                 .ForMember(dishDto => dishDto.Image,
-                    opt => opt.MapFrom(dish => dish.Image));
+                    opt => opt.MapFrom(dish => dish.Images));
         }
     }
 }

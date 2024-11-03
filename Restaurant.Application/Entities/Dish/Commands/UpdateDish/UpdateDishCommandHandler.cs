@@ -33,7 +33,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.UpdateDish
             entity.Name = request.Name ?? entity.Name;
             entity.Description = request.Description ?? entity.Description;
             entity.Price = request.Price ?? entity.Price;
-            entity.Image = request.Image ?? entity.Image;
+            entity.Images = request.Images ?? entity.Images;
             entity.Categories = categoryEntities;
 
             await _dbContext.SaveChangesAsync(cancellationToken);

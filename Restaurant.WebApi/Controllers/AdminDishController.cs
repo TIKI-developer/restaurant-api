@@ -16,19 +16,38 @@ namespace Restaurant.WebApi.Controllers
         private readonly IMapper _mapper = mapper;
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateDishDto createDishDro)
+        public async Task<ActionResult<Guid>> Create([FromForm] CreateDishDto createDishDto)
         {
-            var command = _mapper.Map<CreateDishCommand>(createDishDro);
+            var command = _mapper.Map<CreateDishCommand>(createDishDto);
+            var fileNames = new List<string>();
+
+            foreach (var file in createDishDto.Images)
+            {
+                if (file.Length > 0)
+                {
+                    fileNames.Add(SaveFile(file));
+                }
+            }
+            command.Images = fileNames;
             var dishId = await Mediator.Send(command);
 
             return Ok(dishId);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateDishDto updateDishDto)
+        public async Task<IActionResult> Update(Guid id, [FromForm] UpdateDishDto updateDishDto)
         {
             var command = _mapper.Map<UpdateDishCommand>(updateDishDto);
             command.Id = id;
+            var fileNames = new List<string>();
 
+            foreach (var file in updateDishDto.Images)
+            {
+                if (file.Length > 0)
+                {
+                    fileNames.Add(SaveFile(file));
+                }
+            }
+            command.Images = fileNames;
             await Mediator.Send(command);
 
             return NoContent();
@@ -42,6 +61,24 @@ namespace Restaurant.WebApi.Controllers
             };
             await Mediator.Send(command);
             return NoContent();
+        }
+        private string SaveFile(IFormFile file)
+        {
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads/Dishes");
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            var uniqueFileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+
+            return uniqueFileName;
         }
     }
 }
