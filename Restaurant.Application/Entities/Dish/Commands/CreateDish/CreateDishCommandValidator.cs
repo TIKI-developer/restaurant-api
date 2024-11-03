@@ -6,10 +6,6 @@ namespace Restaurant.Application.Entities.Dish.Commands.CreateDish
     {
         public CreateDishCommandValidator()
         {
-            RuleFor(createDishCommand =>
-                createDishCommand.Name).NotEmpty().MaximumLength(250);
-            RuleFor(createDishCommand =>
-                createDishCommand.Description).MaximumLength(600);
         }
     }
 }

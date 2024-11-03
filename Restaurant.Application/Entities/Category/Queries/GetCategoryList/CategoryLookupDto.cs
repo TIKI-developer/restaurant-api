@@ -8,7 +8,7 @@ namespace Restaurant.Application.Entities.Category.Queries.GetCategoryList
     {
         public required Guid Id { get; set; }
         public string? Name { get; set; }
-        public byte[]? Image { get; set; }
+        public string? Image { get; set; }
 
         public void Mapping(Profile profile)
         {

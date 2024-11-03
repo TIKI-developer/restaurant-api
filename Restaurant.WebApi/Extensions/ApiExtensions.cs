@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Restaurant.Persistence;
+using Restaurant.Security;
 using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Restaurant.Domain.User;
-
 
 namespace Restaurant.WebApi.Extensions
 {

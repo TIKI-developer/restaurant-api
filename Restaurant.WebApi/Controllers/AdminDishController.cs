@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Application.Entities.Dish.Commands.CreateDish;
@@ -11,24 +10,44 @@ namespace Restaurant.WebApi.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Route("admin/dish")]
-    public class AdminDishController(IMapper mapper) : BaseController
+    public class AdminDishController(IMapper mapper, FileLoader fileLoader) : BaseController
     {
+        private readonly FileLoader _fileLoader = fileLoader;
         private readonly IMapper _mapper = mapper;
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateDishDto createDishDro)
+        public async Task<ActionResult<Guid>> Create([FromForm] CreateDishDto createDishDto)
         {
-            var command = _mapper.Map<CreateDishCommand>(createDishDro);
+            var command = _mapper.Map<CreateDishCommand>(createDishDto);
+            var fileNames = new List<string>();
+
+            foreach (var file in createDishDto.Images)
+            {
+                if (file.Length > 0)
+                {
+                    fileNames.Add(_fileLoader.SaveFile(file, "images/"));
+                }
+            }
+            command.Images = fileNames;
             var dishId = await Mediator.Send(command);
 
             return Ok(dishId);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateDishDto updateDishDto)
+        public async Task<IActionResult> Update(Guid id, [FromForm] UpdateDishDto updateDishDto)
         {
             var command = _mapper.Map<UpdateDishCommand>(updateDishDto);
             command.Id = id;
+            var fileNames = new List<string>();
 
+            foreach (var file in updateDishDto.Images)
+            {
+                if (file.Length > 0)
+                {
+                    fileNames.Add(_fileLoader.SaveFile(file, "images/"));
+                }
+            }
+            command.Images = fileNames;
             await Mediator.Send(command);
 
             return NoContent();

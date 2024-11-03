@@ -1,6 +1,6 @@
 ﻿using Restaurant.Application.Interfaces;
 
-namespace Restaurant.Persistence
+namespace Restaurant.Security
 {
     public class PasswordHasher : IPasswordHasher
     {

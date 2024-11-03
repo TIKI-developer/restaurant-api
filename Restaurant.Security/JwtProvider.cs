@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Restaurant.Persistence
+namespace Restaurant.Security
 {
     public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
     {

@@ -4,7 +4,7 @@ using Restaurant.Domain.Category;
 
 namespace Restaurant.Application.Entities.Category.Commands.CreateCategory
 {
-    public class CreateDishCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<CreateCategoryCommand, Guid>
+    public class CreateCategoryCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<CreateCategoryCommand, Guid>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
 

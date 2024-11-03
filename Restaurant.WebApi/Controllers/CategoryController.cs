@@ -1,18 +1,14 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Application.Entities.Category.Queries.GetCategory;
 using Restaurant.Application.Entities.Category.Queries.GetCategoryList;
 
-
 namespace Restaurant.WebApi.Controllers
 {
-    [Authorize(Roles = "Admin, Client")]
     [Route("categories")]
-    public class CategoryController(IMapper mapper) : BaseController
+    [Authorize(Roles = "Admin, Client")]
+    public class CategoryController : BaseController
     {
-        private readonly IMapper _mapper = mapper;
-
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDetailsViewModel>> Get(Guid id)
         {
@@ -24,7 +20,7 @@ namespace Restaurant.WebApi.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult<CategoryListViewModel>> GetCategoryList()
         {
             var query = new GetCategoryListQuery();

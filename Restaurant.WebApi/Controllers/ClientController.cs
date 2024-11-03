@@ -37,7 +37,7 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client")]
         [HttpGet("profile")]
-        public async Task<ActionResult<UserDetailsViewModel>> GetProfile()
+        public async Task<ActionResult<ClientDetailsViewModel>> GetProfile()
         {
             var userId = Guid.Parse(User.FindFirst("userId")?.Value);
 

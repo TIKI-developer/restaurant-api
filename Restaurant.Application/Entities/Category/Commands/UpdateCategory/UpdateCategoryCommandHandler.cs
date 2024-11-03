@@ -6,11 +6,11 @@ using Restaurant.Domain.Category;
 
 namespace Restaurant.Application.Entities.Category.Commands.UpdateCategory
 {
-    public class UpdateCategoryCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<UpdateCategoryCommand>
+    public class UpdateCategoryCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<UpdateCategoryCommand, Unit>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
 
-        public async Task Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
             var entity = await 
                 _dbContext
@@ -27,6 +27,8 @@ namespace Restaurant.Application.Entities.Category.Commands.UpdateCategory
             entity.Image = request.Image ?? entity.Image;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
         }
     }
 }
