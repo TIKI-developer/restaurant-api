@@ -22,7 +22,7 @@ namespace Restaurant.WebApi.Controllers
 
             if (createCategory.Image != null && createCategory.Image.Length > 0)
             {
-                var fileName = _fileLoader.SaveFile(createCategory.Image, "Images/"); ;
+                var fileName = _fileLoader.SaveFile(createCategory.Image, "images/"); ;
                 command.Image = fileName;
             }
             
@@ -37,7 +37,7 @@ namespace Restaurant.WebApi.Controllers
             var command = _mapper.Map<UpdateCategoryCommand>(updateCategoryDto);
             if (updateCategoryDto.Image != null && updateCategoryDto.Image.Length > 0)
             {
-                var fileName = _fileLoader.SaveFile(updateCategoryDto.Image, "Images/");
+                var fileName = _fileLoader.SaveFile(updateCategoryDto.Image, "images/");
                 command.Image = fileName;
             }
 

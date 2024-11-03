@@ -65,3 +65,7 @@ out/
 *.DS_Store
 Thumbs.db
 ehthumbs.db
+LocalDatabase.db
+LocalDatabase.db-shm
+LocalDatabase.db-wal
+/uploads/

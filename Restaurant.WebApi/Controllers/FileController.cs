@@ -10,7 +10,7 @@ namespace Restaurant.WebApi.Controllers
         [Authorize(Roles = "Admin, Client")]
         public async Task<ActionResult> GetImage(string imageName)
         {
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads/Images/");
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads/images/");
             var filePath = uploadsFolder + imageName;
 
             if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))

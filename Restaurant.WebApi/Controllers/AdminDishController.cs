@@ -25,7 +25,7 @@ namespace Restaurant.WebApi.Controllers
             {
                 if (file.Length > 0)
                 {
-                    fileNames.Add(_fileLoader.SaveFile(file, "Images/"));
+                    fileNames.Add(_fileLoader.SaveFile(file, "images/"));
                 }
             }
             command.Images = fileNames;
@@ -44,7 +44,7 @@ namespace Restaurant.WebApi.Controllers
             {
                 if (file.Length > 0)
                 {
-                    fileNames.Add(_fileLoader.SaveFile(file, "Images/"));
+                    fileNames.Add(_fileLoader.SaveFile(file, "images/"));
                 }
             }
             command.Images = fileNames;

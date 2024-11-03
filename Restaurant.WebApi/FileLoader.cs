@@ -4,7 +4,7 @@
     {
         public string SaveFile(IFormFile file, string relPath = "")
         {
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads/");
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads/");
             uploadsFolder = Path.Combine(uploadsFolder, relPath);
             if (!Directory.Exists(uploadsFolder))
             {
