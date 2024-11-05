@@ -6,7 +6,7 @@ using Restaurant.Application.Entities.Category.Queries.GetCategoryList;
 namespace Restaurant.WebApi.Controllers
 {
     [Route("categories")]
-    [Authorize(Roles = "Admin, Client")]
+    //[Authorize(Roles = "Admin, Client")]
     public class CategoryController : BaseController
     {
         [HttpGet("{id}")]
