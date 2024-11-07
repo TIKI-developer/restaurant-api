@@ -18,12 +18,13 @@ namespace Restaurant.WebApi.Controllers
         private readonly IMapper _mapper = mapper;
 
         [HttpPost("auth/signup")]
-        public async Task<ActionResult<Guid>> Register([FromBody] ClientRegisterDto userRegisterDto)
+        public async Task<ActionResult<string>> Register([FromBody] ClientRegisterDto userRegisterDto)
         {
             var command = _mapper.Map<RegisterClientCommand>(userRegisterDto);
-            var userId = await Mediator.Send(command);
+            var token = await Mediator.Send(command);
+            HttpContext.Response.Cookies.Append("creeper", token);
 
-            return Ok(userId);
+            return Ok(token);
         }
         [HttpPost("auth/login")]
         public async Task<ActionResult<string>> Login([FromBody] UserLoginDto userLoginDto)
@@ -39,11 +40,9 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("profile")]
         public async Task<ActionResult<ClientDetailsViewModel>> GetProfile()
         {
-            var userId = Guid.Parse(User.FindFirst("userId")?.Value);
-
             var query = new GetUserDetailsQuery
             {
-                Id = userId
+                Id = UserId
             };
             var vm = await Mediator.Send(query);
             return Ok(vm);
@@ -53,7 +52,7 @@ namespace Restaurant.WebApi.Controllers
         public async Task<IActionResult> Update([FromBody] EditClientProfileDto dto)
         {
             var command = _mapper.Map<EditProfileCommand>(dto);
-            command.Id = Guid.Parse(User.FindFirst("userId")?.Value);
+            command.Id = UserId;
 
             await Mediator.Send(command);
 
@@ -63,11 +62,9 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("cart")]
         public async Task<ActionResult<CartDetailsViewModel>> GetCart()
         {
-            var userId = Guid.Parse(User.FindFirst("userId")?.Value);
-
             var query = new GetCartDetailsQuery
             {
-                ClientId = userId
+                ClientId = UserId
             };
             var vm = await Mediator.Send(query);
 
@@ -78,7 +75,7 @@ namespace Restaurant.WebApi.Controllers
         public async Task<IActionResult> AddDish([FromBody] CartAddDishDto dto)
         {
             var command = _mapper.Map<CartAddDishCommand>(dto);
-            command.ClientId = Guid.Parse(User.FindFirst("userId")?.Value);
+            command.ClientId = UserId;
             await Mediator.Send(command);
 
             return NoContent();
@@ -87,11 +84,9 @@ namespace Restaurant.WebApi.Controllers
         [HttpDelete("cart/{dishId}")]
         public async Task<IActionResult> RemoveDish(Guid dishId)
         {
-            var userId = Guid.Parse(User.FindFirst("userId")?.Value);
-
             var command = new CartDeleteDishCommand
             { 
-                UserId = userId,
+                UserId = UserId,
                 DishId = dishId 
             };
             

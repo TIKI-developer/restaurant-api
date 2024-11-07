@@ -17,7 +17,7 @@ namespace Restaurant.Security
             var claims = new List<Claim>
             {
                 new(ClaimTypes.Role, user.Role),     
-                new("userId", user.Id.ToString())    
+                new(ClaimTypes.NameIdentifier, user.Id.ToString())    
             };
 
             var signingCredentials = new SigningCredentials(

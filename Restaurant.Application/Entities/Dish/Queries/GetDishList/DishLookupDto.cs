@@ -10,7 +10,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
         public required Guid Id { get; set; }
         public required string Name { get; set; }
         public required float Price { get; set; }
-        public string[]? Image { get; set; }
+        public string? Images { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -25,8 +25,8 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
                 .ForMember(dishDto => dishDto.Price,
                     opt => opt.MapFrom(dish => dish.Price))
 
-                .ForMember(dishDto => dishDto.Image,
-                    opt => opt.MapFrom(dish => dish.Images));
+                .ForMember(dishDto => dishDto.Images,
+                    opt => opt.MapFrom(dish => dish.Images.FirstOrDefault()));
         }
     }
 }

@@ -5,12 +5,17 @@ using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.User.Commands.RegisterClient
 {
-    public class RegisterClientCommandHandler(IRestaurantDbContext dbContext, IPasswordHasher passwordHasher) : IRequestHandler<RegisterClientCommand, Guid>
+    public class RegisterClientCommandHandler(
+        IRestaurantDbContext dbContext, 
+        IPasswordHasher passwordHasher,
+        IJwtProvider jwtProvider) 
+        : IRequestHandler<RegisterClientCommand, string>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
         private readonly IPasswordHasher _passwordHasher = passwordHasher;
+        private readonly IJwtProvider _jwtProvider = jwtProvider;
 
-        public async Task<Guid> Handle(RegisterClientCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(RegisterClientCommand request, CancellationToken cancellationToken)
         {
             var userProfile = new ClientModel.ProfileModel
             {
@@ -24,7 +29,7 @@ namespace Restaurant.Application.Entities.User.Commands.RegisterClient
                 PasswordHash = _passwordHasher.Generate(request.Password)
             };
 
-            await _dbContext.Users.AddAsync(client);
+            await _dbContext.Users.AddAsync(client, cancellationToken);
 
             var cart = new CartModel
             {
@@ -33,10 +38,11 @@ namespace Restaurant.Application.Entities.User.Commands.RegisterClient
                 Client = client
             };
 
-            await _dbContext.Carts.AddAsync(cart);
+            await _dbContext.Carts.AddAsync(cart, cancellationToken);
+            var token = _jwtProvider.Generate(client);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            return client.Id;
+            return token;
         }
     }
 }

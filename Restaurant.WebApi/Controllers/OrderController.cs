@@ -16,11 +16,9 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<OrderListViewModel>> GetClientOrderList()
         {
-            var clientId = Guid.Parse(User.FindFirst("userId")?.Value);
-
             var query = new GetClientOrderListQuery
             {
-                ClientId = clientId
+                ClientId = UserId
             };
             var vm = await Mediator.Send(query);
 
@@ -29,13 +27,10 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Guid>> Create()
         {
-            var clientId = Guid.Parse(User.FindFirst("userId")?.Value);
-
             var command = new CreateOrderCommand
             { 
-                ClientId = clientId 
+                ClientId = UserId
             };
-            command.ClientId = clientId;
             var id = await Mediator.Send(command);
 
             return Ok(id);

@@ -7,6 +7,7 @@ using Restaurant.Validation;
 using Restaurant.Persistence;
 using Restaurant.Security;
 using Restaurant.WebApi.Extensions;
+using Microsoft.Extensions.FileProviders;
 
 
 namespace Restaurant.WebApi
@@ -64,7 +65,7 @@ namespace Restaurant.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
             app.UseCors("AllowSpecificOrigin");

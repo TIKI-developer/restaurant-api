@@ -2,7 +2,7 @@
 {
     public class FileLoader
     {
-        public string SaveFile(IFormFile file, string relPath = "")
+        public async Task<string> SaveFile(IFormFile file, string relPath = "")
         {
             var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads/");
             uploadsFolder = Path.Combine(uploadsFolder, relPath);
@@ -16,7 +16,7 @@
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                file.CopyTo(stream);
+                await file.CopyToAsync(stream);
             }
 
             return uniqueFileName;

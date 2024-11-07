@@ -11,12 +11,22 @@ namespace Restaurant.WebApi.Controllers
         private readonly IMapper _mapper = mapper;
 
         [HttpPost("auth/signup")]
-        public async Task<ActionResult<Guid>> RegisterAdmin([FromBody] AdminRegisterDto userRegisterDto)
+        public async Task<ActionResult<string>> RegisterAdmin([FromBody] AdminRegisterDto userRegisterDto)
         {
             var command = _mapper.Map<RegisterAdminCommand>(userRegisterDto);
-            var userId = await Mediator.Send(command);
+            var token = await Mediator.Send(command);
 
-            return Ok(userId);
+            //var cookieOptions = new CookieOptions
+            //{
+            //    //HttpOnly = true, 
+            //    //Secure = true, 
+            //    SameSite = SameSiteMode.Strict,
+            //    Expires = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(3000)
+            //};
+
+            //HttpContext.Response.Cookies.Append("creeper", token, cookieOptions);
+
+            return Ok(token);
         }
     }
 }
