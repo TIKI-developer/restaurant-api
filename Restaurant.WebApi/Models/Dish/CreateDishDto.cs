@@ -10,7 +10,7 @@ namespace Restaurant.WebApi.Models.Dish
         public required string Name { get; set; }
         public string? Description { get; set; }
         public float Price { get; set; }
-        public IFormFile[] Images { get; set; } = [];
+        public string[] Images { get; set; } = [];
         public ICollection<Guid>? Categories { get; set; }
 
         public void Mapping(Profile profile)

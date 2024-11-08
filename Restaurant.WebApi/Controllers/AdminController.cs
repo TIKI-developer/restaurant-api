@@ -16,15 +16,7 @@ namespace Restaurant.WebApi.Controllers
             var command = _mapper.Map<RegisterAdminCommand>(userRegisterDto);
             var token = await Mediator.Send(command);
 
-            //var cookieOptions = new CookieOptions
-            //{
-            //    //HttpOnly = true, 
-            //    //Secure = true, 
-            //    SameSite = SameSiteMode.Strict,
-            //    Expires = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(3000)
-            //};
-
-            //HttpContext.Response.Cookies.Append("creeper", token, cookieOptions);
+            HttpContext.Response.Cookies.Append("creeper", token);
 
             return Ok(token);
         }

@@ -1,43 +1,98 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.WebApi.Models;
 
 namespace Restaurant.WebApi.Controllers
 {
     [Route("files")]
-    public class FileController(FileLoader fileLoader) : BaseController
+    public class FileController : BaseController
     {
-        private readonly FileLoader _fileLoader = fileLoader;
+        private readonly string _baseFolderPath;
 
-        [HttpGet("images/{imageName}")]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> GetImage(string imageName)
+        public FileController()
         {
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads/images/");
-            var filePath = uploadsFolder + imageName;
-
-            if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))
-            {
-                return NotFound();
-            }
-
-            var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
-            return File(fileBytes, "image/jpeg");
+            _baseFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            EnsureBaseFolderExists();
         }
+
+        private void EnsureBaseFolderExists()
+        {
+            if (!Directory.Exists(_baseFolderPath))
+            {
+                Directory.CreateDirectory(_baseFolderPath);
+            }
+        }
+
+        private string GetFilePath(string relativePath)
+        {
+            return Path.Combine(_baseFolderPath, relativePath);
+        }
+
         [HttpPost("upload")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Upload(IFormFile formFile)
+        public async Task<string[]> Upload([FromForm] UploadFileDto uploadFileDto)
         {
-            await _fileLoader.SaveFile(formFile);
+            var formFiles = uploadFileDto.Files;
+            var relativePath = string.IsNullOrEmpty(uploadFileDto.RelativePath) ? "uploads/" : uploadFileDto.RelativePath;
+            var uniqueFileNames = new List<string>();
 
-            return Ok();
+            foreach (var formFile in formFiles)
+            {
+                if (formFile == null || formFile.Length == 0)
+                {   
+                    throw new Exception("File haven't been choosed");
+                }
+
+                Console.WriteLine("relative path: " + relativePath);
+                var filePath = GetFilePath(relativePath);
+                Console.WriteLine("file path: " + filePath);
+                var directoryPath = Path.GetDirectoryName(filePath);
+                Console.WriteLine("directoryPath path: " + directoryPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath!);
+                }
+
+                var uniqueFileName = Guid.NewGuid() + Path.GetExtension(formFile.FileName);
+                var fullPath = Path.Combine(directoryPath!, uniqueFileName);
+
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(stream);
+                }
+                uniqueFileNames.Add(uniqueFileName);
+            }
+
+            return uniqueFileNames.ToArray();
         }
+
         [HttpDelete("delete")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Delete(IFormFile formFile)
+        public ActionResult Delete([FromBody] DeleteFileDto deleteFileDto)
         {
-            await _fileLoader.SaveFile(formFile);
+            var relativeFilePath = deleteFileDto.FilePath;
 
-            return Ok();
+            if (string.IsNullOrEmpty(relativeFilePath))
+            {
+                throw new Exception("Относительный путь не указан.");
+            }
+
+            var filePath = GetFilePath(relativeFilePath);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                throw new Exception("Файл не найден.");
+            }
+
+            try
+            {
+                System.IO.File.Delete(filePath);
+                return Ok("Файл успешно удален.");
+            }
+            catch (IOException ex)
+            {
+                return StatusCode(500, $"Ошибка при удалении файла: {ex.Message}");
+            }
         }
     }
 }
