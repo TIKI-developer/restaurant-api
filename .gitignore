@@ -70,3 +70,4 @@ LocalDatabase.db-shm
 LocalDatabase.db-wal
 /uploads/
 UpgradeLog.htm
+/Restaurant.WebApi/wwwroot/uploads
