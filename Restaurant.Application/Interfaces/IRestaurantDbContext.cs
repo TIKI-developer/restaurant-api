@@ -3,6 +3,7 @@ using Restaurant.Domain.Cart;
 using Restaurant.Domain.Category;
 using Restaurant.Domain.Dish;
 using Restaurant.Domain.Order;
+using Restaurant.Domain.Promotion;
 using Restaurant.Domain.User;
 
 
@@ -15,6 +16,7 @@ namespace Restaurant.Application.Interfaces
         DbSet<CategoryModel> Categories { get; set; }
         DbSet<OrderModel> Orders { get; set; }
         DbSet<CartModel> Carts { get; set; }
+        DbSet<PromotionModel> Promotions { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

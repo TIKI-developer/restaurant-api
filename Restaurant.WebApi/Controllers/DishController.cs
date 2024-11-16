@@ -6,7 +6,6 @@ using Restaurant.Application.Entities.Dish.Queries.GetDishList;
 namespace Restaurant.WebApi.Controllers
 {
     [Route("dishes")]
-    //[Authorize(Roles = "Admin, Client")]
     public class DishController : BaseController
     {
         [HttpGet("{id}")]

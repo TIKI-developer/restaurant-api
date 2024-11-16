@@ -32,7 +32,7 @@ namespace Restaurant.WebApi.Controllers
             var command = _mapper.Map<LoginUserCommand>(userLoginDto);
             var token = await Mediator.Send(command);
 
-            //HttpContext.Response.Cookies.Append("creeper", token);
+            HttpContext.Response.Cookies.Append("creeper", token);
 
             return Ok(token);
         }

@@ -3,40 +3,53 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.Cart;
+using Restaurant.Domain.Dish;
 
 namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
 {
-    public class CartAddDishCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<CartAddDishCommand>
+    public class CartAddDishCommandHandler : IRequestHandler<CartAddDishCommand, Unit>
     {
-        private readonly IRestaurantDbContext _dbContext = dbContext;
+        private readonly IRestaurantDbContext _dbContext;
 
-        public async Task Handle(CartAddDishCommand request, CancellationToken cancellationToken)
+        public CartAddDishCommandHandler(IRestaurantDbContext dbContext)
         {
-            var cart = await
-                _dbContext
-                    .Carts
-                    .Include(c => c.Dishes)
-                    .Include(c => c.CartModelDishModels)
-                    .FirstOrDefaultAsync(c => c.ClientId == request.ClientId, cancellationToken);
+            _dbContext = dbContext;
+        }
+
+        public async Task<Unit> Handle(CartAddDishCommand request, CancellationToken cancellationToken)
+        {
+            var cart = await _dbContext.Carts
+                .Include(c => c.CartModelDishModels)
+                .FirstOrDefaultAsync(c => c.ClientId == request.ClientId, cancellationToken);
 
             if (cart == null)
             {
                 throw new NotFoundException(nameof(CartModel), request.ClientId);
             }
-            else
-            {
-                var dishCount = request.NewDishes
-                        .GroupBy(id => id)
-                        .ToDictionary(group => group.Key, group => group.Count());
-                var newDishes = await
-                    _dbContext
-                        .Dishes
-                        .Where(c => request.NewDishes.Contains(c.Id))
-                        .ToListAsync(cancellationToken);
 
-                foreach (var dish in newDishes)
+            var dishCount = request.NewDishes
+                .GroupBy(id => id)
+                .ToDictionary(group => group.Key, group => group.Count());
+
+            var existingDishIds = cart.CartModelDishModels
+                .Select(d => d.DishId)
+                .ToHashSet();
+
+            foreach (var (dishId, count) in dishCount)
+            {
+                var existingCartDish = cart.CartModelDishModels.FirstOrDefault(d => d.DishId == dishId);
+                
+                if (existingCartDish != null)
                 {
-                    var count = dishCount[dish.Id];
+                    existingCartDish.Count += count;
+                }
+                else
+                {
+                    var dish = await _dbContext.Dishes.FindAsync(new object[] { dishId }, cancellationToken);
+                    if (dish == null)
+                    {
+                        throw new NotFoundException(nameof(DishModel), dishId);
+                    }
 
                     var cartDish = new CartModelDishModel
                     {
@@ -46,8 +59,10 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
 
                     cart.CartModelDishModels.Add(cartDish);
                 }
-                await _dbContext.SaveChangesAsync(cancellationToken);
             }
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            return Unit.Value;
         }
     }
 }

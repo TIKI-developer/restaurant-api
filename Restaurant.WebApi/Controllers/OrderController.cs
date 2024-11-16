@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Application.Entities.Order.Commands.CreateOrder;
+using Restaurant.Application.Entities.Order.Queries.GetOrder;
 using Restaurant.Application.Entities.Order.Queries.GetOrderList;
+using Restaurant.WebApi.Models.Order;
 
 
 namespace Restaurant.WebApi.Controllers
@@ -24,12 +26,14 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(vm);
         }
+
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create()
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateOrderDto dto)
         {
             var command = new CreateOrderCommand
-            { 
-                ClientId = UserId
+            {
+                ClientId = UserId,
+                Address = dto.Address
             };
             var id = await Mediator.Send(command);
 

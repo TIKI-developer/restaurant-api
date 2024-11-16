@@ -32,6 +32,10 @@ namespace Restaurant.WebApi
             services.AddPersistence(Configuration);
             services.AddApplication();
             services.AddControllers();
+                //.AddJsonOptions(options =>
+                //{
+                //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                //});
 
             services.AddCors(options =>
             {

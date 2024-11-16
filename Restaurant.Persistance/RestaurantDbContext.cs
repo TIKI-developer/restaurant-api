@@ -4,6 +4,7 @@ using Restaurant.Domain.Cart;
 using Restaurant.Domain.Category;
 using Restaurant.Domain.Dish;
 using Restaurant.Domain.Order;
+using Restaurant.Domain.Promotion;
 using Restaurant.Domain.User;
 using Restaurant.Persistence.EntityTypeConfigurations;
 
@@ -17,6 +18,7 @@ namespace Restaurant.Persistence
         public DbSet<CategoryModel> Categories {  get; set; }
         public DbSet<OrderModel> Orders { get; set; }
         public DbSet<CartModel> Carts { get; set; }
+        public DbSet<PromotionModel> Promotions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +28,7 @@ namespace Restaurant.Persistence
             modelBuilder.ApplyConfiguration(new DishConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

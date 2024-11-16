@@ -1,9 +1,7 @@
-﻿using Restaurant.Domain.Dish;
-
-namespace Restaurant.WebApi.Models.Order
+﻿namespace Restaurant.WebApi.Models.Order
 {
     public class CreateOrderDto
     {
-        public required ICollection<DishModel> Dishes { get; set; }
+        public required string Address { get; set; }
     }
 }

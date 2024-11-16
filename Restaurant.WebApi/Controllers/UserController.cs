@@ -7,7 +7,7 @@ namespace Restaurant.WebApi.Controllers
     public class UserController : BaseController
     {
         [HttpGet("role")]
-        public async Task<ActionResult<string>> RegisterAdmin()
+        public async Task<ActionResult<string>> GetRole()
         {
             var role = User.FindFirst(ClaimTypes.Role)?.Value;
 
