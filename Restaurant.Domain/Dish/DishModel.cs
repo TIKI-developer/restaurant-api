@@ -12,8 +12,5 @@ namespace Restaurant.Domain.Dish
 		public string? Description { get; set; }
 		public List<string> Images { get; set; } = [];
 		public List<CategoryModel>? Categories { get; set; } = [];
-        public List<CartModel>? Carts { get; set; }
-        public List<OrderModel>? Orders { get; set; }
-		public List<CartModelDishModel>? CartModelDishModels { get; set; }
     } 
 }

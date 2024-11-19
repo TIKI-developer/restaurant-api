@@ -22,17 +22,21 @@ namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
             var cart = await
                 _dbContext
                     .Carts
-                    .Include(c => c.Dishes)
+                    .Include(c => c.Items)
                     .FirstOrDefaultAsync(c => c.ClientId == request.ClientId, cancellationToken);
 
-            if (cart.Dishes == null || cart.Dishes.Count <= 0)
+            if (cart.Items == null || cart.Items.Count <= 0)
             {
                 throw new Exception("Cart is clear");
             }    
             var order = new OrderModel
             {
                 Id = Guid.NewGuid(),
-                Dishes = new List<DishModel>(cart.Dishes),
+                Items = cart.Items.Select(ci => new OrderItem
+                {
+                    DishId = ci.DishId,
+                    Count = ci.Count
+                }).ToList(),
                 Status = OrderStatus.Pending,
                 Address = request.Address,
                 CreationDateTime = DateTime.UtcNow,
@@ -40,7 +44,7 @@ namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
             };
 
             await _dbContext.Orders.AddAsync(order);
-            cart.Dishes.Clear();
+            cart.Items.Clear();
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

@@ -16,7 +16,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
             var orders = await
                 _dbContext
                     .Orders
-                    .Include(o => o.Dishes)
+                    .Include(o => o.Items)
                     .ProjectTo<OrderLookupDto>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
 

@@ -13,24 +13,24 @@ namespace Restaurant.Application.Entities.Cart.Commands.UpdateCart
 
         public async Task Handle(UpdateCartCommand request, CancellationToken cancellationToken)
         {
-            var entityClient = await
+            var client = await
                 _dbContext
                     .Users
                     .FirstOrDefaultAsync(e => e.Id == request.ClientId, cancellationToken) as ClientModel;
 
-            if (entityClient == null)
+            if (client == null)
             {
                 throw new NotFoundException(nameof(UserModel), request.ClientId);
             }
 
-            var dishEntities = await
+            var dishes = await
                 _dbContext
                     .Dishes
                     .Where(d => request.Dishes.Contains(d.Id))
                     .ToListAsync(cancellationToken);
 
 
-            entityClient.Cart.Dishes = dishEntities;
+            //client.Cart.Items = dishes;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }

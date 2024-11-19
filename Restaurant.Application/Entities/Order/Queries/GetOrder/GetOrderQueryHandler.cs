@@ -17,8 +17,9 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
             var order = await
                 _dbContext
                 .Orders
-                .Include(o => o.Dishes)
+                .Include(o => o.Items)
                 .Include(o => o.Client)
+                .Include(o => o.Client.Profile)
                 .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken);
 
             if (order == null)

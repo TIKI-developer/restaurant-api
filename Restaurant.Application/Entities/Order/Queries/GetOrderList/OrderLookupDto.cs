@@ -22,7 +22,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
                     opt => opt.MapFrom(order => order.Id))
 
                 .ForMember(orderDto => orderDto.Dishes,
-                    opt => opt.MapFrom(order => order.Dishes.Select(d => d.Id)))
+                    opt => opt.MapFrom(order => order.Items.Select(d => d.DishId)))
 
                 .ForMember(orderDto => orderDto.Status,
                     opt => opt.MapFrom(order => order.Status))

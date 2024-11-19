@@ -4,7 +4,7 @@ using Restaurant.Domain.Cart;
 
 namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
 {
-    public class DishCartDto : IMapWith<CartModelDishModel>
+    public class DishCartDto : IMapWith<CartItem>
     {
         public required Guid Id { get; set; }
         public required string Name { get; set; }
@@ -14,7 +14,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CartModelDishModel, DishCartDto>()
+            profile.CreateMap<CartItem, DishCartDto>()
                 .ForMember(dto => dto.Id, opt => opt.MapFrom(cartDish => cartDish.Dish.Id))
                 .ForMember(dto => dto.Name, opt => opt.MapFrom(cartDish => cartDish.Dish.Name))
                 .ForMember(dto => dto.Price, opt => opt.MapFrom(cartDish => cartDish.Dish.Price))

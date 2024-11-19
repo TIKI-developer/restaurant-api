@@ -34,7 +34,7 @@ namespace Restaurant.Application.Entities.User.Commands.RegisterClient
             var cart = new CartModel
             {
                 ClientId = client.Id,
-                Dishes = [],
+                Items = [],
                 Client = client
             };
 

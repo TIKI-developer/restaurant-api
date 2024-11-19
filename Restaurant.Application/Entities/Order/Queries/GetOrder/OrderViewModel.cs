@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
-using Restaurant.Domain.Dish;
 using Restaurant.Domain.Order;
-using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.Order.Queries.GetOrder
 {
@@ -10,8 +8,11 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
     {
         public required OrderStatus Status { get; set; }
         public required DateTime CreationDateTime { get; set; }
-        public required ICollection<Guid> Dishes { get; set; }
-        public required Guid ClientId { get; set; }
+        public required string Address { get; set; }
+        public required ICollection<OrderItem> Dishes { get; set; }
+        public required string ClientName { get; set; }
+        public required string ClientNumber { get; set; }
+
 
         public void Mapping(Profile profile)
         {
@@ -22,11 +23,17 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
                 .ForMember(vm => vm.CreationDateTime,
                     opt => opt.MapFrom(o => o.CreationDateTime))
 
-                .ForMember(vm => vm.Dishes,
-                    opt => opt.MapFrom(o => o.Dishes.Select(d => d.Id)))
+             .ForMember(vm => vm.Address,
+                    opt => opt.MapFrom(o => o.Address))
 
-                .ForMember(vm => vm.ClientId,
-                    opt => opt.MapFrom(o => o.Client.Id));
+                .ForMember(vm => vm.Dishes,
+                    opt => opt.MapFrom(o => o.Items))
+
+                .ForMember(vm => vm.ClientName,
+                    opt => opt.MapFrom(o => o.Client.Profile.Name))
+
+                .ForMember(vm => vm.ClientNumber,
+                    opt => opt.MapFrom(o => o.Client.Number));
         }
     }
 }

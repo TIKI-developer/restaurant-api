@@ -19,7 +19,7 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
         public async Task<Unit> Handle(CartAddDishCommand request, CancellationToken cancellationToken)
         {
             var cart = await _dbContext.Carts
-                .Include(c => c.CartModelDishModels)
+                .Include(c => c.Items)
                 .FirstOrDefaultAsync(c => c.ClientId == request.ClientId, cancellationToken);
 
             if (cart == null)
@@ -31,13 +31,13 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
                 .GroupBy(id => id)
                 .ToDictionary(group => group.Key, group => group.Count());
 
-            var existingDishIds = cart.CartModelDishModels
+            var existingDishIds = cart.Items
                 .Select(d => d.DishId)
                 .ToHashSet();
 
             foreach (var (dishId, count) in dishCount)
             {
-                var existingCartDish = cart.CartModelDishModels.FirstOrDefault(d => d.DishId == dishId);
+                var existingCartDish = cart.Items.FirstOrDefault(d => d.DishId == dishId);
                 
                 if (existingCartDish != null)
                 {
@@ -51,13 +51,13 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
                         throw new NotFoundException(nameof(DishModel), dishId);
                     }
 
-                    var cartDish = new CartModelDishModel
+                    var cartDish = new CartItem
                     {
                         Dish = dish,
                         Count = count
                     };
 
-                    cart.CartModelDishModels.Add(cartDish);
+                    cart.Items.Add(cartDish);
                 }
             }
 

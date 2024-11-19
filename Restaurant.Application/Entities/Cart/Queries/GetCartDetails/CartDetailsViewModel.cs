@@ -15,7 +15,7 @@ namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
         {
             profile.CreateMap<CartModel, CartDetailsViewModel>()
                 .ForMember(cartVm => cartVm.Dishes,
-                    opt => opt.MapFrom(cart => cart.CartModelDishModels));
+                    opt => opt.MapFrom(cart => cart.Items));
         }
     }
 }

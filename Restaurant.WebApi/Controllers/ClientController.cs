@@ -36,7 +36,7 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(token);
         }
-        [Authorize(Roles = "Client")]
+        [Authorize(Roles = "Client, Admin")]
         [HttpGet("profile")]
         public async Task<ActionResult<ClientDetailsViewModel>> GetProfile()
         {

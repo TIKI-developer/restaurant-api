@@ -2,7 +2,7 @@ using Restaurant.Domain.Dish;
 
 namespace Restaurant.Domain.Cart
 {
-	public class CartModelDishModel
+	public class CartItem
 	{
         public Guid CartId { get; set; }
         public CartModel? Cart { get; set; }
