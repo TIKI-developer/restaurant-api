@@ -16,6 +16,10 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 .HasOne(c => c.Client)
                 .WithOne(c => c.Cart)
                 .HasForeignKey<CartModel>(c => c.ClientId);
+
+            builder
+                .HasMany(e => e.Items)
+                .WithOne(e => e.Cart);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
                 _dbContext
                 .Orders
                 .Include(o => o.Items)
+                .ThenInclude(i => i.Dish)
                 .Include(o => o.Client)
                 .Include(o => o.Client.Profile)
                 .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken);

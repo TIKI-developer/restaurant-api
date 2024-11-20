@@ -9,7 +9,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
         public required OrderStatus Status { get; set; }
         public required DateTime CreationDateTime { get; set; }
         public required string Address { get; set; }
-        public required ICollection<OrderItem> Dishes { get; set; }
+        public required ICollection<OrderItemDto> Dishes { get; set; }
         public required string ClientName { get; set; }
         public required string ClientNumber { get; set; }
 
@@ -35,5 +35,22 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
                 .ForMember(vm => vm.ClientNumber,
                     opt => opt.MapFrom(o => o.Client.Number));
         }
+
+        public class OrderItemDto : IMapWith<OrderItem>
+        {
+            public required string DishName { get; set; }
+            public required int Count { get; set; }
+
+            public void Mapping(Profile profile)
+            {
+                profile.CreateMap<OrderItem, OrderItemDto>()
+                    .ForMember(to => to.DishName,
+                        opt => opt.MapFrom(from => from.Dish.Name))
+                    .ForMember(to => to.Count,
+                        opt => opt.MapFrom(from => from.Count));
+            }
+        }
     }
 }
+
+

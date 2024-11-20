@@ -8,6 +8,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
+            builder.HasKey(e => new { e.OrderId, e.DishId });
+
             builder
                 .HasOne(oi => oi.Order)
                 .WithMany(o => o.Items)

@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
+using Restaurant.Application.Entities.Order.Queries.GetOrder;
 using Restaurant.Domain.Order;
-using Restaurant.Domain.Dish;
-using Restaurant.Domain.User;
 
 namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
 {
     public class OrderLookupDto : IMapWith<OrderModel>
     {
         public required Guid Id { get; set; }
-        public required ICollection<Guid> Dishes { get; set; }
+        public required ICollection<OrderViewModel.OrderItemDto> Dishes { get; set; }
         public required OrderStatus Status { get; set; }
         public required DateTime CreationDateTime { get; set; }
         public required Guid Client { get; set; }
@@ -22,7 +21,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
                     opt => opt.MapFrom(order => order.Id))
 
                 .ForMember(orderDto => orderDto.Dishes,
-                    opt => opt.MapFrom(order => order.Items.Select(d => d.DishId)))
+                    opt => opt.MapFrom(order => order.Items))
 
                 .ForMember(orderDto => orderDto.Status,
                     opt => opt.MapFrom(order => order.Status))
