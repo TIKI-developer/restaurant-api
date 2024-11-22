@@ -30,11 +30,9 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateOrderDto dto)
         {
-            var command = new CreateOrderCommand
-            {
-                ClientId = UserId,
-                Address = dto.Address
-            };
+            var command = _mapper.Map<CreateOrderCommand>(dto);
+            command.ClientId = UserId;
+
             var id = await Mediator.Send(command);
 
             return Ok(id);

@@ -10,6 +10,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
         public required DateTime CreationDateTime { get; set; }
         public required string Address { get; set; }
         public required ICollection<OrderItemDto> Dishes { get; set; }
+        public required int PersonQuantity { get; set; }
         public required string ClientName { get; set; }
         public required string ClientNumber { get; set; }
 
@@ -31,6 +32,9 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
 
                 .ForMember(vm => vm.ClientName,
                     opt => opt.MapFrom(o => o.Client.Profile.Name))
+
+                .ForMember(vm => vm.PersonQuantity,
+                    opt => opt.MapFrom(o => o.PersonQuantity))
 
                 .ForMember(vm => vm.ClientNumber,
                     opt => opt.MapFrom(o => o.Client.Number));

@@ -19,6 +19,7 @@ namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
                 _dbContext
                     .Carts
                     .Include(c => c.Items)
+                    .ThenInclude(i => i.Dish)
                     .FirstOrDefaultAsync(e => e.ClientId == request.ClientId, cancellationToken);
 
             if (cart == null)

@@ -8,6 +8,9 @@ namespace Restaurant.Domain.Order
         public required DateTime CreationDateTime { get; set; }
         public required string Address { get; set; }
         public required OrderStatus Status { get; set; }
+        public required int PersonQuantity { get; set; }
+        public bool AddForks { get; set; }
+        public bool AddChopsticks { get; set; }
         public required ClientModel? Client { get; set; }
         public List<OrderItem>? Items { get; set; }
     }
@@ -15,6 +18,7 @@ namespace Restaurant.Domain.Order
     {
         Pending,
         Working,
+        Delivering,
         Completed,
         Cancelled
     }

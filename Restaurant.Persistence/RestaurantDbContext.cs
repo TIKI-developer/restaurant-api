@@ -11,15 +11,15 @@ using Restaurant.Persistence.EntityTypeConfigurations;
 
 namespace Restaurant.Persistence
 {
-    public class RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : DbContext(options), IRestaurantDbContext
+    public class RestaurantDbContext : DbContext, IRestaurantDbContext
     {
         public DbSet<UserModel> Users { get; set; }
         public DbSet<DishModel> Dishes { get; set; }
-        public DbSet<CategoryModel> Categories {  get; set; }
+        public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<OrderModel> Orders { get; set; }
         public DbSet<CartModel> Carts { get; set; }
         public DbSet<PromotionModel> Promotions { get; set; }
-
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());

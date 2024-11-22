@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain.Dish;
 using Restaurant.Domain.Order;
 using Restaurant.Domain.User.Client;
 
@@ -37,9 +36,12 @@ namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
                     DishId = ci.DishId,
                     Count = ci.Count
                 }).ToList(),
+                PersonQuantity = request.PersonQuantity,
                 Status = OrderStatus.Pending,
                 Address = request.Address,
                 CreationDateTime = DateTime.UtcNow,
+                AddChopsticks = request.AddChopsticks,
+                AddForks = request.AddForks,
                 Client = client
             };
 
