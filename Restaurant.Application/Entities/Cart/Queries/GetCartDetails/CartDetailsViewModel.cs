@@ -2,8 +2,6 @@
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Entities.Dish.Queries.GetDishList;
 using Restaurant.Domain.Cart;
-using Restaurant.Domain.Dish;
-
 
 namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
 {
