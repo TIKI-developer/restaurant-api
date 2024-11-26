@@ -12,15 +12,7 @@ namespace Restaurant.WebApi.Models.User
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<EditClientProfileDto, EditProfileCommand>()
-
-                .ForMember(p => p.Name,
-                    opt => opt.MapFrom(pDto => pDto.Name))
-                .ForMember(p => p.Number,
-                    opt => opt.MapFrom(pDto => pDto.Number))
-                .ForMember(p => p.Address,
-                    opt => opt.MapFrom(pDto => pDto.Address));
-
+            profile.CreateMap<EditClientProfileDto, EditProfileCommand>();
         }
     }
 }

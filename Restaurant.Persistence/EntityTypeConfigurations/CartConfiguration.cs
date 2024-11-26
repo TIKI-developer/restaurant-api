@@ -11,11 +11,11 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<CartModel> builder)
         {
             builder
-                .HasKey(x => x.ClientId);
+                .HasKey(x => x.UserId);
             builder
-                .HasOne(c => c.Client)
+                .HasOne(c => c.User)
                 .WithOne(c => c.Cart)
-                .HasForeignKey<CartModel>(c => c.ClientId);
+                .HasForeignKey<CartModel>(c => c.UserId);
 
             builder
                 .HasMany(e => e.Items)

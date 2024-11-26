@@ -1,17 +1,16 @@
 ﻿using FluentValidation;
 using Restaurant.Application.Validation;
 
-namespace Restaurant.Application.Entities.User.Commands.RegisterClient
+namespace Restaurant.Application.Entities.User.Commands.Login
 {
-    public class RegisterClientCommandValidator : AbstractValidator<RegisterClientCommand> 
+    public class LoginCommandValidator : AbstractValidator<LoginCommand>
     {
-        public RegisterClientCommandValidator(
+        public LoginCommandValidator(
             AuthRules authRules,
             ProfileRules profileRules)
         {
             profileRules.Name(RuleFor(x => x.Name));
             authRules.Number(RuleFor(c => c.Number));
-            authRules.Password(RuleFor(c => c.Password));
         }
     }
 }

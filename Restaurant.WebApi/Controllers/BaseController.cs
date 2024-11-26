@@ -15,5 +15,8 @@ namespace Restaurant.WebApi.Controllers
         internal Guid UserId => !User.Identity.IsAuthenticated 
             ? Guid.Empty 
             : Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        internal string UserRole => !User.Identity.IsAuthenticated
+            ? "Guest"
+            : (User.FindFirst(ClaimTypes.Role).Value);
     }
 }

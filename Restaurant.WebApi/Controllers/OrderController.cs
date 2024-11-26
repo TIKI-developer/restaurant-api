@@ -10,7 +10,7 @@ using Restaurant.WebApi.Models.Order;
 namespace Restaurant.WebApi.Controllers
 {
     [Route("orders")]
-    [Authorize(Roles = "Client")]
+    [Authorize(Roles = "Client, Admin")]
     public class OrderController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;
@@ -31,7 +31,7 @@ namespace Restaurant.WebApi.Controllers
         public async Task<ActionResult<Guid>> Create([FromBody] CreateOrderDto dto)
         {
             var command = _mapper.Map<CreateOrderCommand>(dto);
-            command.ClientId = UserId;
+            command.UserId = UserId;
 
             var id = await Mediator.Send(command);
 

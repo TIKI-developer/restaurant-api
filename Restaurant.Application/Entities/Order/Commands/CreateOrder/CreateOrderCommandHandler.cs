@@ -14,15 +14,15 @@ namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
 
         public async Task<Guid> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var client = await
+            var user = await
                 _dbContext
                     .Users
-                    .FirstOrDefaultAsync(u => u.Id == request.ClientId, cancellationToken) as ClientModel;
+                    .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken);
             var cart = await
                 _dbContext
                     .Carts
                     .Include(c => c.Items)
-                    .FirstOrDefaultAsync(c => c.ClientId == request.ClientId, cancellationToken);
+                    .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken);
 
             if (cart.Items == null || cart.Items.Count <= 0)
             {
@@ -42,7 +42,7 @@ namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
                 CreationDateTime = DateTime.UtcNow,
                 AddChopsticks = request.AddChopsticks,
                 AddForks = request.AddForks,
-                Client = client
+                User = user
             };
 
             await _dbContext.Orders.AddAsync(order);

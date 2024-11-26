@@ -20,11 +20,11 @@ namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
                     .Carts
                     .Include(c => c.Items)
                     .ThenInclude(i => i.Dish)
-                    .FirstOrDefaultAsync(e => e.ClientId == request.ClientId, cancellationToken);
+                    .FirstOrDefaultAsync(e => e.UserId == request.UserId, cancellationToken);
 
             if (cart == null)
             {
-                throw new NotFoundException(nameof(CartModel), request.ClientId);
+                throw new NotFoundException(nameof(CartModel), request.UserId);
             }
 
             return _mapper.Map<CartDetailsViewModel>(cart);

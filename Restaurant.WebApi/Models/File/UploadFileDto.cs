@@ -1,4 +1,4 @@
-﻿namespace Restaurant.WebApi.Models
+﻿namespace Restaurant.WebApi.Models.File
 {
     public class UploadFileDto
     {

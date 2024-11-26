@@ -27,7 +27,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
             var ordersQuery = await
                 _dbContext
                 .Orders
-                .Where(order => order.Client.Id == request.ClientId)
+                .Where(order => order.User.Id == request.ClientId)
                 .ProjectTo<OrderLookupDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 

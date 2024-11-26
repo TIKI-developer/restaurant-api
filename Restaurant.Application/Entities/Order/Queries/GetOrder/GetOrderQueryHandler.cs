@@ -19,8 +19,8 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
                 .Orders
                 .Include(o => o.Items)
                 .ThenInclude(i => i.Dish)
-                .Include(o => o.Client)
-                .Include(o => o.Client.Profile)
+                .Include(o => o.User)
+                .ThenInclude(u => u.Profile)
                 .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken);
 
             if (order == null)

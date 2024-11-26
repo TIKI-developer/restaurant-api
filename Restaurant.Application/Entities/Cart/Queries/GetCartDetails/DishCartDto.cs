@@ -15,11 +15,16 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
         public void Mapping(Profile profile)
         {
             profile.CreateMap<CartItem, DishCartDto>()
-                .ForMember(dto => dto.Id, opt => opt.MapFrom(cartDish => cartDish.Dish.Id))
-                .ForMember(dto => dto.Name, opt => opt.MapFrom(cartDish => cartDish.Dish.Name))
-                .ForMember(dto => dto.Price, opt => opt.MapFrom(cartDish => cartDish.Dish.Price))
-                .ForMember(dto => dto.Image, opt => opt.MapFrom(cartDish => cartDish.Dish.Images.FirstOrDefault()))
-                .ForMember(dto => dto.Count, opt => opt.MapFrom(cartDish => cartDish.Count));
+                .ForMember(dto => dto.Id, 
+                opt => opt.MapFrom(cartDish => cartDish.Dish.Id))
+                .ForMember(dto => dto.Name, 
+                opt => opt.MapFrom(cartDish => cartDish.Dish.Name))
+                .ForMember(dto => dto.Price, 
+                opt => opt.MapFrom(cartDish => cartDish.Dish.Price))
+                .ForMember(dto => dto.Image, 
+                opt => opt.MapFrom(cartDish => cartDish.Dish.Images.FirstOrDefault()))
+                .ForMember(dto => dto.Count, 
+                opt => opt.MapFrom(cartDish => cartDish.Count));
         }
     }
 }

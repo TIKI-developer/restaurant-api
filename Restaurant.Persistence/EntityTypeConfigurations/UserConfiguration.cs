@@ -21,6 +21,16 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 .HasDiscriminator<string>("User Type")
                 .HasValue<ClientModel>("Client")
                 .HasValue<AdminModel>("Admin");
+            builder
+                .HasOne(c => c.Cart)
+                .WithOne(c => c.User);
+            builder
+                .HasMany(c => c.Orders)
+                .WithOne(o => o.User);
+            builder
+                .OwnsOne(c => c.Profile, profile => {
+                    profile.WithOwner();
+                });
         }
     }
 }

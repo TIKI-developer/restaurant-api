@@ -13,18 +13,7 @@ namespace Restaurant.Application.Entities.Promotion.Queries.GetPromotion
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<PromotionModel, PromotionDetailsViewModel>()
-                .ForMember(vm => vm.Title,
-                    opt => opt.MapFrom(p => p.Title))
-
-                .ForMember(vm => vm.Description,
-                    opt => opt.MapFrom(p => p.Description))
-
-                .ForMember(vm => vm.Image,
-                    opt => opt.MapFrom(p => p.Image))
-
-                .ForMember(vm => vm.CreationDateTime,
-                    opt => opt.MapFrom(p => p.CreationDateTime));
+            profile.CreateMap<PromotionModel, PromotionDetailsViewModel>();
         }
     }
 }

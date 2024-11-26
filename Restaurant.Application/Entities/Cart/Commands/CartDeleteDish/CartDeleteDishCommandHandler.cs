@@ -20,7 +20,7 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartDeleteDish
         {
             var cart = await _dbContext.Carts
                 .Include(c => c.Items)
-                .FirstOrDefaultAsync(c => c.ClientId == request.UserId, cancellationToken);
+                .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken);
 
             if (cart == null)
             {

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Application.Entities.Promotion.Command.CreatePromotion;
 using Restaurant.Application.Entities.Promotion.Command.DeletePromotion;
@@ -8,6 +9,7 @@ using Restaurant.WebApi.Models.Promotion;
 namespace Restaurant.WebApi.Controllers
 {
     [Route("admin/promotion")]
+    [Authorize(Roles = "Admin")]
     public class AdminPromotionController(IMapper mapper) : BaseController
     {
         private readonly IMapper _mapper = mapper;

@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
+using Restaurant.Domain.User;
 using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.User.Queries.GetUserDetails
 {
-    public class ClientDetailsViewModel : IMapWith<ClientModel>
+    public class UserDetailsViewModel : IMapWith<ClientModel>
     {
         public string? Name { get; set; }
         public required string Number { get; set; }
@@ -12,7 +13,7 @@ namespace Restaurant.Application.Entities.User.Queries.GetUserDetails
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ClientModel, ClientDetailsViewModel>()
+            profile.CreateMap<UserModel, UserDetailsViewModel>()
 
                 .ForMember(userVm => userVm.Name,
                     opt => opt.MapFrom(user => user.Profile.Name))

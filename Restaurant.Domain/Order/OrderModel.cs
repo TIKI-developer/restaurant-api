@@ -1,4 +1,5 @@
-﻿using Restaurant.Domain.User.Client;
+﻿using Restaurant.Domain.User;
+using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Domain.Order
 {
@@ -11,7 +12,7 @@ namespace Restaurant.Domain.Order
         public required int PersonQuantity { get; set; }
         public bool AddForks { get; set; }
         public bool AddChopsticks { get; set; }
-        public required ClientModel? Client { get; set; }
+        public required UserModel? User { get; set; }
         public List<OrderItem>? Items { get; set; }
     }
     public enum OrderStatus
