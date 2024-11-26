@@ -1,13 +1,12 @@
-﻿using System.Reflection;
-using Notes.WebApi.Middleware;
+﻿using Notes.WebApi.Middleware;
 using Restaurant.Application;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Interfaces;
-using Restaurant.Validation;
 using Restaurant.Persistence;
 using Restaurant.Security;
+using Restaurant.Validation;
 using Restaurant.WebApi.Extensions;
-using Microsoft.Extensions.FileProviders;
+using System.Reflection;
 
 
 namespace Restaurant.WebApi
@@ -32,10 +31,10 @@ namespace Restaurant.WebApi
             services.AddPersistence(Configuration);
             services.AddApplication();
             services.AddControllers();
-                //.AddJsonOptions(options =>
-                //{
-                //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-                //});
+            //.AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            //});
 
             services.AddCors(options =>
             {

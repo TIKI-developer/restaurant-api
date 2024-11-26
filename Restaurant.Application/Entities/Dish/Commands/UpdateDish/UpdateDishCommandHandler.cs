@@ -13,7 +13,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.UpdateDish
 
         public async Task Handle(UpdateDishCommand request, CancellationToken cancellationToken)
         {
-            var entity = await 
+            var entity = await
                 _dbContext
                 .Dishes
                 .FirstOrDefaultAsync(dish =>
@@ -24,7 +24,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.UpdateDish
                 throw new NotFoundException(nameof(DishModel), request.Id);
             }
 
-            var categoryEntities = await 
+            var categoryEntities = await
                 _dbContext
                     .Categories
                     .Where(c => request.Categories.Contains(c.Id))

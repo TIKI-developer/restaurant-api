@@ -7,8 +7,8 @@ namespace Restaurant.Application.Entities.Category.Queries.GetCategory
     public class CategoryDetailsViewModel : IMapWith<CategoryModel>
     {
         public required string Name { get; set; }
-        public string? Image {  get; set; }
-        public List<Guid>? Dishes { get; set; }  
+        public string? Image { get; set; }
+        public List<Guid>? Dishes { get; set; }
 
         public void Mapping(Profile profile)
         {

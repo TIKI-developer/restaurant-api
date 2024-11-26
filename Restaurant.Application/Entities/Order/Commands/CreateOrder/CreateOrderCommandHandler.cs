@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.Order;
-using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
 {
@@ -27,7 +26,7 @@ namespace Restaurant.Application.Entities.Order.Commands.CreateOrder
             if (cart.Items == null || cart.Items.Count <= 0)
             {
                 throw new Exception("Cart is clear");
-            }    
+            }
             var order = new OrderModel
             {
                 Id = Guid.NewGuid(),

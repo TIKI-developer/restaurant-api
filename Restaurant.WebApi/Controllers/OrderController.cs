@@ -16,11 +16,24 @@ namespace Restaurant.WebApi.Controllers
         private readonly IMapper _mapper = mapper;
 
         [HttpGet]
-        public async Task<ActionResult<OrderListViewModel>> GetClientOrderList()
+        public async Task<ActionResult<OrderListViewModel>> GetUserOrderList()
         {
-            var query = new GetClientOrderListQuery
+            var query = new GetUserOrderListQuery
             {
-                ClientId = UserId
+                UserId = UserId
+            };
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<OrderListViewModel>> GetUserOrder(Guid id)
+        {
+            var query = new GetOrderDetailsByUserQuery
+            {
+                Id = id,
+                UserId = UserId
             };
             var vm = await Mediator.Send(query);
 

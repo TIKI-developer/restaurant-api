@@ -12,7 +12,7 @@ namespace Restaurant.WebApi.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminOrderController(IMapper mapper) : BaseController
     {
-        private readonly IMapper _mapper = mapper;  
+        private readonly IMapper _mapper = mapper;
 
         [HttpGet]
         public async Task<ActionResult<OrderListViewModel>> GetOrderList()

@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.Cart;
-using Restaurant.Domain.User.Client;
 using Restaurant.Domain.User;
 using Restaurant.Domain.User.Admin;
+using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.User.Commands.Login
 {

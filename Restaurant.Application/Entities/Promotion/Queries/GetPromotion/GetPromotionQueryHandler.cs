@@ -8,9 +8,9 @@ using Restaurant.Domain.Promotion;
 namespace Restaurant.Application.Entities.Promotion.Queries.GetPromotion
 {
     public class GetPromotionQueryHandler
-        (IRestaurantDbContext dbContext, 
-        IMapper mapper) 
-        : 
+        (IRestaurantDbContext dbContext,
+        IMapper mapper)
+        :
         IRequestHandler<GetPromotionQuery, PromotionDetailsViewModel>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;

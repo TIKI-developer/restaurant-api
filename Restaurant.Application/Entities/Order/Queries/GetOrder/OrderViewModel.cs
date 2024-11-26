@@ -11,6 +11,8 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
         public required string Address { get; set; }
         public required ICollection<OrderItemViewModel> Dishes { get; set; }
         public required int PersonQuantity { get; set; }
+        public required bool AddForks { get; set; }
+        public required bool AddChopsticks { get; set; }
         public required string UserName { get; set; }
         public required string UserNumber { get; set; }
 

@@ -4,7 +4,7 @@ using Restaurant.Application.Entities.User.Commands.EditProfile;
 
 namespace Restaurant.WebApi.Models.User
 {
-    public class EditClientProfileDto : IMapWith<EditProfileCommand>
+    public class EditUserProfileDto : IMapWith<EditProfileCommand>
     {
         public string? Name { get; set; }
         public string? Number { get; set; }
@@ -12,7 +12,7 @@ namespace Restaurant.WebApi.Models.User
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<EditClientProfileDto, EditProfileCommand>();
+            profile.CreateMap<EditUserProfileDto, EditProfileCommand>();
         }
     }
 }

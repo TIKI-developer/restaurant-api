@@ -8,7 +8,6 @@ using Restaurant.Application.Entities.User.Commands.EditProfile;
 using Restaurant.Application.Entities.User.Commands.Login;
 using Restaurant.Application.Entities.User.Queries.GetUserDetails;
 using Restaurant.WebApi.Models.User;
-using System.Security.Claims;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -38,7 +37,7 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client, Admin")]
         [HttpPut("profile")]
-        public async Task<IActionResult> Update([FromBody] EditClientProfileDto dto)
+        public async Task<IActionResult> Update([FromBody] EditUserProfileDto dto)
         {
             var command = _mapper.Map<EditProfileCommand>(dto);
             command.Id = UserId;
@@ -64,7 +63,7 @@ namespace Restaurant.WebApi.Controllers
         public async Task<IActionResult> AddDish([FromBody] CartAddDishDto dto)
         {
             var command = _mapper.Map<CartAddDishCommand>(dto);
-            command.ClientId = UserId;
+            command.UserId = UserId;
             await Mediator.Send(command);
 
             return NoContent();
@@ -74,11 +73,11 @@ namespace Restaurant.WebApi.Controllers
         public async Task<IActionResult> RemoveDish(Guid dishId)
         {
             var command = new CartDeleteDishCommand
-            { 
+            {
                 UserId = UserId,
-                DishId = dishId 
+                DishId = dishId
             };
-            
+
             await Mediator.Send(command);
 
             return NoContent();

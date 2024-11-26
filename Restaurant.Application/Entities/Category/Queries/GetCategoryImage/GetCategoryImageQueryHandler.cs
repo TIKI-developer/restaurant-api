@@ -7,7 +7,7 @@ using Restaurant.Domain.Category;
 
 namespace Restaurant.Application.Entities.Category.Queries.GetCategoryImage
 {
-    public class GetCategoryImageQueryHandler(IRestaurantDbContext dbContext, IMapper mapper) 
+    public class GetCategoryImageQueryHandler(IRestaurantDbContext dbContext, IMapper mapper)
         : IRequestHandler<GetCategoryImageQuery, CategoryImageViewModel>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;

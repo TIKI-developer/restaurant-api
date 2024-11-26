@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Domain.Dish;
-using Restaurant.Domain.Category;
 
 namespace Restaurant.Application.Entities.Dish.Queries.GetDishDetails
 {
@@ -28,7 +27,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishDetails
 
                 .ForMember(dishVm => dishVm.Images,
                     opt => opt.MapFrom(dish => dish.Images))
-                    
+
                 .ForMember(dishVm => dishVm.Categories,
                     opt => opt.MapFrom(dish => dish.Categories.Select(c => c.Id)));
         }

@@ -12,7 +12,7 @@ namespace Restaurant.Application.Entities.Category.Commands.UpdateCategory
 
         public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
-            var entity = await 
+            var entity = await
                 _dbContext
                     .Categories
                     .FirstOrDefaultAsync(dish =>

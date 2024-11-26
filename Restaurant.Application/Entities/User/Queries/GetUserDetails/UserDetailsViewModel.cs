@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Domain.User;
-using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Application.Entities.User.Queries.GetUserDetails
 {
-    public class UserDetailsViewModel : IMapWith<ClientModel>
+    public class UserDetailsViewModel : IMapWith<UserModel>
     {
         public string? Name { get; set; }
         public required string Number { get; set; }

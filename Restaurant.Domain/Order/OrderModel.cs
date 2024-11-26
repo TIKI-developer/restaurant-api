@@ -1,5 +1,4 @@
 ﻿using Restaurant.Domain.User;
-using Restaurant.Domain.User.Client;
 
 namespace Restaurant.Domain.Order
 {

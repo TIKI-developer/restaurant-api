@@ -6,7 +6,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.UpdateDish
     {
         public UpdateDishCommandValidator()
         {
-            
+
         }
     }
 }

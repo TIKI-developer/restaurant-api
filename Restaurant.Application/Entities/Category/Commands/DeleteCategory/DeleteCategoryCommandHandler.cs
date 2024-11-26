@@ -12,7 +12,7 @@ namespace Restaurant.Application.Entities.Category.Commands.DeleteCategory
 
         public async Task Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            var entity = await 
+            var entity = await
                 _dbContext
                     .Categories
                     .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);

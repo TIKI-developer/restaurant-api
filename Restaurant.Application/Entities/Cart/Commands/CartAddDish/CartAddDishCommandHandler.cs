@@ -20,11 +20,11 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
         {
             var cart = await _dbContext.Carts
                 .Include(c => c.Items)
-                .FirstOrDefaultAsync(c => c.UserId == request.ClientId, cancellationToken);
+                .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken);
 
             if (cart == null)
             {
-                throw new NotFoundException(nameof(CartModel), request.ClientId);
+                throw new NotFoundException(nameof(CartModel), request.UserId);
             }
 
             var dishCount = request.NewDishes
@@ -38,7 +38,7 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
             foreach (var (dishId, count) in dishCount)
             {
                 var existingCartDish = cart.Items.FirstOrDefault(d => d.DishId == dishId);
-                
+
                 if (existingCartDish != null)
                 {
                     existingCartDish.Count += count;

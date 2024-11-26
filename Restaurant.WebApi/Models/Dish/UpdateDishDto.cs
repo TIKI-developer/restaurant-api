@@ -1,7 +1,6 @@
-﻿using Restaurant.Application.Common.Mappings;
-using AutoMapper;
+﻿using AutoMapper;
+using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Entities.Dish.Commands.UpdateDish;
-using Restaurant.Domain.Category;
 
 namespace Restaurant.WebApi.Models.Dish
 {

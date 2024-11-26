@@ -28,7 +28,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 .HasMany(c => c.Orders)
                 .WithOne(o => o.User);
             builder
-                .OwnsOne(c => c.Profile, profile => {
+                .OwnsOne(c => c.Profile, profile =>
+                {
                     profile.WithOwner();
                 });
         }

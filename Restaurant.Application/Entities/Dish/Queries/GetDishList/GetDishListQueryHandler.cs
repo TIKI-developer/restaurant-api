@@ -14,7 +14,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishList
 
         public async Task<DishListViewModel> Handle(GetDishListQuery request, CancellationToken cancellationToken)
         {
-            var dishesQuery = await 
+            var dishesQuery = await
                 _dbContext
                 .Dishes
                 .ProjectTo<DishLookupDto>(_mapper.ConfigurationProvider)
