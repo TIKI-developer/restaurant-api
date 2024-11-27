@@ -95,10 +95,13 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost("verify")]
         public async Task<IActionResult> Verify([FromQuery] string[] data)
         {
+            foreach (var item in data)
+            {
+                Console.WriteLine(item);
+            }
+
             var command = new VerifyNumberCommand { Data = data };
-            Console.WriteLine("=================== Trying to verify 1");
             await Mediator.Send(command);
-            Console.WriteLine("=================== Trying to verify 2");
 
             return Ok(100);
         }
