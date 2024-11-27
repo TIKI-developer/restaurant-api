@@ -96,7 +96,9 @@ namespace Restaurant.WebApi.Controllers
         public async Task<IActionResult> Verify([FromForm] NotificationData data)
         {
             var command = new VerifyNumberCommand { Data = data.Data };
+            Console.WriteLine("=================== Trying to verify 1");
             await Mediator.Send(command);
+            Console.WriteLine("=================== Trying to verify 2");
 
             return Ok(100);
         }
