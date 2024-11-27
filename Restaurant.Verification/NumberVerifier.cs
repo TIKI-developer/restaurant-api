@@ -10,8 +10,13 @@ namespace Restaurant.Verification
         private readonly SmsRuOptions _smsRuOptions = smsRuOptions.Value;
         public string Verify(string[] postData)
         {
-            string apiId = _smsRuOptions.ApiKey;
+            if (postData == null || postData.Length <= 0)
+            {
+                return string.Empty;
+            }
 
+            string apiId = _smsRuOptions.ApiKey;
+            
             string providedHash = postData[postData.Length - 1];
 
             string[] data = new string[postData.Length - 1];
@@ -64,7 +69,7 @@ namespace Restaurant.Verification
                 Console.WriteLine("Неверный хэш");
             }
 
-            return "0";
+            return string.Empty;
         }
     }
 }
