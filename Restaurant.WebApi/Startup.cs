@@ -5,6 +5,7 @@ using Restaurant.Application.Interfaces;
 using Restaurant.Persistence;
 using Restaurant.Security;
 using Restaurant.Validation;
+using Restaurant.Verification;
 using Restaurant.WebApi.Extensions;
 using System.Reflection;
 
@@ -28,6 +29,7 @@ namespace Restaurant.WebApi
             services.AddApiAuthentication(Configuration);
             services.AddValidation(Configuration);
             services.AddSecurity(Configuration);
+            services.AddVerification(Configuration);
             services.AddPersistence(Configuration);
             services.AddApplication();
             services.AddControllers();

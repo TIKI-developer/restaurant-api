@@ -26,6 +26,16 @@ namespace Restaurant.Application.Entities.User.Commands.Login
                     .Users
                     .FirstOrDefaultAsync(user => user.Number == request.Number, cancellationToken);
 
+            var verification = await
+                _dbContext
+                .Verifications
+                .FirstOrDefaultAsync(v => v.Number == request.Number, cancellationToken);
+
+            if (verification == null || string.IsNullOrEmpty(verification.CheckId) || !verification.CanLogin)
+            {
+                throw new Exception("Верификация не пройдена!");
+            }
+
             string token;
 
             if (user == null)
@@ -64,17 +74,16 @@ namespace Restaurant.Application.Entities.User.Commands.Login
                 await _dbContext.Users.AddAsync(newUser, cancellationToken);
                 await _dbContext.Carts.AddAsync(cart, cancellationToken);
 
-                await _dbContext.SaveChangesAsync(cancellationToken);
 
                 user = newUser;
             }
-            else
-            {
-
-            }
-
 
             token = _jwtProvider.Generate(user);
+            verification.CanLogin = false;
+            verification.CheckId = null;
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
+
             return token;
         }
     }

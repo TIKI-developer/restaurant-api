@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Restaurant.Persistence\Restaurant.Persistence.csproj" />
     <ProjectReference Include="..\Restaurant.Security\Restaurant.Security.csproj" />
     <ProjectReference Include="..\Restaurant.Services\Restaurant.Validation.csproj" />
+    <ProjectReference Include="..\Restaurant.Verification\Restaurant.Verification.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
   </ItemGroup>
 
