@@ -93,9 +93,9 @@ namespace Restaurant.WebApi.Controllers
             return Ok(UserRole);
         }
         [HttpPost("verify")]
-        public async Task<IActionResult> Verify([FromForm] NotificationData data)
+        public async Task<IActionResult> Verify([FromQuery] string[] data)
         {
-            var command = new VerifyNumberCommand { Data = data.Data };
+            var command = new VerifyNumberCommand { Data = data };
             Console.WriteLine("=================== Trying to verify 1");
             await Mediator.Send(command);
             Console.WriteLine("=================== Trying to verify 2");
