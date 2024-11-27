@@ -1,0 +1,29 @@
+# Используем официальный образ .NET SDK для сборки приложения (с .NET 8)
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Копируем всю директорию с исходным кодом в контейнер
+COPY . .
+# Очищаем проект перед сборкой
+RUN dotnet clean RestaurantBackend.sln
+
+# Сборка проекта
+RUN dotnet build RestaurantBackend.sln -c Debug
+
+# Публикуем проект
+RUN dotnet publish Restaurant.WebApi/Restaurant.WebApi.csproj -c Debug -o /app
+
+# Используем официальный образ .NET Runtime для запуска приложения (с .NET 8)
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+
+# Устанавливаем рабочую директорию для исполнимого файла
+WORKDIR /app
+
+# Копируем собранное приложение из стадии сборки
+COPY --from=build /app ./
+
+# Открываем порт для приложения
+EXPOSE 8080
+EXPOSE 8081
+
+# Указываем команду для запуска веб-приложения
+ENTRYPOINT ["dotnet", "Restaurant.WebApi.dll"]
