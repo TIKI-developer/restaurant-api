@@ -93,14 +93,14 @@ namespace Restaurant.WebApi.Controllers
             return Ok(UserRole);
         }
         [HttpPost("verify")]
-        public async Task<IActionResult> Verify([FromQuery] string[] data)
+        public async Task<IActionResult> Verify([FromForm] NotificationData data)
         {
-            foreach (var item in data)
+            foreach (var item in data.Data)
             {
                 Console.WriteLine(item);
             }
 
-            var command = new VerifyNumberCommand { Data = data };
+            var command = new VerifyNumberCommand { Data = data.Data };
             await Mediator.Send(command);
 
             return Ok(100);
