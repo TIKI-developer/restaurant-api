@@ -15,7 +15,7 @@ namespace Restaurant.Application.Entities.User.Commands.VerifyNumber
 
         public async Task Handle(VerifyNumberCommand request, CancellationToken cancellationToken)
         {
-            var checkId = _numberVerifier.Verify(request.Data);
+            var checkId = _numberVerifier.Verify(request.Data, request.Hash);
 
             var verification = await
                 _dbContext

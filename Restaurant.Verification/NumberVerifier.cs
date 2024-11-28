@@ -8,7 +8,7 @@ namespace Restaurant.Verification
     public class NumberVerifier(IOptions<SmsRuOptions> smsRuOptions) : INumberVerifier
     {
         private readonly SmsRuOptions _smsRuOptions = smsRuOptions.Value;
-        public string Verify(string[] postData)
+        public string Verify(string[] postData, string providedHash)
         {
             if (postData == null || postData.Length <= 0)
             {
@@ -17,8 +17,6 @@ namespace Restaurant.Verification
 
             string apiId = _smsRuOptions.ApiKey;
             
-            string providedHash = postData[postData.Length - 1];
-
             string[] data = new string[postData.Length - 1];
             Array.Copy(postData, data, postData.Length - 1);
 

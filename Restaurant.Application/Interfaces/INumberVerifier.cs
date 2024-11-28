@@ -2,6 +2,6 @@
 {
     public interface INumberVerifier
     {
-        string Verify(string[] postData);
+        string Verify(string[] data, string hash);
     }
 }
