@@ -8,6 +8,7 @@ namespace Restaurant.Verification
     public class NumberVerifier(IOptions<SmsRuOptions> smsRuOptions) : INumberVerifier
     {
         private readonly SmsRuOptions _smsRuOptions = smsRuOptions.Value;
+
         public string Verify(string[] postData, string providedHash)
         {
             if (postData == null || postData.Length <= 0)
@@ -16,19 +17,23 @@ namespace Restaurant.Verification
             }
 
             string apiId = _smsRuOptions.ApiKey;
-            
+
+            // Создаем массив данных, исключая последний элемент (предоставленный хеш)
             string[] data = new string[postData.Length - 1];
             Array.Copy(postData, data, postData.Length - 1);
 
+            // Формируем строку для хеширования
             string hash = string.Join("", data);
             string calculatedHash;
 
-            using (var sha256 = SHA256.Create())
+            // Используем MD5 вместо SHA256
+            using (var md5 = MD5.Create())
             {
-                var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(apiId + hash));
+                var hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(apiId + hash));
                 calculatedHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
             }
 
+            // Сравниваем предоставленный хеш с рассчитанным
             if (providedHash == calculatedHash)
             {
                 foreach (var entry in data)
