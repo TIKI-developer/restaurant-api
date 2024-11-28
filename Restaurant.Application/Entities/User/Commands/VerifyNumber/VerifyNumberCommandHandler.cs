@@ -26,6 +26,8 @@ namespace Restaurant.Application.Entities.User.Commands.VerifyNumber
             {
                 verification.CanLogin = true;
             }
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -19,20 +19,28 @@ namespace Restaurant.Verification
             string apiId = _smsRuOptions.ApiKey;
 
             // Создаем массив данных, исключая последний элемент (предоставленный хеш)
-            string[] data = new string[postData.Length - 1];
-            Array.Copy(postData, data, postData.Length - 1);
+            string[] data = new string[postData.Length];
+            Array.Copy(postData, data, postData.Length);
 
             // Формируем строку для хеширования
             string hash = string.Join("", data);
             string calculatedHash;
 
-            // Используем MD5 вместо SHA256
-            using (var md5 = MD5.Create())
+            foreach (string key in data)
             {
-                var hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(apiId + hash));
+                Console.WriteLine(key);
+            }
+            Console.WriteLine(apiId);
+
+            // Используем MD5 вместо SHA256
+            using (var sha256 = SHA256.Create())
+            {
+                var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(apiId + hash));
                 calculatedHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
             }
 
+            Console.WriteLine(providedHash);
+            Console.WriteLine(calculatedHash);
             // Сравниваем предоставленный хеш с рассчитанным
             if (providedHash == calculatedHash)
             {
@@ -61,7 +69,7 @@ namespace Restaurant.Verification
                             else if (checkStatus == "402")
                             {
                                 Console.WriteLine($"Истекло время авторизации. Идентификатор авторизации: {checkId}");
-                                return checkId;
+                                return string.Empty;
                             }
                             break;
                     }

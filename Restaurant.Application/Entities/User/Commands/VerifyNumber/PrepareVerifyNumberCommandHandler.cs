@@ -24,6 +24,8 @@ namespace Restaurant.Application.Entities.User.Commands.VerifyNumber
                     CheckId = request.CheckId,
                     CanLogin = false
                 };
+
+                await _dbContext.Verifications.AddAsync(newVerification, cancellationToken);
             }
             else
             {
