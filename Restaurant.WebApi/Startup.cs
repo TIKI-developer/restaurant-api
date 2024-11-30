@@ -44,7 +44,7 @@ namespace Restaurant.WebApi
                     builder =>
                     {
                         builder
-                            .WithOrigins("http://localhost:3000")
+                            .WithOrigins("http://localhost:3000", "https://tiki-developer-restaurantwebfrontend-7e90.twc1.net")
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();
