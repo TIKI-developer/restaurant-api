@@ -16,12 +16,8 @@ namespace Restaurant.Application.Entities.User.Commands.EditProfile
             var entity = await
                 _dbContext
                     .Users
-                    .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
-
-            if (entity == null)
-            {
-                throw new NotFoundException(nameof(UserModel), request.Id);
-            }
+                    .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
+                    ?? throw new NotFoundException(nameof(UserModel), request.Id);
 
             entity.Profile.Name = request.Name ?? entity.Profile.Name;
             entity.Profile.Address = request.Address ?? entity.Profile.Address;

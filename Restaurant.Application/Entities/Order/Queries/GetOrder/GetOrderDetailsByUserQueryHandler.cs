@@ -22,12 +22,9 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
                 .Include(o => o.User)
                 .ThenInclude(u => u.Profile)
                 .Where(o => o.User.Id == request.UserId)
-                .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken);
+                .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken)
+                ?? throw new NotFoundException(nameof(OrderModel), request.Id);
 
-            if (order == null)
-            {
-                throw new NotFoundException(nameof(OrderModel), request.Id);
-            }
             return _mapper.Map<OrderViewModel>(order);
         }
     }

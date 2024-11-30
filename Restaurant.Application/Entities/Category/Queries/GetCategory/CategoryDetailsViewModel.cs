@@ -7,21 +7,11 @@ namespace Restaurant.Application.Entities.Category.Queries.GetCategory
     public class CategoryDetailsViewModel : IMapWith<CategoryModel>
     {
         public required string Name { get; set; }
-        public string? Image { get; set; }
-        public List<Guid>? Dishes { get; set; }
+        public required string Image { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CategoryModel, CategoryDetailsViewModel>()
-
-                .ForMember(categoryVm => categoryVm.Name,
-                    opt => opt.MapFrom(category => category.Name))
-
-                .ForMember(categoryVm => categoryVm.Image,
-                    opt => opt.MapFrom(category => category.Image))
-
-                .ForMember(categoryVm => categoryVm.Dishes,
-                    opt => opt.MapFrom(category => category.Dishes.Select(d => d.Id)));
+            profile.CreateMap<CategoryModel, CategoryDetailsViewModel>();
         }
     }
 }

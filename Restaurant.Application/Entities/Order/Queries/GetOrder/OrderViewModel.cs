@@ -10,9 +10,11 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
         public required DateTime CreationDateTime { get; set; }
         public required string Address { get; set; }
         public required ICollection<OrderItemViewModel> Dishes { get; set; }
+        public required string Code { get; set; }
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }
         public required bool AddChopsticks { get; set; }
+        public required float Cost { get; set; }
         public required string UserName { get; set; }
         public required string UserNumber { get; set; }
 

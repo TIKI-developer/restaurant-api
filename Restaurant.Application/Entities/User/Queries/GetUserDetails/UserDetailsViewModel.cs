@@ -16,8 +16,6 @@ namespace Restaurant.Application.Entities.User.Queries.GetUserDetails
 
                 .ForMember(userVm => userVm.Name,
                     opt => opt.MapFrom(user => user.Profile.Name))
-                .ForMember(userVm => userVm.Number,
-                    opt => opt.MapFrom(user => user.Number))
                 .ForMember(userVm => userVm.Address,
                     opt => opt.MapFrom(user => user.Profile.Address));
         }

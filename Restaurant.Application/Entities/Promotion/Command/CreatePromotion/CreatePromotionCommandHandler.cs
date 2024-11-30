@@ -16,7 +16,7 @@ namespace Restaurant.Application.Entities.Promotion.Command.CreatePromotion
                 Title = request.Title,
                 Description = request.Description,
                 Image = request.Image,
-                CreationDateTime = DateTime.Now,
+                CreationDateTime = DateTime.UtcNow,
             };
 
             await _dbContext.Promotions.AddAsync(promotion, cancellationToken);

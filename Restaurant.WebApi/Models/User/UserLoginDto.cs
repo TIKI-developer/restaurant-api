@@ -11,8 +11,7 @@ namespace Restaurant.WebApi.Models.User
 
         public void Mapping(Profile profile)
         {
-            profile
-                .CreateMap<UserLoginDto, LoginCommand>();
+            profile.CreateMap<UserLoginDto, LoginCommand>();
         }
     }
 }

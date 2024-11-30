@@ -15,12 +15,8 @@ namespace Restaurant.Application.Entities.Promotion.Command.UpdatePromotion
             var promotion = await
                 _dbContext
                 .Promotions
-                .FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken);
-
-            if (promotion == null)
-            {
-                throw new NotFoundException(nameof(PromotionModel), request.Id);
-            }
+                .FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken)
+                ?? throw new NotFoundException(nameof(PromotionModel), request.Id);
 
             promotion.Title = request.Title ?? promotion.Title;
             promotion.Description = request.Description ?? promotion.Description;

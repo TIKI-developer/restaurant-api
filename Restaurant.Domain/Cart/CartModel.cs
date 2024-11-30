@@ -6,6 +6,6 @@ namespace Restaurant.Domain.Cart
     {
         public Guid UserId { get; set; }
         public required UserModel User { get; set; }
-        public List<CartItem>? Items { get; set; }
+        public List<CartItem> Items { get; set; } = [];
     }
 }

@@ -16,12 +16,8 @@ namespace Restaurant.Application.Entities.Category.Commands.UpdateCategory
                 _dbContext
                     .Categories
                     .FirstOrDefaultAsync(dish =>
-                    dish.Id == request.Id, cancellationToken);
-
-            if (entity == null)
-            {
-                throw new NotFoundException(nameof(CategoryModel), request.Id);
-            }
+                    dish.Id == request.Id, cancellationToken)
+                    ?? throw new NotFoundException(nameof(CategoryModel), request.Id);
 
             entity.Name = request.Name ?? entity.Name;
             entity.Image = request.Image ?? entity.Image;

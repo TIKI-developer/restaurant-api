@@ -15,15 +15,10 @@ namespace Restaurant.Application.Entities.Category.Commands.DeleteCategory
             var entity = await
                 _dbContext
                     .Categories
-                    .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
-
-            if (entity == null)
-            {
-                throw new NotFoundException(nameof(CategoryModel), request.Id);
-            }
+                    .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
+                    ?? throw new NotFoundException(nameof(CategoryModel), request.Id);
 
             _dbContext.Categories.Remove(entity);
-
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

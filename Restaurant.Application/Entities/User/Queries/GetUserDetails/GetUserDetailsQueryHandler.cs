@@ -18,12 +18,8 @@ namespace Restaurant.Application.Entities.User.Queries.GetUserDetails
                 _dbContext
                 .Users
                 .FirstOrDefaultAsync(user =>
-                user.Id == request.Id, cancellationToken);
-
-            if (user == null)
-            {
-                throw new NotFoundException(nameof(UserModel), request.Id);
-            }
+                user.Id == request.Id, cancellationToken)
+                ?? throw new NotFoundException(nameof(UserModel), request.Id);
 
             return _mapper.Map<UserDetailsViewModel>(user);
         }

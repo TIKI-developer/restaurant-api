@@ -6,15 +6,11 @@ namespace Restaurant.WebApi.Models.User
 {
     public class CartAddDishDto : IMapWith<CartAddDishCommand>
     {
-        public required ICollection<Guid> NewDishes { get; set; }
+        public required Guid NewDish { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CartAddDishDto, CartAddDishCommand>()
-
-                .ForMember(d => d.NewDishes,
-                    opt => opt.MapFrom(dto => dto.NewDishes));
-
+            profile.CreateMap<CartAddDishDto, CartAddDishCommand>();
         }
     }
 }

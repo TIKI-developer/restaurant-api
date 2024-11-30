@@ -10,10 +10,7 @@ namespace Restaurant.WebApi.Models.User
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CartDeleteDishDto, CartDeleteDishCommand>()
-
-                .ForMember(d => d.DishId,
-                    opt => opt.MapFrom(dto => dto.DishId));
+            profile.CreateMap<CartDeleteDishDto, CartDeleteDishCommand>();
         }
     }
 }

@@ -13,15 +13,7 @@ namespace Restaurant.WebApi.Models.Order
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CreateOrderDto, CreateOrderCommand>()
-                .ForMember(to => to.Address,
-                    opt => opt.MapFrom(from => from.Address))
-                .ForMember(to => to.PersonQuantity,
-                    opt => opt.MapFrom(from => from.PersonQuantity))
-                .ForMember(to => to.AddForks,
-                    opt => opt.MapFrom(from => from.AddForks))
-                .ForMember(to => to.AddChopsticks,
-                    opt => opt.MapFrom(from => from.AddChopsticks));
+            profile.CreateMap<CreateOrderDto, CreateOrderCommand>();
         }
     }
 }

@@ -21,11 +21,6 @@ namespace Restaurant.Application.Entities.User.Commands.Login
 
         public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var user = await
-                _dbContext
-                    .Users
-                    .FirstOrDefaultAsync(user => user.Number == request.Number, cancellationToken);
-
             var verification = await
                 _dbContext
                 .Verifications
@@ -33,8 +28,13 @@ namespace Restaurant.Application.Entities.User.Commands.Login
 
             if (verification == null || string.IsNullOrEmpty(verification.CheckId) || !verification.CanLogin)
             {
-                throw new Exception("Верификация не пройдена!");
+                throw new Exception("Verification failed!");
             }
+
+            var user = await
+                _dbContext
+                    .Users
+                    .FirstOrDefaultAsync(user => user.Number == request.Number, cancellationToken);
 
             string token;
 

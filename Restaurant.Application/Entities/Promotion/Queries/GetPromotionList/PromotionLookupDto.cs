@@ -8,8 +8,8 @@ namespace Restaurant.Application.Entities.Promotion.Queries.GetPromotionList
     {
         public required Guid Id { get; set; }
         public required string Title { get; set; }
-        public string? Image { get; set; }
-        public DateTime? CreationDateTime { get; set; }
+        public required string Image { get; set; }
+        public required DateTime CreationDateTime { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -2,8 +2,5 @@
 
 namespace Restaurant.Application.Entities.User.Queries.GetUserRole
 {
-    public class GetUserRoleQuery : IRequest<string>
-    {
-
-    }
+    public class GetUserRoleQuery : IRequest<string> { }
 }

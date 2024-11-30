@@ -18,20 +18,17 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
             var user = await
                 _dbContext
                     .Users
-                    .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken);
+                    .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken)
+                    ?? throw new NotFoundException(nameof(UserModel), request.UserId);
 
-            if (user == null)
-            {
-                throw new NotFoundException(nameof(UserModel), request.UserId);
-            }
-            var ordersQuery = await
+            var orders = await
                 _dbContext
                 .Orders
                 .Where(order => order.User.Id == request.UserId)
                 .ProjectTo<OrderLookupDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
-            return new OrderListViewModel { Orders = ordersQuery };
+            return new OrderListViewModel { Orders = orders };
         }
     }
 }
