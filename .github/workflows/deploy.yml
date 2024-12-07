@@ -14,9 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Шаг 2: Развертывание приложения на сервере
+      # Шаг 2: Настройка SSH ключа
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      # Шаг 3: Развертывание приложения на сервере
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@109.196.101.168 "cd /root/chipipi/restaurant-api/ && git pull origin main && cd .. && docker-compose down && docker-compose up -d restaurant-api"
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
