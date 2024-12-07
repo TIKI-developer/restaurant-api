@@ -26,11 +26,21 @@ namespace Restaurant.WebApi
             host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel(options =>
+                    {
+                        options.ListenAnyIP(8080); 
+                        options.ListenAnyIP(8443, listenOptions =>
+                        {
+                            listenOptions.UseHttps("/certs/cert.pem", "/certs/key.pem");
+                        });
+                    });
                 });
+        }
     }
 }
