@@ -6,7 +6,11 @@ using Restaurant.Application.Interfaces;
 
 namespace Restaurant.Application.Entities.Promotion.Queries.GetPromotionList
 {
-    public class GetPromotionListQueryHandler(IRestaurantDbContext dbContext, IMapper mapper) : IRequestHandler<GetPromotionListQuery, PromotionListViewModel>
+    public class GetPromotionListQueryHandler
+        (IRestaurantDbContext dbContext, 
+        IMapper mapper) 
+        : 
+        IRequestHandler<GetPromotionListQuery, PromotionListViewModel>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
         private readonly IMapper _mapper = mapper;

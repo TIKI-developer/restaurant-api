@@ -15,7 +15,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetDishDetails
 
         public async Task<DishDetailsViewModel> Handle(GetDishDetailsQuery request, CancellationToken cancellationToken)
         {
-            var entity = await 
+            var entity = await
                 _dbContext
                 .Dishes
                 .Include(d => d.Categories)

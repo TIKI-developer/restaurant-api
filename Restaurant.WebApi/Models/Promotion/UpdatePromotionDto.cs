@@ -12,15 +12,7 @@ namespace Restaurant.WebApi.Models.Promotion
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<UpdatePromotionDto, UpdatePromotionCommand>()
-                .ForMember(c => c.Title,
-                    opt => opt.MapFrom(dto => dto.Title))
-
-                .ForMember(c => c.Description,
-                    opt => opt.MapFrom(dto => dto.Description))
-
-                .ForMember(c => c.Image,
-                    opt => opt.MapFrom(dto => dto.Image));
+            profile.CreateMap<UpdatePromotionDto, UpdatePromotionCommand>();
         }
     }
 }

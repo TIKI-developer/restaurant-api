@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.WebApi.Models;
+using Restaurant.WebApi.Models.File;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -39,7 +39,7 @@ namespace Restaurant.WebApi.Controllers
             foreach (var formFile in formFiles)
             {
                 if (formFile == null || formFile.Length == 0)
-                {   
+                {
                     throw new Exception("File haven't been choosed");
                 }
 

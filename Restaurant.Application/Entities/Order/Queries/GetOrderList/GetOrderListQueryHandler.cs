@@ -13,10 +13,13 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrderList
 
         public async Task<OrderListViewModel> Handle(GetOrderListQuery request, CancellationToken cancellationToken)
         {
+            var threeDaysAgo = DateTime.UtcNow.AddDays(-3);
+
             var orders = await
                 _dbContext
                     .Orders
-                    .Include(o => o.Dishes)
+                    .Include(o => o.Items)
+                    .Where(o => o.CreationDateTime >= threeDaysAgo)
                     .ProjectTo<OrderLookupDto>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
 

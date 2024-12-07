@@ -17,14 +17,13 @@ namespace Restaurant.Application.Entities.Order.Queries.GetOrder
             var order = await
                 _dbContext
                 .Orders
-                .Include(o => o.Dishes)
-                .Include(o => o.Client)
-                .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken);
+                .Include(o => o.Items)
+                .ThenInclude(i => i.Dish)
+                .Include(o => o.User)
+                .ThenInclude(u => u.Profile)
+                .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken)
+                ?? throw new NotFoundException(nameof(OrderModel), request.Id);
 
-            if (order == null)
-            {
-                throw new NotFoundException(nameof(OrderModel), request.Id);
-            }
             return _mapper.Map<OrderViewModel>(order);
         }
     }

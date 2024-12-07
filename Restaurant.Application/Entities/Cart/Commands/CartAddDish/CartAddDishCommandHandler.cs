@@ -7,61 +7,51 @@ using Restaurant.Domain.Dish;
 
 namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
 {
-    public class CartAddDishCommandHandler : IRequestHandler<CartAddDishCommand, Unit>
+    public class CartAddDishCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<CartAddDishCommand, Unit>
     {
-        private readonly IRestaurantDbContext _dbContext;
-
-        public CartAddDishCommandHandler(IRestaurantDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly IRestaurantDbContext _dbContext = dbContext;
 
         public async Task<Unit> Handle(CartAddDishCommand request, CancellationToken cancellationToken)
         {
-            var cart = await _dbContext.Carts
-                .Include(c => c.CartModelDishModels)
-                .FirstOrDefaultAsync(c => c.ClientId == request.ClientId, cancellationToken);
+            var cart = await 
+                _dbContext
+                .Carts
+                .Include(c => c.Items)
+                .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken)
+                ?? throw new NotFoundException(nameof(CartModel), request.UserId);
 
-            if (cart == null)
-            {
-                throw new NotFoundException(nameof(CartModel), request.ClientId);
+            var dishId = request.NewDish;
+
+            var existingCartDish = 
+                cart
+                .Items
+                .FirstOrDefault(d => d.DishId == dishId);
+
+            if (existingCartDish != null) {
+                existingCartDish.Count += 1;
             }
-
-            var dishCount = request.NewDishes
-                .GroupBy(id => id)
-                .ToDictionary(group => group.Key, group => group.Count());
-
-            var existingDishIds = cart.CartModelDishModels
-                .Select(d => d.DishId)
-                .ToHashSet();
-
-            foreach (var (dishId, count) in dishCount)
+            else
             {
-                var existingCartDish = cart.CartModelDishModels.FirstOrDefault(d => d.DishId == dishId);
-                
-                if (existingCartDish != null)
-                {
-                    existingCartDish.Count += count;
-                }
-                else
-                {
-                    var dish = await _dbContext.Dishes.FindAsync(new object[] { dishId }, cancellationToken);
-                    if (dish == null)
-                    {
-                        throw new NotFoundException(nameof(DishModel), dishId);
-                    }
+                var dish = await
+                    _dbContext
+                    .Dishes
+                    .FindAsync([dishId], cancellationToken)
+                    ?? throw new NotFoundException(nameof(DishModel), dishId);
 
-                    var cartDish = new CartModelDishModel
-                    {
-                        Dish = dish,
-                        Count = count
-                    };
+                var cartDish = new CartItem
+                {
+                    DishId= dishId,
+                    Dish = dish,
+                    Cart = cart,
+                    CartId = cart.UserId,
+                    Count = 1
+                };
 
-                    cart.CartModelDishModels.Add(cartDish);
-                }
+                cart.Items.Add(cartDish);
             }
 
             await _dbContext.SaveChangesAsync(cancellationToken);
+
             return Unit.Value;
         }
     }

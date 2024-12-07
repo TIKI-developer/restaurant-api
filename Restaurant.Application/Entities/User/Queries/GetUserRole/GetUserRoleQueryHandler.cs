@@ -1,6 +1,4 @@
 ﻿namespace Restaurant.Application.Entities.User.Queries.GetUserRole
 {
-    public class GetUserRoleQueryHandler
-    {
-    }
+    public class GetUserRoleQueryHandler { }
 }

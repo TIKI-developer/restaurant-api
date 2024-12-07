@@ -12,16 +12,12 @@ namespace Restaurant.Application.Entities.Category.Commands.UpdateCategory
 
         public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
-            var entity = await 
+            var entity = await
                 _dbContext
                     .Categories
                     .FirstOrDefaultAsync(dish =>
-                    dish.Id == request.Id, cancellationToken);
-
-            if (entity == null)
-            {
-                throw new NotFoundException(nameof(CategoryModel), request.Id);
-            }
+                    dish.Id == request.Id, cancellationToken)
+                    ?? throw new NotFoundException(nameof(CategoryModel), request.Id);
 
             entity.Name = request.Name ?? entity.Name;
             entity.Image = request.Image ?? entity.Image;

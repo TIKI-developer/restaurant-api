@@ -18,7 +18,7 @@ namespace Restaurant.WebApi.Controllers
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryDto createCategory)
         {
             var command = _mapper.Map<CreateCategoryCommand>(createCategory);
-            
+
             var categoryId = await Mediator.Send(command);
 
             return Ok(categoryId);

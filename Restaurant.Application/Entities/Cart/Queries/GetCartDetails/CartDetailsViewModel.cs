@@ -2,8 +2,6 @@
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Entities.Dish.Queries.GetDishList;
 using Restaurant.Domain.Cart;
-using Restaurant.Domain.Dish;
-
 
 namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
 {
@@ -15,7 +13,7 @@ namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
         {
             profile.CreateMap<CartModel, CartDetailsViewModel>()
                 .ForMember(cartVm => cartVm.Dishes,
-                    opt => opt.MapFrom(cart => cart.CartModelDishModels));
+                    opt => opt.MapFrom(cart => cart.Items));
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Restaurant.WebApi.Extensions
     public static class ApiExtensions
     {
         public static void AddApiAuthentication(
-            this IServiceCollection services, 
+            this IServiceCollection services,
             IConfiguration configuration)
         {
             var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
@@ -37,7 +37,7 @@ namespace Restaurant.WebApi.Extensions
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("RequireClientRole", policy => policy.RequireRole("Client"));
-                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));              
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
             });
         }
     }
