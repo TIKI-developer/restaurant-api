@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Restaurant.Application.Interfaces;
 using Restaurant.Application.Common.Exceptions;
+using Restaurant.Application.Interfaces;
 using Restaurant.Domain.Cart;
-using Restaurant.Domain.User.Client;
 using Restaurant.Domain.Dish;
 
 namespace Restaurant.Application.Entities.Cart.Commands.CartDeleteDish
@@ -14,28 +13,23 @@ namespace Restaurant.Application.Entities.Cart.Commands.CartDeleteDish
 
         public async Task Handle(CartDeleteDishCommand request, CancellationToken cancellationToken)
         {
-            var cart = await
-                _dbContext
-                    .Carts
-                    .Include(u => u.Dishes)
-                    .FirstOrDefaultAsync(d => d.ClientId == request.UserId, cancellationToken);
+            var cart = await 
+                _dbContext.Carts
+                .Include(c => c.Items)
+                .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken) 
+                ?? throw new NotFoundException(nameof(CartModel), request.UserId);
 
-            if (cart == null)
-            {
-                throw new NotFoundException(nameof(CartModel), request.UserId);
+            var cartDish = cart.Items
+                .FirstOrDefault(d => d.DishId == request.DishId)
+                ?? throw new NotFoundException(nameof(DishModel), request.DishId);
+
+            if (cartDish.Count > 1) {
+                cartDish.Count -= 1;
+            }
+            else {
+                cart.Items.Remove(cartDish);
             }
 
-            var dish = await
-                _dbContext
-                    .Dishes
-                    .FirstOrDefaultAsync(d => d.Id == request.DishId, cancellationToken);
-
-            if (dish == null) 
-            {
-                throw new NotFoundException(nameof(DishModel), request.DishId);
-            }
-
-            cart.Dishes.Remove(dish);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

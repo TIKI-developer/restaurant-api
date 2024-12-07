@@ -11,10 +11,7 @@ namespace Restaurant.WebApi.Models.Order
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<UpdateOrderStatusDto, UpdateOrderStatusCommand>()
-
-                .ForMember(d => d.NewStatus,
-                    opt => opt.MapFrom(dto => dto.NewStatus));
+            profile.CreateMap<UpdateOrderStatusDto, UpdateOrderStatusCommand>();
         }
     }
 }

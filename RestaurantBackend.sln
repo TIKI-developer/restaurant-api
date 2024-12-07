@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Application", "R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Domain", "Restaurant.Domain\Restaurant.Domain.csproj", "{511ADE13-22EF-4167-A643-D6A13135D777}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Persistence", "Restaurant.Persistance\Restaurant.Persistence.csproj", "{68A804DA-F29A-4E94-B382-059BAFE91345}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.WebApi", "Restaurant.WebApi\Restaurant.WebApi.csproj", "{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8F23F9D6-530A-414E-AE5A-731C9966BCD5}"
@@ -19,12 +17,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3E027A58-B968-4399-8B33-9DBEE9DBBE56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Validation", "Restaurant.Services\Restaurant.Validation.csproj", "{B8F4E37D-69B8-4021-8ADF-3E4EE7D8EC3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Validation", "Restaurant.Services\Restaurant.Validation.csproj", "{B8F4E37D-69B8-4021-8ADF-3E4EE7D8EC3D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8} = {EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Security", "Restaurant.Security\Restaurant.Security.csproj", "{7665A3B5-043A-435C-BC31-01282AA9784A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Security", "Restaurant.Security\Restaurant.Security.csproj", "{7665A3B5-043A-435C-BC31-01282AA9784A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Persistence", "Restaurant.Persistence\Restaurant.Persistence.csproj", "{087C92E2-840F-4581-AE0E-C5BF7EA525BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Verification", "Restaurant.Verification\Restaurant.Verification.csproj", "{D4E8A677-B433-43DF-A5A2-73558DC0DC2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +42,6 @@ Global
 		{511ADE13-22EF-4167-A643-D6A13135D777}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{511ADE13-22EF-4167-A643-D6A13135D777}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{511ADE13-22EF-4167-A643-D6A13135D777}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68A804DA-F29A-4E94-B382-059BAFE91345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68A804DA-F29A-4E94-B382-059BAFE91345}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68A804DA-F29A-4E94-B382-059BAFE91345}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68A804DA-F29A-4E94-B382-059BAFE91345}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD26E447-5E26-4DF2-972C-41DF74CCEA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -56,6 +54,14 @@ Global
 		{7665A3B5-043A-435C-BC31-01282AA9784A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7665A3B5-043A-435C-BC31-01282AA9784A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7665A3B5-043A-435C-BC31-01282AA9784A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{087C92E2-840F-4581-AE0E-C5BF7EA525BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{087C92E2-840F-4581-AE0E-C5BF7EA525BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{087C92E2-840F-4581-AE0E-C5BF7EA525BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{087C92E2-840F-4581-AE0E-C5BF7EA525BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E8A677-B433-43DF-A5A2-73558DC0DC2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E8A677-B433-43DF-A5A2-73558DC0DC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E8A677-B433-43DF-A5A2-73558DC0DC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E8A677-B433-43DF-A5A2-73558DC0DC2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,10 +69,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8} = {8F23F9D6-530A-414E-AE5A-731C9966BCD5}
 		{511ADE13-22EF-4167-A643-D6A13135D777} = {8F23F9D6-530A-414E-AE5A-731C9966BCD5}
-		{68A804DA-F29A-4E94-B382-059BAFE91345} = {D0B86619-21FB-4F78-8652-84354672182C}
 		{CD26E447-5E26-4DF2-972C-41DF74CCEA4B} = {24A8D4E7-45D0-4F9C-84AC-24E6193F5CE4}
 		{B8F4E37D-69B8-4021-8ADF-3E4EE7D8EC3D} = {D0B86619-21FB-4F78-8652-84354672182C}
 		{7665A3B5-043A-435C-BC31-01282AA9784A} = {D0B86619-21FB-4F78-8652-84354672182C}
+		{087C92E2-840F-4581-AE0E-C5BF7EA525BD} = {D0B86619-21FB-4F78-8652-84354672182C}
+		{D4E8A677-B433-43DF-A5A2-73558DC0DC2A} = {D0B86619-21FB-4F78-8652-84354672182C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {975051D6-F859-4B0D-8183-AA06C19EEBD5}

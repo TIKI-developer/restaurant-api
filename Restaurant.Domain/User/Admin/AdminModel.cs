@@ -2,6 +2,6 @@
 {
     public class AdminModel : UserModel
     {
-        protected override UserRole InitRole => UserRole.Admin;
+        public override List<UserRole> Roles => [UserRole.Admin, UserRole.Client];
     }
 }

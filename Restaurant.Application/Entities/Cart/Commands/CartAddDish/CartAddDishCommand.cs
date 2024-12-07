@@ -2,9 +2,9 @@
 
 namespace Restaurant.Application.Entities.Cart.Commands.CartAddDish
 {
-    public class CartAddDishCommand : IRequest
+    public class CartAddDishCommand : IRequest<Unit>
     {
-        public required Guid ClientId { get; set; }
-        public required ICollection<Guid> NewDishes { get; set; }
+        public required Guid UserId { get; set; }
+        public required Guid NewDish { get; set; }
     }
 }

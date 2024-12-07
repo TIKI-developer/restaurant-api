@@ -7,17 +7,11 @@ namespace Restaurant.WebApi.Models.Category
     public class CreateCategoryDto : IMapWith<CreateCategoryCommand>
     {
         public required string Name { get; set; }
-        public IFormFile? Image { get; set; }
+        public required string Image { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CreateCategoryDto, CreateCategoryCommand>()
-
-                .ForMember(categoryVm => categoryVm.Name,
-                    opt => opt.MapFrom(category => category.Name))
-
-                .ForMember(categoryVm => categoryVm.Image,
-                    opt => opt.MapFrom(category => category.Image));
+            profile.CreateMap<CreateCategoryDto, CreateCategoryCommand>();
         }
     }
 }

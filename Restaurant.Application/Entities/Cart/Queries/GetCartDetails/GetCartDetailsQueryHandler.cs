@@ -18,13 +18,10 @@ namespace Restaurant.Application.Entities.Cart.Queries.GetCartDetails
             var cart = await
                 _dbContext
                     .Carts
-                    .Include(c => c.Dishes)
-                    .FirstOrDefaultAsync(e => e.ClientId == request.ClientId, cancellationToken);
-
-            if (cart == null)
-            {
-                throw new NotFoundException(nameof(CartModel), request.ClientId);
-            }
+                    .Include(c => c.Items)
+                    .ThenInclude(i => i.Dish)
+                    .FirstOrDefaultAsync(e => e.UserId == request.UserId, cancellationToken)
+                    ?? throw new NotFoundException(nameof(CartModel), request.UserId);
 
             return _mapper.Map<CartDetailsViewModel>(cart);
         }

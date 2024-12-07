@@ -5,7 +5,7 @@ namespace Restaurant.Validation
 {
     public class PhoneNumberValidator : IPhoneNumberValidator
     {
-        public bool IsValidPhoneNumber(string phoneNumber)
+        public bool IsValidPhoneNumber(string? phoneNumber)
         {
             if (string.IsNullOrEmpty(phoneNumber)) return false;
 

@@ -13,7 +13,7 @@ namespace Restaurant.Application.Entities.Category.Queries.GetCategoryList
 
         public async Task<CategoryListViewModel> Handle(GetCategoryListQuery request, CancellationToken cancellationToken)
         {
-            var categoriesQuery = await 
+            var categoriesQuery = await
                 _dbContext
                     .Categories
                     .ProjectTo<CategoryLookupDto>(_mapper.ConfigurationProvider)

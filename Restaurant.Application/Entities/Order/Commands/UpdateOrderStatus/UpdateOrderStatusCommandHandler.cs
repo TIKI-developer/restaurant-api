@@ -17,12 +17,8 @@ namespace Restaurant.Application.Entities.Order.Commands.UpdateOrderStatus
             var order = await
                 _dbContext
                     .Orders
-                    .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken);
-
-            if (order == null)
-            {
-                throw new NotFoundException(nameof(OrderModel), request.Id);
-            }
+                    .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken)
+                    ?? throw new NotFoundException(nameof(OrderModel), request.Id);
 
             order.Status = request.NewStatus;
 

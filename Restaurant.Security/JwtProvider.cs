@@ -16,13 +16,18 @@ namespace Restaurant.Security
         {
             var claims = new List<Claim>
             {
-                new(ClaimTypes.Role, user.Role),     
-                new("userId", user.Id.ToString())    
+                new(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
+
+            foreach (var role in user.Roles)
+            {
+                claims.Add(new(ClaimTypes.Role, role.ToString()));
+                Console.WriteLine(role.ToString());
+            }
 
             var signingCredentials = new SigningCredentials(
 
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)), 
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)),
 
                     SecurityAlgorithms.HmacSha256
                 );
@@ -45,6 +50,6 @@ namespace Restaurant.Security
     public class JwtOptions
     {
         public string SecretKey { get; set; } = string.Empty;
-        public int ExpiresHours {  get; set; }
+        public int ExpiresHours { get; set; }
     }
 }

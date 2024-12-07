@@ -27,7 +27,6 @@ appsettings*.json
 
 # Docker
 *.dockerignore
-Dockerfile
 docker-compose*.yml
 
 # NuGet
@@ -70,3 +69,4 @@ LocalDatabase.db-shm
 LocalDatabase.db-wal
 /uploads/
 UpgradeLog.htm
+/Restaurant.WebApi/wwwroot/uploads

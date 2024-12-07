@@ -1,12 +1,13 @@
-﻿using System.Reflection;
-using Notes.WebApi.Middleware;
+﻿using Notes.WebApi.Middleware;
 using Restaurant.Application;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Interfaces;
-using Restaurant.Validation;
 using Restaurant.Persistence;
 using Restaurant.Security;
+using Restaurant.Validation;
+using Restaurant.Verification;
 using Restaurant.WebApi.Extensions;
+using System.Reflection;
 
 
 namespace Restaurant.WebApi
@@ -25,13 +26,17 @@ namespace Restaurant.WebApi
                 config.AddProfile(new AssemblyMappingProfile(typeof(IRestaurantDbContext).Assembly));
             });
 
-            services.AddScoped<FileLoader>();
             services.AddApiAuthentication(Configuration);
             services.AddValidation(Configuration);
             services.AddSecurity(Configuration);
+            services.AddVerification(Configuration);
             services.AddPersistence(Configuration);
             services.AddApplication();
             services.AddControllers();
+            //.AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            //});
 
             services.AddCors(options =>
             {
@@ -39,7 +44,10 @@ namespace Restaurant.WebApi
                     builder =>
                     {
                         builder
-                            .WithOrigins("http://localhost:3000")
+                            .WithOrigins(
+                            "http://localhost:3000", 
+                            "https://tiki-developer-restaurantwebfrontend-7e90.twc1.net",
+                            "https://b539-81-23-175-185.ngrok-free.app")
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();
@@ -64,7 +72,7 @@ namespace Restaurant.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
             app.UseCors("AllowSpecificOrigin");

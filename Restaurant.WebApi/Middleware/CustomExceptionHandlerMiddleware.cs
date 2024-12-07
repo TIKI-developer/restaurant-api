@@ -1,7 +1,7 @@
-﻿using System.Net;
-using System.Text.Json;
-using FluentValidation;
+﻿using FluentValidation;
 using Restaurant.Application.Common.Exceptions;
+using System.Net;
+using System.Text.Json;
 
 namespace Notes.WebApi.Middleware
 {
@@ -18,7 +18,7 @@ namespace Notes.WebApi.Middleware
             {
                 await _next(context);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 await HandleExceptionAsync(context, exception);
             }
@@ -28,7 +28,7 @@ namespace Notes.WebApi.Middleware
         {
             var code = HttpStatusCode.InternalServerError;
             var result = string.Empty;
-            switch(exception)
+            switch (exception)
             {
                 case ValidationException validationException:
                     code = HttpStatusCode.BadRequest;
@@ -43,7 +43,7 @@ namespace Notes.WebApi.Middleware
 
             if (result == string.Empty)
             {
-                result = JsonSerializer.Serialize(new { errpr = exception.Message });
+                result = JsonSerializer.Serialize(new { error = exception.Message });
             }
 
             return context.Response.WriteAsync(result);

@@ -10,36 +10,24 @@ namespace Restaurant.WebApi.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Route("admin/category")]
-    public class AdminCategoryController(IMapper mapper, FileLoader fileLoader) : BaseController
+    public class AdminCategoryController(IMapper mapper) : BaseController
     {
-        private readonly FileLoader _fileLoader = fileLoader;
         private readonly IMapper _mapper = mapper;
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromForm] CreateCategoryDto createCategory)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryDto createCategory)
         {
             var command = _mapper.Map<CreateCategoryCommand>(createCategory);
 
-            if (createCategory.Image != null && createCategory.Image.Length > 0)
-            {
-                var fileName = _fileLoader.SaveFile(createCategory.Image, "images/"); ;
-                command.Image = fileName;
-            }
-            
             var categoryId = await Mediator.Send(command);
 
             return Ok(categoryId);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(Guid id, [FromForm] UpdateCategoryDto updateCategoryDto)
+        public async Task<ActionResult> Update(Guid id, [FromBody] UpdateCategoryDto updateCategoryDto)
         {
             var command = _mapper.Map<UpdateCategoryCommand>(updateCategoryDto);
-            if (updateCategoryDto.Image != null && updateCategoryDto.Image.Length > 0)
-            {
-                var fileName = _fileLoader.SaveFile(updateCategoryDto.Image, "images/");
-                command.Image = fileName;
-            }
 
             command.Id = id;
 
