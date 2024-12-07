@@ -32,14 +32,6 @@ namespace Restaurant.WebApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.ConfigureKestrel(options =>
-                    {
-                        options.ListenAnyIP(8080); 
-                        options.ListenAnyIP(8443, listenOptions =>
-                        {
-                            listenOptions.UseHttps("/certs/cert.pem", "/certs/key.pem");
-                        });
-                    });
                 });
         }
     }
