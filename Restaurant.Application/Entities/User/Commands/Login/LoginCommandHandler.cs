@@ -21,6 +21,8 @@ namespace Restaurant.Application.Entities.User.Commands.Login
 
         public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
+            request.Number = NormalizePhoneNumber(request.Number);
+
             var verification = await
                 _dbContext
                 .Verifications
@@ -85,6 +87,14 @@ namespace Restaurant.Application.Entities.User.Commands.Login
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return token;
+        }
+        private string NormalizePhoneNumber(string phoneNumber)
+        {
+            if (phoneNumber.StartsWith("89"))
+            {
+                return "+7" + phoneNumber.Substring(1);
+            }
+            return phoneNumber;
         }
     }
 }
