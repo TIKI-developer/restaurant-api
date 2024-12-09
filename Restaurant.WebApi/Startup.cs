@@ -45,8 +45,7 @@ namespace Restaurant.WebApi
                     {
                         builder
                             .WithOrigins(
-                            "https://109.196.101.168:3000",
-                            "http://109.196.101.168:3000")
+                            "https://chipipi.tw1.ru")
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();
