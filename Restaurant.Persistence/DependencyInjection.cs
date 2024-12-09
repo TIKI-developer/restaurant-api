@@ -10,12 +10,11 @@ namespace Restaurant.Persistence
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("AppDbConnectionString");
+            var connectionString = configuration.GetConnectionString("DbConnection");
 
             services.AddDbContext<RestaurantDbContext>(options =>
             {
-                //options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); 
-                options.UseSqlite(configuration.GetConnectionString("WebApiDatabase"));
+                options.UseNpgsql(connectionString);
             });
 
             services.AddScoped<IRestaurantDbContext>(provider =>
