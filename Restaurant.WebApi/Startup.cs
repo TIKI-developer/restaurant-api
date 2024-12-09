@@ -9,14 +9,11 @@ using Restaurant.Verification;
 using Restaurant.WebApi.Extensions;
 using System.Reflection;
 
-
 namespace Restaurant.WebApi
 {
-    public class Startup
+    public class Startup(IConfiguration configuration)
     {
-        public IConfiguration Configuration { get; }
-
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+        public IConfiguration Configuration { get; } = configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -33,10 +30,6 @@ namespace Restaurant.WebApi
             services.AddPersistence(Configuration);
             services.AddApplication();
             services.AddControllers();
-            //.AddJsonOptions(options =>
-            //{
-            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-            //});
 
             services.AddCors(options =>
             {
@@ -52,15 +45,6 @@ namespace Restaurant.WebApi
                     });
             });
 
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowAll", policy =>
-            //    {
-            //        policy.AllowAnyHeader();
-            //        policy.AllowAnyMethod();
-            //        policy.AllowAnyOrigin();
-            //    });
-            //});
             services.AddSwaggerGen();
         }
 
@@ -70,11 +54,10 @@ namespace Restaurant.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCustomExceptionHandler();
-            app.UseHttpsRedirection();
             app.UseCors("AllowSpecificOrigin");
-            //app.UseCors("AllowAll");
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
