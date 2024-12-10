@@ -88,11 +88,11 @@ namespace Restaurant.Application.Entities.User.Commands.Login
 
             return token;
         }
-        private string NormalizePhoneNumber(string phoneNumber)
+        private static string NormalizePhoneNumber(string phoneNumber)
         {
             if (phoneNumber.StartsWith("89"))
             {
-                return "+7" + phoneNumber.Substring(1);
+                return "7" + phoneNumber.Substring(1);
             }
             return phoneNumber;
         }
