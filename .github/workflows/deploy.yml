@@ -23,4 +23,4 @@ jobs:
 
       # Шаг 3: Развертывание приложения на сервере
       - name: Deploy to server
-        run: ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@109.196.101.168 "cd /var/www/chipipi/restaurant-api/ && sudo git pull origin main && cd .. && sudo docker-compose down && sudo docker-compose up -d restaurant-api"
+        run: ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@109.196.101.168 "cd /var/www/chipipi/restaurant-api/ && sudo git pull origin main && cd .. && sudo docker-compose down restaurant-api && sudo docker-compose up -d restaurant-api"
