@@ -23,9 +23,9 @@ namespace Restaurant.Validation
         public string NormalizePhoneNumber(string? phoneNumber)
         {
             if (string.IsNullOrEmpty(phoneNumber)) return "";
-            if (phoneNumber.StartsWith("89"))
+            if (phoneNumber.StartsWith("89") || phoneNumber.StartsWith("+7"))
             {
-                return string.Concat("+7", phoneNumber.AsSpan(1));
+                return string.Concat("7", phoneNumber.AsSpan(1));
             }
             return phoneNumber;
         }

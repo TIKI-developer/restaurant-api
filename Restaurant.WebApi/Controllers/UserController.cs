@@ -22,9 +22,10 @@ namespace Restaurant.WebApi.Controllers
         private readonly IMapper _mapper = mapper;
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login([FromBody] UserLoginDto userLoginDto)
+        public async Task<ActionResult<string>> Login([FromBody] UserLoginDto dto)
         {
-            var command = _mapper.Map<LoginCommand>(userLoginDto);
+            dto.Number = NormalizePhoneNumber(dto.Number);
+            var command = _mapper.Map<LoginCommand>(dto);
             var token = await Mediator.Send(command);
 
             return Ok(token);
@@ -108,6 +109,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost("verify/prepare")]
         public async Task<IActionResult> PrepareVerify([FromBody] PrepareNumberVerifyDto dto)
         {
+            dto.NumberPhone = NormalizePhoneNumber(dto.NumberPhone);
             var url = "https://sms.ru/callcheck/add";
 
             var requestData = new Dictionary<string, string>
@@ -160,6 +162,15 @@ namespace Restaurant.WebApi.Controllers
             {
                 return StatusCode(500, new { message = "Произошла ошибка", details = ex.Message });
             }
+        }
+        private string NormalizePhoneNumber(string? phoneNumber)
+        {
+            if (string.IsNullOrEmpty(phoneNumber)) return "";
+            if (phoneNumber.StartsWith("89") || phoneNumber.StartsWith("+7"))
+            {
+                return string.Concat("7", phoneNumber.AsSpan(1));
+            }
+            return phoneNumber;
         }
     }
 }
