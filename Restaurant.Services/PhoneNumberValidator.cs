@@ -20,5 +20,14 @@ namespace Restaurant.Validation
                 return false;
             }
         }
+        public string NormalizePhoneNumber(string? phoneNumber)
+        {
+            if (string.IsNullOrEmpty(phoneNumber)) return "";
+            if (phoneNumber.StartsWith("89"))
+            {
+                return string.Concat("7", phoneNumber.AsSpan(1));
+            }
+            return phoneNumber;
+        }
     }
 }
