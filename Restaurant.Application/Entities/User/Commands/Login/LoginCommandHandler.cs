@@ -19,12 +19,9 @@ namespace Restaurant.Application.Entities.User.Commands.Login
         private readonly IRestaurantDbContext _dbContext = restaurantDbContext;
         private readonly IAdminIdentityProvider _adminIdentityProvider = adminIdentityProvider;
         private readonly IJwtProvider _jwtProvider = jwtProvider;
-        private readonly IPhoneNumberValidator _numberValidator = numberValidator;
 
         public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            request.Number = _numberValidator.NormalizePhoneNumber(request.Number);
-
             var verification = await
                 _dbContext
                 .Verifications

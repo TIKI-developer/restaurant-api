@@ -168,11 +168,11 @@ namespace Restaurant.WebApi.Controllers
             if (string.IsNullOrEmpty(phoneNumber)) return "";
             if (phoneNumber.StartsWith("89"))
             {
-                return string.Concat("7", phoneNumber.AsSpan(1));
+                return string.Concat("+7", phoneNumber.AsSpan(1));
             }
             if (phoneNumber.StartsWith("+79"))
             {
-                return string.Concat("7", phoneNumber.AsSpan(2));
+                return string.Concat("+7", phoneNumber.AsSpan(2));
             }
             return phoneNumber;
         }
