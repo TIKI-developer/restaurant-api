@@ -5,12 +5,19 @@ using Restaurant.Domain.User;
 
 namespace Restaurant.Application.Entities.User.Commands.VerifyNumber
 {
-    public class PrepareVerifyNumberCommandHandler(IRestaurantDbContext dbContext) : IRequestHandler<PrepareVerifyNumberCommand>
+    public class PrepareVerifyNumberCommandHandler
+        (IRestaurantDbContext dbContext,
+        IPhoneNumberValidator numberValidator) 
+        : 
+        IRequestHandler<PrepareVerifyNumberCommand>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
+        private readonly IPhoneNumberValidator _numberValidator = numberValidator;
 
         public async Task Handle(PrepareVerifyNumberCommand request, CancellationToken cancellationToken)
         {
+            request.Number = _numberValidator.NormalizePhoneNumber(request.Number);
+
             var verification = await
                 _dbContext
                 .Verifications
