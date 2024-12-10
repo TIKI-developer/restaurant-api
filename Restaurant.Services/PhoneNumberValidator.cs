@@ -25,7 +25,7 @@ namespace Restaurant.Validation
             if (string.IsNullOrEmpty(phoneNumber)) return "";
             if (phoneNumber.StartsWith("89"))
             {
-                return string.Concat("7", phoneNumber.AsSpan(1));
+                return string.Concat("+7", phoneNumber.AsSpan(1));
             }
             return phoneNumber;
         }
