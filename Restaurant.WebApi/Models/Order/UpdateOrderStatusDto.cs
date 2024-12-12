@@ -1,17 +1,16 @@
-﻿using AutoMapper;
-using Restaurant.Application.Common.Mappings;
-using Restaurant.Application.Entities.Order.Commands.UpdateOrderStatus;
-using Restaurant.Domain.Order;
+﻿using Restaurant.Application.Common.Mappings;
+using Restaurant.Application.Entities.Order.Commands.UpdateStatus;
+using Restaurant.Domain;
 
 namespace Restaurant.WebApi.Models.Order
 {
-    public class UpdateOrderStatusDto : IMapWith<UpdateOrderStatusCommand>
+    public class UpdateOrderStatusDto : IMapWith<UpdateStatusCommand>
     {
         public OrderStatus NewStatus { get; set; }
 
-        public void Mapping(Profile profile)
+        public void Mapping(AutoMapper.Profile profile)
         {
-            profile.CreateMap<UpdateOrderStatusDto, UpdateOrderStatusCommand>();
+            profile.CreateMap<UpdateOrderStatusDto, UpdateStatusCommand>();
         }
     }
 }

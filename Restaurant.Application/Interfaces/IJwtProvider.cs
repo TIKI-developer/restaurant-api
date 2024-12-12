@@ -1,9 +1,9 @@
-﻿using Restaurant.Domain.User;
+﻿using Restaurant.Domain;
 
 namespace Restaurant.Application.Interfaces
 {
     public interface IJwtProvider
     {
-        string Generate(UserModel user);
+        string Generate(User user);
     }
 }

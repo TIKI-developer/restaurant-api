@@ -1,26 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain.User;
-using Restaurant.Domain.User.Admin;
-using Restaurant.Domain.User.Client;
+using Restaurant.Domain;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<UserModel>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<UserModel> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder
-                .HasKey(u => u.Id);
-            builder
-                .HasIndex(u => u.Id).IsUnique();
-            builder
-                .HasIndex(u => u.Number)
+                .HasIndex(e => e.PhoneNumber)
                 .IsUnique();
             builder
-                .HasDiscriminator<string>("User Type")
-                .HasValue<ClientModel>("Client")
-                .HasValue<AdminModel>("Admin");
+                .Property(e => e.PhoneNumber)
+                .HasMaxLength(15);
             builder
                 .HasOne(c => c.Cart)
                 .WithOne(c => c.User);
@@ -31,6 +24,13 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 .OwnsOne(c => c.Profile, profile =>
                 {
                     profile.WithOwner();
+                    profile.OwnsOne(p => p.Address, address =>
+                    {
+                        address.WithOwner();
+                    });
+                    profile
+                        .Property(e => e.Name)
+                        .HasMaxLength(50);
                 });
         }
     }

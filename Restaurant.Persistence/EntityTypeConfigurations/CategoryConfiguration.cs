@@ -1,21 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain.Category;
+using Restaurant.Domain;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<CategoryModel>
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
-        public void Configure(EntityTypeBuilder<CategoryModel> builder)
+        public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder
-                .HasKey(c => c.Id);
+                .HasMany(e => e.Dishes)
+                .WithMany(e => e.Categories);
             builder
-                .HasIndex(c => c.Id)
-                .IsUnique();
-            builder
-                .HasMany(c => c.Dishes)
-                .WithMany(c => c.Categories);
+                .OwnsOne(e => e.Content, c =>
+                {
+                    c.WithOwner();
+                });
         }
     }
 }

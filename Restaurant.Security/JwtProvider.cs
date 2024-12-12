@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain.User;
+using Restaurant.Domain;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -12,14 +12,14 @@ namespace Restaurant.Security
     {
         private readonly JwtOptions _options = options.Value;
 
-        public string Generate(UserModel user)
+        public string Generate(User user)
         {
             var claims = new List<Claim>
             {
                 new(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
-            foreach (var role in user.Roles)
+            foreach (var role in user.Permissions)
             {
                 claims.Add(new(ClaimTypes.Role, role.ToString()));
                 Console.WriteLine(role.ToString());

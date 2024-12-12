@@ -28,7 +28,7 @@ namespace Restaurant.WebApi.Controllers
             return Path.Combine(_baseFolderPath, relativePath);
         }
 
-        [HttpPost("upload")]
+        [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<string[]> Upload([FromForm] UploadFileDto uploadFileDto)
         {
@@ -43,11 +43,8 @@ namespace Restaurant.WebApi.Controllers
                     throw new Exception("File haven't been choosed");
                 }
 
-                Console.WriteLine("relative path: " + relativePath);
                 var filePath = GetFilePath(relativePath);
-                Console.WriteLine("file path: " + filePath);
                 var directoryPath = Path.GetDirectoryName(filePath);
-                Console.WriteLine("directoryPath path: " + directoryPath);
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath!);
@@ -66,7 +63,7 @@ namespace Restaurant.WebApi.Controllers
             return uniqueFileNames.ToArray();
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete([FromBody] DeleteFileDto deleteFileDto)
         {

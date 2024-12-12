@@ -1,24 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain.Order;
+using Restaurant.Domain;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class OrderConfiguration : IEntityTypeConfiguration<OrderModel>
+    public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
-        public void Configure(EntityTypeBuilder<OrderModel> builder)
+        public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder
-                .HasKey(o => o.Id);
-            builder
-                .HasIndex(o => o.Id)
-                .IsUnique();
             builder
                 .HasOne(o => o.User)
                 .WithMany(c => c.Orders);
             builder
                 .HasMany(e => e.Items)
                 .WithOne(e => e.Order);
+            builder
+                .OwnsOne(e => e.Address, a =>
+                {
+                    a.WithOwner();
+                });
         }
     }
 }

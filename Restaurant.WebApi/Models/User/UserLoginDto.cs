@@ -7,7 +7,7 @@ namespace Restaurant.WebApi.Models.User
     public class UserLoginDto : IMapWith<LoginCommand>
     {
         public string? Name { get; set; }
-        public required string Number { get; set; }
+        public required string PhoneNumber { get; set; }
 
         public void Mapping(Profile profile)
         {

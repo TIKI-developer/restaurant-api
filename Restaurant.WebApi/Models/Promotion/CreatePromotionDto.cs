@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
-using Restaurant.Application.Entities.Promotion.Command.CreatePromotion;
+using Restaurant.Application.Entities.Promotion.Command.Create;
 
 namespace Restaurant.WebApi.Models.Promotion
 {
-    public class CreatePromotionDto : IMapWith<CreatePromotionCommand>
+    public class CreatePromotionDto : IMapWith<CreateCommand>
     {
         public required string Title { get; set; }
         public required string Description { get; set; }
@@ -12,7 +12,7 @@ namespace Restaurant.WebApi.Models.Promotion
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CreatePromotionDto, CreatePromotionCommand>();
+            profile.CreateMap<CreatePromotionDto, CreateCommand>();
         }
     }
 }
