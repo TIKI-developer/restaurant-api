@@ -17,7 +17,7 @@ namespace Restaurant.Security
 
         public bool IsAdmin(LoginCommand loginUserCommand)
         {
-            if (_adminNumbers.Contains(loginUserCommand.Number))
+            if (_adminNumbers.Contains(loginUserCommand.PhoneNumber))
             {
                 return true;
             }

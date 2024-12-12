@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Restaurant.Application.Common.Mappings;
-using Restaurant.Application.Entities.Dish.Commands.CreateDish;
+using Restaurant.Application.Entities.Dish.Commands.Create;
 
 
 namespace Restaurant.WebApi.Models.Dish
 {
-    public class CreateDishDto : IMapWith<CreateDishCommand>
+    public class CreateDishDto : IMapWith<CreateCommand>
     {
         public required string Name { get; set; }
         public required string Description { get; set; }
@@ -15,7 +15,7 @@ namespace Restaurant.WebApi.Models.Dish
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CreateDishDto, CreateDishCommand>();
+            profile.CreateMap<CreateDishDto, CreateCommand>();
         }
     }
 }

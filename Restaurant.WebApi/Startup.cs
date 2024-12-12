@@ -65,6 +65,7 @@ namespace Restaurant.WebApi
             {
                 config.RoutePrefix = string.Empty;
                 config.SwaggerEndpoint("swagger/v1/swagger.json", "Restaurant API");
+                config.InjectStylesheet("/swagger-ui/SwaggerDark.css");
             });
             app.UseAuthentication();
             app.UseRouting();

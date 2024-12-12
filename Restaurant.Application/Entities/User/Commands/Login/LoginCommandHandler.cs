@@ -1,18 +1,14 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain.Cart;
-using Restaurant.Domain.User;
-using Restaurant.Domain.User.Admin;
-using Restaurant.Domain.User.Client;
+using Restaurant.Domain;
 
 namespace Restaurant.Application.Entities.User.Commands.Login
 {
     public class LoginCommandHandler
         (IRestaurantDbContext restaurantDbContext,
         IAdminIdentityProvider adminIdentityProvider,
-        IJwtProvider jwtProvider,
-        IPhoneNumberValidator numberValidator)
+        IJwtProvider jwtProvider)
         :
         IRequestHandler<LoginCommand, string>
     {
@@ -25,51 +21,67 @@ namespace Restaurant.Application.Entities.User.Commands.Login
             var verification = await
                 _dbContext
                 .Verifications
-                .FirstOrDefaultAsync(v => v.Number == request.Number, cancellationToken);
+                .FirstOrDefaultAsync(v => v.Number == request.PhoneNumber, cancellationToken);
 
             if (verification == null || string.IsNullOrEmpty(verification.CheckId) || !verification.CanLogin)
             {
-                throw new Exception("Verification failed!");
+                throw new Exception("Верификация не пройдена!");
             }
 
             var user = await
                 _dbContext
-                    .Users
-                    .FirstOrDefaultAsync(user => user.Number == request.Number, cancellationToken);
+                .Users
+                .FirstOrDefaultAsync(user => user.PhoneNumber == request.PhoneNumber, cancellationToken);
 
             string token;
 
             if (user == null)
             {
-                var userProfile = new UserModel.ProfileModel
+                var userProfile = new UserProfile
                 {
                     Name = request.Name
                 };
-                UserModel newUser;
+                Domain.User newUser;
 
                 if (_adminIdentityProvider.IsAdmin(request))
                 {
-                    newUser = new AdminModel
+                    newUser = new Admin
                     {
                         Id = Guid.NewGuid(),
                         Profile = userProfile,
-                        Number = request.Number,
+                        PhoneNumber = request.PhoneNumber,
+                        Timestamps = new Timestamps
+                        {
+                            CreatedAt = DateTime.UtcNow,
+                            UpdatedAt = DateTime.UtcNow
+                        }
                     };
                 }
                 else
                 {
-                    newUser = new ClientModel
+                    newUser = new Client
                     {
                         Id = Guid.NewGuid(),
                         Profile = userProfile,
-                        Number = request.Number,
+                        PhoneNumber = request.PhoneNumber,
+                        Timestamps = new Timestamps
+                        {
+                            CreatedAt = DateTime.UtcNow,
+                            UpdatedAt = DateTime.UtcNow
+                        }
                     };
                 }
-                var cart = new CartModel
+                var cart = new Domain.Cart
                 {
+                    Id = Guid.NewGuid(),
                     UserId = newUser.Id,
                     Items = [],
-                    User = newUser
+                    User = newUser,
+                    Timestamps = new Timestamps
+                    {
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
+                    }
                 };
 
                 await _dbContext.Users.AddAsync(newUser, cancellationToken);

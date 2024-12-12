@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain.Cart;
+using Restaurant.Domain;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
@@ -8,7 +8,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<CartItem> builder)
         {
-            builder.HasKey(e => new { e.CartId, e.DishId });
+            builder
+                .HasKey(e => new { e.CartId, e.DishId });
 
             builder
                 .HasOne(oi => oi.Cart)

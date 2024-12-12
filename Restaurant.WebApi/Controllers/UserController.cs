@@ -1,40 +1,25 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using Restaurant.Application.Entities.Cart.Commands.CartAddDish;
-using Restaurant.Application.Entities.Cart.Commands.CartDeleteDish;
-using Restaurant.Application.Entities.Cart.Queries.GetCartDetails;
-using Restaurant.Application.Entities.User.Commands.EditProfile;
-using Restaurant.Application.Entities.User.Commands.Login;
-using Restaurant.Application.Entities.User.Commands.VerifyNumber;
-using Restaurant.Application.Entities.User.Queries.GetUserDetails;
-using Restaurant.Verification;
+using Restaurant.Application.Entities.Order.Queries.GetByIdByUser;
+using Restaurant.Application.Entities.Order.Queries.GetByUser;
+using Restaurant.Application.Entities.User.Commands.Update;
+using Restaurant.Application.Entities.User.Queries.GetById;
+using Restaurant.Application.ViewModels;
 using Restaurant.WebApi.Models.User;
 
 namespace Restaurant.WebApi.Controllers
 {
-    [Route("user")]
-    public class UserController(IMapper mapper, IOptions<SmsRuOptions> options) : BaseController
+    [Route("users")]
+    public class UserController(IMapper mapper) : BaseController
     {
-        private readonly SmsRuOptions _smsRuOptions = options.Value;
         private readonly IMapper _mapper = mapper;
 
-        [HttpPost("login")]
-        public async Task<ActionResult<string>> Login([FromBody] UserLoginDto dto)
-        {
-            dto.Number = NormalizePhoneNumber(dto.Number);
-            var command = _mapper.Map<LoginCommand>(dto);
-            var token = await Mediator.Send(command);
-
-            return Ok(token);
-        }
         [Authorize(Roles = "Client, Admin")]
         [HttpGet("profile")]
-        public async Task<ActionResult<UserDetailsViewModel>> GetProfile()
+        public async Task<ActionResult<UserDetails>> GetProfile()
         {
-            var query = new GetUserDetailsQuery
+            var query = new GetByIdQuery
             {
                 Id = UserId
             };
@@ -43,46 +28,10 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client, Admin")]
         [HttpPut("profile")]
-        public async Task<IActionResult> Update([FromBody] EditUserProfileDto dto)
+        public async Task<IActionResult> Update([FromBody] UpdateUserDto dto)
         {
-            var command = _mapper.Map<EditProfileCommand>(dto);
+            var command = _mapper.Map<UpdateCommand>(dto);
             command.Id = UserId;
-
-            await Mediator.Send(command);
-
-            return NoContent();
-        }
-        [Authorize(Roles = "Client, Admin")]
-        [HttpGet("cart")]
-        public async Task<ActionResult<CartDetailsViewModel>> GetCart()
-        {
-            var query = new GetCartDetailsQuery
-            {
-                UserId = UserId
-            };
-            var vm = await Mediator.Send(query);
-
-            return Ok(vm);
-        }
-        [Authorize(Roles = "Client, Admin")]
-        [HttpPut("cart")]
-        public async Task<IActionResult> AddDish([FromBody] CartAddDishDto dto)
-        {
-            var command = _mapper.Map<CartAddDishCommand>(dto);
-            command.UserId = UserId;
-            await Mediator.Send(command);
-
-            return NoContent();
-        }
-        [Authorize(Roles = "Client, Admin")]
-        [HttpDelete("cart/{dishId}")]
-        public async Task<IActionResult> RemoveDish(Guid dishId)
-        {
-            var command = new CartDeleteDishCommand
-            {
-                UserId = UserId,
-                DishId = dishId
-            };
 
             await Mediator.Send(command);
 
@@ -93,88 +42,31 @@ namespace Restaurant.WebApi.Controllers
         {
             return Ok(UserRole);
         }
-        [HttpPost("verify")]
-        public async Task<IActionResult> Verify([FromForm] string[] data, [FromForm] string hash)
+        [Authorize(Roles = "Client")]
+        [HttpGet("orders")]
+        public async Task<ActionResult<OrderList>> GetByUser()
         {
-            var command = new VerifyNumberCommand { Data = data, Hash = hash };
-            await Mediator.Send(command);
-
-            return Ok(100);
-        }
-        public class NotificationData
-        {
-            [FromForm(Name = "data")]
-            public required string[] Data { get; set; }
-        }
-        [HttpPost("verify/prepare")]
-        public async Task<IActionResult> PrepareVerify([FromBody] PrepareNumberVerifyDto dto)
-        {
-            dto.NumberPhone = NormalizePhoneNumber(dto.NumberPhone);
-            var url = "https://sms.ru/callcheck/add";
-
-            var requestData = new Dictionary<string, string>
+            var query = new GetByUserQuery
             {
-                { "api_id", _smsRuOptions.ApiKey },
-                { "phone", dto.NumberPhone },
-                { "json", "1" }
+                UserId = UserId
             };
+            var vm = await Mediator.Send(query);
 
-            using var httpClient = new HttpClient();
-            try
-            {
-                var response = await httpClient.PostAsync(url, new FormUrlEncodedContent(requestData));
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    var error = await response.Content.ReadAsStringAsync();
-                    return BadRequest(new { message = "Ошибка при отправке запроса", details = error });
-                }
-
-                var jsonResponse = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<VerifyResponse>(jsonResponse);
-
-                if (result != null && result.Status == "OK")
-                {
-                    var command = new PrepareVerifyNumberCommand
-                    {
-                        Number = dto.NumberPhone,
-                        CheckId = result.CheckId
-                    };
-
-                    await Mediator.Send(command);
-
-                    return Ok(new
-                    {
-                        result.CallNumber,
-                        result.CallNumberPretty,
-                        result.CallNumberHtml
-                    });
-                }
-                else
-                {
-                    return BadRequest(new
-                    {
-                        result?.StatusCode,
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Произошла ошибка", details = ex.Message });
-            }
+            return Ok(vm);
         }
-        private string NormalizePhoneNumber(string? phoneNumber)
+
+        [Authorize(Roles = "Client")]
+        [HttpGet("orders/{id}")]
+        public async Task<ActionResult<OrderDetails>> GetUserOrder(Guid id)
         {
-            if (string.IsNullOrEmpty(phoneNumber)) return "";
-            if (phoneNumber.StartsWith("89"))
+            var query = new GetByIdByUserQuery
             {
-                return string.Concat("+7", phoneNumber.AsSpan(1));
-            }
-            if (phoneNumber.StartsWith("+79"))
-            {
-                return string.Concat("+7", phoneNumber.AsSpan(2));
-            }
-            return phoneNumber;
+                Id = id,
+                UserId = UserId
+            };
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
         }
     }
 }

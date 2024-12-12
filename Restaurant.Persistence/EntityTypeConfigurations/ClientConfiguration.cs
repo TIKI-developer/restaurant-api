@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain.User.Client;
+using Restaurant.Domain;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class ClientConfiguration : IEntityTypeConfiguration<ClientModel>
+    public class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
-        public void Configure(EntityTypeBuilder<ClientModel> builder) { }
+        public void Configure(EntityTypeBuilder<Client> builder) { }
     }
 }

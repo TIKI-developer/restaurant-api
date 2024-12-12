@@ -6,11 +6,11 @@ namespace Restaurant.Application.Entities.User.Commands.VerifyNumber
 {
     public class VerifyNumberCommandHandler
         (IRestaurantDbContext dbContext,
-        INumberVerifier numberVerifier) 
-        : 
+        INumberVerifier numberVerifier)
+        :
         IRequestHandler<VerifyNumberCommand>
     {
-        private readonly IRestaurantDbContext _dbContext =  dbContext;
+        private readonly IRestaurantDbContext _dbContext = dbContext;
         private readonly INumberVerifier _numberVerifier = numberVerifier;
 
         public async Task Handle(VerifyNumberCommand request, CancellationToken cancellationToken)
@@ -20,11 +20,20 @@ namespace Restaurant.Application.Entities.User.Commands.VerifyNumber
             var verification = await
                 _dbContext
                 .Verifications
+                .Include(e => e.Timestamps)
                 .FirstOrDefaultAsync(v => v.CheckId == checkId, cancellationToken);
 
             if (verification != null)
             {
-                verification.CanLogin = true;
+                if ((DateTime.UtcNow - verification.Timestamps.UpdatedAt).TotalMinutes <= 5)
+                {
+                    verification.CanLogin = true;
+                }
+                else
+                {
+                    verification.CanLogin = false;
+                    throw new Exception("Время верификации истекло!");
+                }
             }
 
             await _dbContext.SaveChangesAsync(cancellationToken);

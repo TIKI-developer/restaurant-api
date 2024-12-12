@@ -1,18 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain.Promotion;
+using Restaurant.Domain;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class PromotionConfiguration : IEntityTypeConfiguration<PromotionModel>
+    public class PromotionConfiguration : IEntityTypeConfiguration<Promotion>
     {
-        public void Configure(EntityTypeBuilder<PromotionModel> builder)
+        public void Configure(EntityTypeBuilder<Promotion> builder)
         {
             builder
-                .HasKey(p => p.Id);
-            builder
-                .HasIndex(p => p.Id)
-                .IsUnique();
+                .OwnsOne(e => e.Content, c =>
+                {
+                    c.WithOwner();
+                });
         }
     }
 }
