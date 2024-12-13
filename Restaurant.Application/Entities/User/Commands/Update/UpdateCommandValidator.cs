@@ -15,7 +15,7 @@ namespace Restaurant.Application.Entities.User.Commands.Update
                 .When(c => c.Address != null);
 
             profileRules.Name(RuleFor(c => c.Name)).When(c => c.Name != null);
-            authRules.Number(RuleFor(c => c.Number)).When(c => c.Number != null);
+            authRules.Number(RuleFor(c => c.PhoneNumber)).When(c => c.PhoneNumber != null);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetPublished
                 .Include(e => e.Content)
                 .Where(e => e.Content.IsPublished == true)
                 .ProjectTo<DishLookup>(_mapper.ConfigurationProvider)
+                .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
             return new DishList { Dishes = dishesQuery };

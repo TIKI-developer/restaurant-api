@@ -24,6 +24,7 @@ namespace Restaurant.Application.Entities.Category.Queries.Get
                     .Include(e => e.Content)
                     .Where(e => e.Content.IsPublished == true)
                     .ProjectTo<CategoryLookup>(_mapper.ConfigurationProvider)
+                    .AsNoTracking()
                     .ToListAsync(cancellationToken);
 
             return new CategoryList { Categories = categoriesQuery };

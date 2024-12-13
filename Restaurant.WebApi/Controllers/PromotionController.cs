@@ -5,6 +5,7 @@ using Restaurant.Application.Entities.Promotion.Command.Create;
 using Restaurant.Application.Entities.Promotion.Command.Delete;
 using Restaurant.Application.Entities.Promotion.Command.Update;
 using Restaurant.Application.Entities.Promotion.Queries.Get;
+using Restaurant.Application.Entities.Promotion.Queries.GetAdvanced;
 using Restaurant.Application.Entities.Promotion.Queries.GetById;
 using Restaurant.Application.Entities.Promotion.Queries.GetPublished;
 using Restaurant.Application.ViewModels;
@@ -67,6 +68,15 @@ namespace Restaurant.WebApi.Controllers
         public async Task<ActionResult<CategoryList>> GetPublished()
         {
             var query = new GetPublishedQuery();
+
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
+        }
+        [HttpGet("advanced")]
+        public async Task<ActionResult<CategoryList>> GetAdvanced()
+        {
+            var query = new GetAdvancedQuery();
 
             var vm = await Mediator.Send(query);
 

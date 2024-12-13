@@ -6,11 +6,13 @@ namespace Restaurant.WebApi.Models.Order
 {
     public class UpdateOrderStatusDto : IMapWith<UpdateStatusCommand>
     {
-        public OrderStatus NewStatus { get; set; }
+        public required string NewStatus { get; set; }
 
         public void Mapping(AutoMapper.Profile profile)
         {
-            profile.CreateMap<UpdateOrderStatusDto, UpdateStatusCommand>();
+            profile.CreateMap<UpdateOrderStatusDto, UpdateStatusCommand>()
+                .ForMember(to => to.NewStatus, 
+                opt => opt.MapFrom(from => Enum.Parse(typeof(OrderStatus), from.NewStatus)));
         }
     }
 }

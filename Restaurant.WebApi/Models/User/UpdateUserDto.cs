@@ -8,7 +8,7 @@ namespace Restaurant.WebApi.Models.User
     public class UpdateUserDto : IMapWith<UpdateCommand>
     {
         public string? Name { get; set; }
-        public string? Number { get; set; }
+        public string? PhoneNumber { get; set; }
         public Address? Address { get; set; }
 
         public void Mapping(Profile profile)

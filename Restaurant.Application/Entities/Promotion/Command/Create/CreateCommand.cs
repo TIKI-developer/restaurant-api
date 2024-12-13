@@ -8,5 +8,6 @@ namespace Restaurant.Application.Entities.Promotion.Command.Create
         public required string Description { get; set; }
         public required string Image { get; set; }
         public required bool IsAdvanced { get; set; }
+        public required Content.Commands.CreateCommand Content { get; set; }
     }
 }

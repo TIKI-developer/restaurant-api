@@ -25,7 +25,7 @@ namespace Restaurant.Application.Entities.User.Commands.Update
 
             entity.Profile.Name = request.Name ?? entity.Profile.Name;
             entity.Profile.Address = request.Address ?? entity.Profile.Address;
-            entity.PhoneNumber = request.Number ?? entity.PhoneNumber;
+            entity.PhoneNumber = request.PhoneNumber ?? entity.PhoneNumber;
             entity.Timestamps.UpdatedAt = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken);

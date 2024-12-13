@@ -19,22 +19,23 @@ namespace Restaurant.Application.Entities.Dish.Commands.Update
                 .Dishes
                 .Include(e => e.Content)
                 .Include(e => e.Timestamps)
+                .Include(e => e.Categories)
                 .FirstOrDefaultAsync(dish => dish.Id == request.Id, cancellationToken)
                 ?? throw new NotFoundException(nameof(Domain.Dish), request.Id);
 
-            var categoryEntities = await
+            var categories = await
                 _dbContext
                 .Categories
                 .Include(e => e.Content)
                 .Include(e => e.Timestamps)
                 .Where(c => request.Categories.Contains(c.Id))
-                .ToListAsync(cancellationToken);
+                .ToListAsync(cancellationToken) ?? [];
 
             entity.Name = request.Name ?? entity.Name;
             entity.Description = request.Description ?? entity.Description;
             entity.Price = request.Price ?? entity.Price;
             entity.Image = request.Image ?? entity.Image;
-            entity.Categories = categoryEntities ?? entity.Categories;
+            entity.Categories = categories ?? entity.Categories;
             if (request.Content != null)
             {
                 entity.Content.IsPublished = request.Content.IsPublished ?? entity.Content.IsPublished;
