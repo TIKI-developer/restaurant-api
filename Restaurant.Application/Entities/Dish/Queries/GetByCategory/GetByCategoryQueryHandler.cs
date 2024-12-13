@@ -26,6 +26,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetByCategory
                     .Include(e => e.Content)
                     .Where(e => e.Categories.Any(c => c.Id == request.CategoryId) && e.Content.IsPublished)
                     .ProjectTo<DishLookup>(_mapper.ConfigurationProvider)
+                    .AsNoTracking()
                     .ToListAsync(cancellationToken)
                     ?? throw new NotFoundException(nameof(Domain.Dish), request.CategoryId);
             return new DishList { Dishes = dishList };

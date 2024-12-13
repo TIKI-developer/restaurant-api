@@ -22,6 +22,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.Get
                 _dbContext
                 .Dishes
                 .ProjectTo<DishLookup>(_mapper.ConfigurationProvider)
+                .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
             return new DishList { Dishes = dishesQuery };

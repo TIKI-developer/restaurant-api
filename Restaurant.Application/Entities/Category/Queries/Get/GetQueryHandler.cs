@@ -22,6 +22,7 @@ namespace Restaurant.Application.Entities.Category.Queries.Get
                 _dbContext
                     .Categories
                     .ProjectTo<CategoryLookup>(_mapper.ConfigurationProvider)
+                    .AsNoTracking()
                     .ToListAsync(cancellationToken);
 
             return new CategoryList { Categories = categoriesQuery };

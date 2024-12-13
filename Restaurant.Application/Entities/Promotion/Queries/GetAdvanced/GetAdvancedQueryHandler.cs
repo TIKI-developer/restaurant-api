@@ -5,24 +5,24 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Application.ViewModels;
 
-namespace Restaurant.Application.Entities.Promotion.Queries.GetPublished
+namespace Restaurant.Application.Entities.Promotion.Queries.GetAdvanced
 {
-    public class GetPublishedQueryHandler
+    public class GetAdvancedQueryHandler
         (IRestaurantDbContext dbContext,
         IMapper mapper)
         :
-        IRequestHandler<GetPublishedQuery, PromotionList>
+        IRequestHandler<GetAdvancedQuery, PromotionList>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<PromotionList> Handle(GetPublishedQuery request, CancellationToken cancellationToken)
+        public async Task<PromotionList> Handle(GetAdvancedQuery request, CancellationToken cancellationToken)
         {
             var promotions = await
                 _dbContext
                 .Promotions
                 .Include(p => p.Content)
-                .Where(p => p.Content.IsPublished == true)
+                .Where(p => p.Content.IsPublished == true && p.IsAdvanced == true)
                 .ProjectTo<PromotionLookup>(_mapper.ConfigurationProvider)
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);

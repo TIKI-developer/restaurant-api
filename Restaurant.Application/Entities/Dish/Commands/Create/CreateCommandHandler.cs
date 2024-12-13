@@ -27,8 +27,8 @@ namespace Restaurant.Application.Entities.Dish.Commands.Create
                 Price = request.Price,
                 Image = request.Image,
                 Content = new Domain.Content
-                {
-                    IsPublished = false
+                { 
+                    IsPublished = request.Content.IsPublished
                 },
                 Timestamps = new Domain.Timestamps
                 {

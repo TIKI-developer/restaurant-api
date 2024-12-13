@@ -23,6 +23,7 @@ namespace Restaurant.Application.Entities.Promotion.Queries.Get
                 .Promotions
                 .Include(e => e.Content)
                 .ProjectTo<PromotionLookup>(_mapper.ConfigurationProvider)
+                .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
             return new PromotionList { Promotions = promotions };

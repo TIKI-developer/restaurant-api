@@ -40,7 +40,7 @@ namespace Restaurant.WebApi.Controllers
             {
                 if (formFile == null || formFile.Length == 0)
                 {
-                    throw new Exception("File haven't been choosed");
+                    throw new Exception("Файл не был выбран");
                 }
 
                 var filePath = GetFilePath(relativePath);
@@ -71,20 +71,20 @@ namespace Restaurant.WebApi.Controllers
 
             if (string.IsNullOrEmpty(relativeFilePath))
             {
-                throw new Exception("Относительный путь не указан.");
+                return StatusCode(404, "Относительный путь не указан.");
             }
 
             var filePath = GetFilePath(relativeFilePath);
 
             if (!System.IO.File.Exists(filePath))
             {
-                throw new Exception("Файл не найден.");
+                return StatusCode(404, "Файл не найден");
             }
 
             try
             {
                 System.IO.File.Delete(filePath);
-                return Ok("Файл успешно удален.");
+                return StatusCode(200, "Файл успешно удален.");
             }
             catch (IOException ex)
             {

@@ -8,7 +8,7 @@ namespace Restaurant.Application.ViewModels
         public required string Status { get; set; }
         public required Content Content { get; set; }
         public required Timestamps Timestamps { get; set; }
-        public required string Address { get; set; }
+        public required Address Address { get; set; }
         public required string Code { get; set; }
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }
@@ -34,6 +34,9 @@ namespace Restaurant.Application.ViewModels
 
                 .ForMember(to => to.PaymentMethod,
                     opt => opt.MapFrom(from => from.PaymentMethod.ToString()))
+
+                .ForMember(to => to.Address,
+                    opt => opt.MapFrom(from => from.Address))
 
                 .ForMember(to => to.UserNumber,
                     opt => opt.MapFrom(from => from.User.PhoneNumber));

@@ -15,11 +15,11 @@ namespace Restaurant.Application.Entities.Category.Commands.Create
             var category = new Domain.Category
             {
                 Id = Guid.NewGuid(),
-                Name = request.Name,
+                Name = request.Name, 
                 Image = request.Image,
                 Content = new Domain.Content
-                {
-                    IsPublished = false
+                { 
+                    IsPublished = request.Content.IsPublished
                 },
                 Timestamps = new Domain.Timestamps
                 {
