@@ -27,6 +27,15 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(token);
         }
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await Task.Run(() => {
+                HttpContext.Response.Cookies.Delete("creeper");
+            });
+
+            return Ok();
+        }
         [HttpPost("verify")]
         public async Task<IActionResult> Verify([FromForm] string[] data, [FromForm] string hash)
         {
