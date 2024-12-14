@@ -81,6 +81,11 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
 
             cart.Items.Clear();
 
+            if (user.Profile.Address == null)
+            {
+                user.Profile.Address = order.Address;
+            }
+
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return order.Id;
