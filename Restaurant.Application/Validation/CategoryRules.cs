@@ -6,7 +6,7 @@ namespace Restaurant.Application.Validation
     {
         public IRuleBuilderOptions<T, string?> Name<T>(IRuleBuilder<T, string?> ruleBuilder)
         {
-            return ruleBuilder.MaximumLength(50).WithMessage("Максимум 50 символов"); ;
+            return ruleBuilder.MaximumLength(15).WithMessage("Максимум 15 символов"); ;
         }
     }
 }

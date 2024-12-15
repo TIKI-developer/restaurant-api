@@ -8,6 +8,7 @@ namespace Restaurant.Application.ViewModels
         public required Guid Id { get; set; }
         public required string Name { get; set; }
         public required float Price { get; set; }
+        public required float Weight { get; set; }
         public required string Image { get; set; }
         public required Timestamps Timestamps { get; set; }
         public required Content Content { get; set; }
