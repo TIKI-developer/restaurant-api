@@ -10,6 +10,7 @@ namespace Restaurant.WebApi.Models.Dish
         public string? Name { get; set; }
         public string? Description { get; set; }
         public float? Price { get; set; }
+        public float? Weight { get; set; }
         public string? Image { get; set; }
         public UpdateContentDto? Content { get; set; }
         public ICollection<Guid>? Categories { get; set; }

@@ -26,6 +26,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.Create
                 Description = request.Description,
                 Price = request.Price,
                 Image = request.Image,
+                Weight = request.Weight,
                 Content = new Domain.Content
                 { 
                     IsPublished = request.Content.IsPublished
