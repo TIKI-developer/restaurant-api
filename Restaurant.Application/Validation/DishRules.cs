@@ -8,18 +8,27 @@ namespace Restaurant.Application.Validation
         {
             return ruleBuilder
                    .MaximumLength(50)
-                   .WithMessage("Максимальный размер 50 символов.");
+                   .WithMessage("Максимум 50 символов");
         }
         public IRuleBuilderOptions<T, string?> Description<T>(IRuleBuilder<T, string?> ruleBuilder)
         {
             return ruleBuilder
                    .MaximumLength(600)
-                   .WithMessage("Максимальный размер 600 символов.");
+                   .WithMessage("Максимальный размер 150 символов");
         }
         public IRuleBuilderOptions<T, float?> Price<T>(IRuleBuilder<T, float?> ruleBuilder)
         {
             return ruleBuilder
-                   .GreaterThan(0);
+                   .GreaterThan(0)
+                   .WithMessage("Установите цену");
+        }
+        public IRuleBuilderOptions<T, float?> Weight<T>(IRuleBuilder<T, float?> ruleBuilder)
+        {
+            return ruleBuilder
+                   .GreaterThan(0)
+                   .WithMessage("Масса должна быть больше 0")
+                   .LessThan(10000)
+                   .WithMessage("Масса должна быть меньше 10000");
         }
     }
 }
