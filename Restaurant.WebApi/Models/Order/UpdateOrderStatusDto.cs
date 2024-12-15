@@ -6,7 +6,8 @@ namespace Restaurant.WebApi.Models.Order
 {
     public class UpdateOrderStatusDto : IMapWith<UpdateStatusCommand>
     {
-        public required string NewStatus { get; set; }
+        public string? NewStatus { get; set; }
+        public float? DeliveryCost { get; set; }
 
         public void Mapping(AutoMapper.Profile profile)
         {

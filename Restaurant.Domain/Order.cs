@@ -8,6 +8,7 @@
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }
         public required bool AddChopsticks { get; set; }
+        public float? DeliveryCost { get; set; }
         public required PaymentMethod PaymentMethod { get; set; }
         public required float Cost { get; set; }
         public required User User { get; set; }
