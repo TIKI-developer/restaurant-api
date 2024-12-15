@@ -6,10 +6,9 @@ using Restaurant.Persistence.EntityTypeConfigurations;
 
 namespace Restaurant.Persistence
 {
-    public class RestaurantDbContext
-        (DbContextOptions<RestaurantDbContext> options)
+    public class RestaurantDbContext 
         :
-        DbContext(options), IRestaurantDbContext
+        DbContext, IRestaurantDbContext
     {
         public DbSet<Entity> Entities { get; set; }
         public DbSet<User> Users { get; set; }
@@ -21,6 +20,7 @@ namespace Restaurant.Persistence
         public DbSet<Order> Orders { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

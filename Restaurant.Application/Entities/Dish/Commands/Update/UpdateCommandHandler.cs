@@ -35,6 +35,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.Update
             entity.Description = request.Description ?? entity.Description;
             entity.Price = request.Price ?? entity.Price;
             entity.Image = request.Image ?? entity.Image;
+            entity.Weight = request.Weight ?? entity.Weight;
             entity.Categories = categories ?? entity.Categories;
             if (request.Content != null)
             {

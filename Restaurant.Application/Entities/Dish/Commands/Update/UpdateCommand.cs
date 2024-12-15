@@ -9,6 +9,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.Update
         public string? Description { get; set; }
         public float? Price { get; set; }
         public string? Image { get; set; }
+        public float? Weight { get; set; }
         public Content.Commands.UpdateCommand? Content { get; set; }
         public ICollection<Guid>? Categories { get; set; } = [];
     }
