@@ -11,6 +11,7 @@ namespace Restaurant.Application.ViewModels
         public required Address Address { get; set; }
         public required string Code { get; set; }
         public required int PersonQuantity { get; set; }
+        public float? DeliveryCost { get; set; }
         public required bool AddForks { get; set; }
         public required bool AddChopsticks { get; set; }
         public required string PaymentMethod { get; set; }

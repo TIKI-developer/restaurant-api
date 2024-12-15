@@ -19,7 +19,8 @@ namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
                     .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken)
                     ?? throw new NotFoundException(nameof(Domain.Order), request.Id);
 
-            order.Status = request.NewStatus;
+            order.Status = request.NewStatus ?? order.Status;
+            order.DeliveryCost = request.DeliveryCost ?? order.DeliveryCost;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
