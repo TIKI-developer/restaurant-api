@@ -60,13 +60,17 @@ namespace Restaurant.WebApi
             app.UseStaticFiles();
             app.UseCustomExceptionHandler();
             app.UseCors("AllowSpecificOrigin");
-            app.UseSwagger();
-            app.UseSwaggerUI(config =>
+
+            if (env.IsDevelopment())
             {
-                config.RoutePrefix = string.Empty;
-                config.SwaggerEndpoint("swagger/v1/swagger.json", "Restaurant API");
-                config.InjectStylesheet("/swagger-ui/SwaggerDark.css");
-            });
+                app.UseSwagger();
+                app.UseSwaggerUI(config =>
+                {
+                    config.RoutePrefix = string.Empty;
+                    config.SwaggerEndpoint("swagger/v1/swagger.json", "Restaurant API");
+                    config.InjectStylesheet("/swagger-ui/SwaggerDark.css");
+                });
+            }
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
