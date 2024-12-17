@@ -23,7 +23,6 @@ namespace Restaurant.WebApi.Controllers
             Console.WriteLine(dto.PhoneNumber);
             var command = _mapper.Map<LoginCommand>(dto);
             var token = await Mediator.Send(command);
-            Response.Cookies.Append("creeper", token);
 
             return Ok(token);
         }
