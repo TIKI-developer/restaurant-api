@@ -21,6 +21,7 @@ namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
 
             order.Status = request.NewStatus ?? order.Status;
             order.DeliveryCost = request.DeliveryCost ?? order.DeliveryCost;
+            order.Timestamps.UpdatedAt = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
