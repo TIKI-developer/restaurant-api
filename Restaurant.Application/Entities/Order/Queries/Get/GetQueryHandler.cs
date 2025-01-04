@@ -18,18 +18,21 @@ namespace Restaurant.Application.Entities.Order.Queries.Get
 
         public async Task<OrderList> Handle(GetQuery request, CancellationToken cancellationToken)
         {
-            var threeDaysAgo = DateTime.UtcNow.AddDays(-3);
+            var query = _dbContext.Orders
+                .Include(o => o.Items)
+                .Include(e => e.Timestamps)
+                .AsNoTracking()
+                .ProjectTo<OrderLookup>(_mapper.ConfigurationProvider);
 
-            var orders = await
-                _dbContext
-                    .Orders
-                    .Include(o => o.Items)
-                    .Include(e => e.Timestamps)
-                    .Where(o => o.Timestamps.CreatedAt >= threeDaysAgo)
-                    .OrderBy(o => o.Timestamps.CreatedAt)
-                    .AsNoTracking()
-                    .ProjectTo<OrderLookup>(_mapper.ConfigurationProvider)
-                    .ToListAsync(cancellationToken);
+            if (request.ByLastDays.HasValue)
+            {
+                var filterDate = DateTime.UtcNow.AddDays(-request.ByLastDays.Value);
+                query = query.Where(o => o.Timestamps.CreatedAt >= filterDate);
+            }
+
+            var orders = await query
+                .OrderBy(o => o.Timestamps.CreatedAt)
+                .ToListAsync(cancellationToken);
 
             return new OrderList { Orders = orders };
         }

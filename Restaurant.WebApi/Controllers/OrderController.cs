@@ -39,9 +39,12 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public async Task<ActionResult<OrderList>> Get()
+        public async Task<ActionResult<OrderList>> Get([FromQuery] OrderListFilterDto? filter)
         {
-            var query = new GetQuery();
+            var query = new GetQuery
+            {
+                ByLastDays = filter?.LastDays,
+            };
             var vm = await Mediator.Send(query);
 
             return Ok(vm);
