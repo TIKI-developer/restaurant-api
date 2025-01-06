@@ -11,12 +11,17 @@ namespace Restaurant.WebApi.Models.Order
         public required bool AddForks { get; set; }
         public required bool AddChopsticks { get; set; }
         public required string PaymentMethod { get; set; }
+        public required DateTime ReceiptAt { get; set; }
+        public required string ReceiptMethod { get; set; }
+        public string? Comment { get; set; }
 
         public void Mapping(AutoMapper.Profile profile)
         {
             profile.CreateMap<CreateOrderDto, CreateCommand>()
                 .ForMember(to => to.PaymentMethod,
-                opt => opt.MapFrom(from => Enum.Parse(typeof(PaymentMethod), from.PaymentMethod)));
+                opt => opt.MapFrom(from => Enum.Parse(typeof(PaymentMethod), from.PaymentMethod)))
+                .ForMember(to => to.ReceiptMethod,
+                opt => opt.MapFrom(from => Enum.Parse(typeof(ReceiptMethod), from.ReceiptMethod)));
         }
     }
 }
