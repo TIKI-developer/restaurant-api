@@ -53,8 +53,11 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
             {
                 Id = Guid.NewGuid(),
                 Code = await GenerateCode(cancellationToken),
+                ReceiptAt = request.ReceiptAt,
+                ReceiptMethod = request.ReceiptMethod,
                 PersonQuantity = request.PersonQuantity,
                 Status = OrderStatus.Pending,
+                Comment = request.Comment,
                 Address = request.Address ?? user.Profile.Address,
                 Timestamps = new Timestamps
                 {
