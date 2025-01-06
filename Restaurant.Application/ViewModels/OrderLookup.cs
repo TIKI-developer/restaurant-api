@@ -7,6 +7,8 @@ namespace Restaurant.Application.ViewModels
     {
         public required Guid Id { get; set; }
         public required string Status { get; set; }
+        public required string ReceiptMethod { get; set; }
+        public required DateTime ReceiptAt { get; set; }
         public required Timestamps Timestamps { get; set; }
         public required Guid UserId { get; set; }
         public required ICollection<OrderDetails.OrderItemLookup> Dishes { get; set; }
@@ -20,6 +22,9 @@ namespace Restaurant.Application.ViewModels
 
                 .ForMember(to => to.Status,
                     opt => opt.MapFrom(from => from.Status.ToString()))
+
+                .ForMember(to => to.ReceiptMethod,
+                    opt => opt.MapFrom(from => from.ReceiptMethod.ToString()))
 
                 .ForMember(orderDto => orderDto.UserId,
                     opt => opt.MapFrom(order => order.User.Id));
