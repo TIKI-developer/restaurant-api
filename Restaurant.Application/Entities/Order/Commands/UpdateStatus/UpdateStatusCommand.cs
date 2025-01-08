@@ -8,5 +8,6 @@ namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
         public required Guid Id { get; set; }
         public OrderStatus? NewStatus { get; set; }
         public float? DeliveryCost { get; set; }
+        public DateTime? ReceiptAt { get; set; }
     }
 }

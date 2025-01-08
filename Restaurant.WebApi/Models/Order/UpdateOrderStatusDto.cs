@@ -8,6 +8,7 @@ namespace Restaurant.WebApi.Models.Order
     {
         public string? NewStatus { get; set; }
         public float? DeliveryCost { get; set; }
+        public DateTime? ReceiptAt { get; set; }
 
         public void Mapping(AutoMapper.Profile profile)
         {
