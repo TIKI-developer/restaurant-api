@@ -22,6 +22,8 @@ namespace Restaurant.Application.Entities.Category.Queries.Get
                 _dbContext
                     .Categories
                     .Include(e => e.Content)
+                    .Include(e => e.Timestamps)
+                    .OrderBy(e => e.Timestamps.UpdatedAt)
                     .Where(e => e.Content.IsPublished == true)
                     .ProjectTo<CategoryLookup>(_mapper.ConfigurationProvider)
                     .AsNoTracking()
