@@ -34,7 +34,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                 throw new Exception("Корзина пустая!");
             }
 
-            if (user.Profile.Address == null && request.Address == null)
+            if (user.Profile.Address == null && request.Address == null && request.ReceiptMethod == ReceiptMethod.Delivery)
             {
                 throw new Exception("Введите адрес доставки!");
             }
