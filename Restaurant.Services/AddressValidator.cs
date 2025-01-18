@@ -5,11 +5,12 @@ namespace Restaurant.Validation
 {
     public class AddressValidator : IAddressValidator
     {
-        private readonly string _pattern = @"^(?<city>[A-Za-zА-Яа-яЁё0-9\s\-]+),\s*" +
-                                           @"(?<street>[A-Za-zА-Яа-яЁё0-9\s\-]+),\s*" +
-                                           @"(?<building>\d+([A-Za-zА-Яа-я]|-\d+)?)" +
-                                           @"(,\s*кв.\s*(?<apartment>\d+([A-Za-zА-Яа-я]|-\d+)?))?" +
-                                           @"(,\s*под.\s*(?<entrance>\d+([A-Za-zА-Яа-я]|-\d+)?))?$";
+        private readonly string _pattern = @"^(?<city>[A-Za-zА-Яа-яЁё0-9\s\-.,]+),\s*" +
+                                           @"(?<street>[A-Za-zА-Яа-яЁё0-9\s\-.,]+),\s*" +
+                                           @"(?<building>[A-Za-zА-Яа-яЁё0-9\s\-.,]+)" +
+                                           @"(,\s*кв.\s*(?<apartment>[A-Za-zА-Яа-яЁё0-9\s\-.,]+))?" +
+                                           @"(,\s*под.\s*(?<entrance>[A-Za-zА-Яа-яЁё0-9\s\-.,]+))?" +
+                                           @"(,\s*этаж\s*(?<floor>[A-Za-zА-Яа-яЁё0-9\s\-.,]+))?$";
 
         public bool IsValid(string? address)
         {
