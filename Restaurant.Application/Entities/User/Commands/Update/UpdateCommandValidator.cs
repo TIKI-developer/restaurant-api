@@ -11,9 +11,13 @@ namespace Restaurant.Application.Entities.User.Commands.Update
         {
             profileRules
                 .Address(RuleFor(c =>
-                $"{c.Address!.City}, {c.Address!.Street}, {c.Address!.BuildingNumber}, кв. {c.Address!.ApartmentNumber}"))
+                $"{c.Address!.City}, " +
+                $"{c.Address!.Street}, " +
+                $"{c.Address!.BuildingNumber}, " +
+                $"{c.Address!.ApartmentNumber}, " +
+                $"{c.Address!.Entrance}, " +
+                $"{c.Address!.Floor}"))
                 .When(c => c.Address != null);
-
             profileRules.Name(RuleFor(c => c.Name)).When(c => c.Name != null);
             authRules.Number(RuleFor(c => c.PhoneNumber)).When(c => c.PhoneNumber != null);
         }
