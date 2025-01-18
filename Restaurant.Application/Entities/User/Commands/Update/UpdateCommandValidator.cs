@@ -9,10 +9,10 @@ namespace Restaurant.Application.Entities.User.Commands.Update
             (ProfileRules profileRules,
             AuthRules authRules)
         {
-            //profileRules
-            //    .Address(RuleFor(c =>
-            //    $"{c.Address!.City}, {c.Address!.Street}, {c.Address!.BuildingNumber}, кв. {c.Address!.ApartmentNumber}"))
-            //    .When(c => c.Address != null);
+            profileRules
+                .Address(RuleFor(c =>
+                $"{c.Address!.City}, {c.Address!.Street}, {c.Address!.BuildingNumber}, кв. {c.Address!.ApartmentNumber}"))
+                .When(c => c.Address != null);
             profileRules.Name(RuleFor(c => c.Name)).When(c => c.Name != null);
             authRules.Number(RuleFor(c => c.PhoneNumber)).When(c => c.PhoneNumber != null);
         }
