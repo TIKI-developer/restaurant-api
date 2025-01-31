@@ -20,6 +20,8 @@ namespace Restaurant.Application.Entities.Order.Queries.Get
         {
             var query = _dbContext.Orders
                 .Include(o => o.Items)
+                .Include(e => e.User)
+                .ThenInclude(e => e.Profile)
                 .Include(e => e.Timestamps)
                 .AsNoTracking()
                 .ProjectTo<OrderLookup>(_mapper.ConfigurationProvider);

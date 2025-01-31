@@ -6,6 +6,9 @@ namespace Restaurant.Application.ViewModels
     public class OrderLookup : IMapWith<Order>
     {
         public required Guid Id { get; set; }
+        public required string Code { get; set; }
+        public required string UserName { get; set; }
+        public required string UserPhoneNumber { get; set; }
         public required string Status { get; set; }
         public required string ReceiptMethod { get; set; }
         public required DateTime ReceiptAt { get; set; }
@@ -25,6 +28,12 @@ namespace Restaurant.Application.ViewModels
 
                 .ForMember(to => to.ReceiptMethod,
                     opt => opt.MapFrom(from => from.ReceiptMethod.ToString()))
+
+                .ForMember(orderDto => orderDto.UserName,
+                    opt => opt.MapFrom(order => order.User.Profile.Name))
+
+                .ForMember(orderDto => orderDto.UserPhoneNumber,
+                    opt => opt.MapFrom(order => order.User.PhoneNumber))
 
                 .ForMember(orderDto => orderDto.UserId,
                     opt => opt.MapFrom(order => order.User.Id));
