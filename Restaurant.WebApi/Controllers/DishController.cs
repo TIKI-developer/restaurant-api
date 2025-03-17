@@ -7,6 +7,7 @@ using Restaurant.Application.Entities.Dish.Commands.Update;
 using Restaurant.Application.Entities.Dish.Queries.Get;
 using Restaurant.Application.Entities.Dish.Queries.GetByCategory;
 using Restaurant.Application.Entities.Dish.Queries.GetById;
+using Restaurant.Application.Entities.Dish.Queries.GetGroupedByCategory;
 using Restaurant.Application.Entities.Dish.Queries.GetPublished;
 using Restaurant.Application.ViewModels;
 using Restaurant.WebApi.Models.Dish;
@@ -82,7 +83,14 @@ namespace Restaurant.WebApi.Controllers
 
             return Ok(vm);
         }
+        [HttpGet("categories")]
+        public async Task<ActionResult<DishListGroupedByCategory>> GetGroupedByCategory()
+        {
+            var query = new GetGroupedByCategoryQuery();
+            var vm = await Mediator.Send(query);
 
+            return Ok(vm);
+        }
         [HttpGet("published")]
         public async Task<ActionResult<CategoryList>> GetPublished()
         {
