@@ -20,6 +20,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetGroupedByCategory
             var categories = await 
                 _dbContext
                 .Categories
+                .OrderBy(e => e.Timestamps.UpdatedAt)
                 .Where(e => e.Content.IsPublished == true)
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
@@ -33,7 +34,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetGroupedByCategory
                      .ProjectTo<DishLookup>(_mapper.ConfigurationProvider)
                      .AsNoTracking()
                      .ToListAsync();
-                vm.CategoriesDishes.Add(category.Id, categoryDishes);
+                vm.CategoriesDishes.Add(new CategoryDishesDto { CategoryId = category.Id, Dishes = categoryDishes });
             }
 
             return vm;
