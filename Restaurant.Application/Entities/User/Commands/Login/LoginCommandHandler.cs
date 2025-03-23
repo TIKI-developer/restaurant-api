@@ -21,9 +21,20 @@ namespace Restaurant.Application.Entities.User.Commands.Login
             var verification = await
                 _dbContext
                 .Verifications
-                .FirstOrDefaultAsync(v => v.Number == request.PhoneNumber, cancellationToken);
+                .Include(e => e.Timestamps)
+                .FirstOrDefaultAsync(v => v.Number == request.PhoneNumber, cancellationToken)
+                ?? throw new Exception("Верификация не пройдена!");
 
-            if (verification == null || string.IsNullOrEmpty(verification.CheckId) || !verification.CanLogin)
+            bool verifiedByCall = 
+                !string.IsNullOrEmpty(verification.CheckId) &&
+                verification.CanLogin;
+
+            bool verifiedByCodeCall =
+                !string.IsNullOrEmpty(verification.CallId) &&
+                verification.CallCode == request.CallCode;
+
+
+            if (!verifiedByCall && !verifiedByCodeCall)
             {
                 throw new Exception("Верификация не пройдена!");
             }
@@ -94,6 +105,9 @@ namespace Restaurant.Application.Entities.User.Commands.Login
             token = _jwtProvider.Generate(user);
             verification.CanLogin = false;
             verification.CheckId = null;
+            verification.CallId = null;
+            verification.CallCode = null;
+            verification.Timestamps.UpdatedAt = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

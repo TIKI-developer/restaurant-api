@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Restaurant.Application.Entities.User.Commands.CodeCall;
 using Restaurant.Application.Entities.User.Commands.Login;
 using Restaurant.Application.Entities.User.Commands.PrepareVerifyNumber;
 using Restaurant.Application.Entities.User.Commands.VerifyNumber;
 using Restaurant.Verification;
+using Restaurant.WebApi.Models;
 using Restaurant.WebApi.Models.User;
 
 namespace Restaurant.WebApi.Controllers
@@ -92,6 +94,60 @@ namespace Restaurant.WebApi.Controllers
                     return BadRequest(new
                     {
                         result?.StatusCode,
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Произошла ошибка", details = ex.Message });
+            }
+        }
+        [HttpPost("code/call")]
+        public async Task<IActionResult> CodeCall([FromBody] CodeCallDto dto)
+        {
+            dto.UserPhoneNumber = NormalizePhoneNumber(dto.UserPhoneNumber);
+            var url = "https://sms.ru/code/call";
+            var clientIp = HttpContext.Connection.RemoteIpAddress?.ToString() ?? Request.Headers["X-Forwarded-For"].ToString();
+
+            var requestData = new Dictionary<string, string>
+            {
+                { "api_id", _smsRuOptions.ApiKey },
+                { "phone", dto.UserPhoneNumber },
+                { "ip",  clientIp }
+            };
+
+            using var httpClient = new HttpClient();
+            try
+            {
+                var response = await httpClient.PostAsync(url, new FormUrlEncodedContent(requestData));
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = await response.Content.ReadAsStringAsync();
+                    return BadRequest(new { message = "Ошибка при отправке запроса", details = error });
+                }
+
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<CodeCallResponse>(jsonResponse);
+
+                if (result != null && result.Status == "OK")
+                {
+                    var command = new CodeCallCommand
+                    {
+                        PhoneNumber = dto.UserPhoneNumber,
+                        Code = result.Code,
+                        CallId = result.CallId
+                    };
+
+                    await Mediator.Send(command);
+
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest(new
+                    {
+                        result?.Status,
                     });
                 }
             }
