@@ -29,7 +29,8 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            await Task.Run(() => {
+            await Task.Run(() =>
+            {
                 HttpContext.Response.Cookies.Delete("creeper");
             });
 

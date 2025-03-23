@@ -20,7 +20,7 @@ namespace Restaurant.Application.Entities.Promotion.Command.Create
                 Image = request.Image,
                 IsAdvanced = request.IsAdvanced,
                 Content = new Domain.Content
-                { 
+                {
                     IsPublished = request.Content.IsPublished,
                 },
                 Timestamps = new Domain.Timestamps

@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
+using Restaurant.Application.Models.Cart;
 using Restaurant.Domain;
 
 namespace Restaurant.Application.Entities.Order.Commands.Create
@@ -22,12 +23,23 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                     .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken)
                     ?? throw new NotFoundException(nameof(Domain.User), request.UserId);
 
-            var cart = await
-                _dbContext
-                    .Carts
-                    .Include(c => c.Items)
-                    .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.Cart), request.UserId);
+            ICart cart;
+
+            if (request.Cart != null)
+            {
+                cart = request.Cart;
+            }
+            else
+            {
+                var remoteCart = await
+                    _dbContext
+                        .Carts
+                        .Include(c => c.Items)
+                        .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken)
+                        ?? throw new NotFoundException(nameof(Domain.Cart), request.UserId);
+
+                cart = _mapper.Map<CartDto>(remoteCart);
+            }
 
             if (cart.Items.Count <= 0)
             {
@@ -76,7 +88,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                 Order = order,
                 OrderId = order.Id,
                 DishId = ci.DishId,
-                Dish = ci.Dish,
+                Dish = dishes.FirstOrDefault(e => e.Id == ci.DishId)!,
                 Count = ci.Count
             }).ToList();
 
@@ -94,7 +106,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
             return order.Id;
         }
 
-        private static float CalculateCost(Domain.Cart cart, List<Domain.Dish> dishes)
+        private static float CalculateCost(ICart cart, List<Domain.Dish> dishes)
         {
             float totalCost = 0;
 

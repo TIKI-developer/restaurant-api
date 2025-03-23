@@ -6,7 +6,7 @@ using Restaurant.Persistence.EntityTypeConfigurations;
 
 namespace Restaurant.Persistence
 {
-    public class RestaurantDbContext 
+    public class RestaurantDbContext
         :
         DbContext, IRestaurantDbContext
     {

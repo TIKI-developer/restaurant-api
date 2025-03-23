@@ -13,7 +13,7 @@ namespace Restaurant.WebApi.Models.Order
         public void Mapping(AutoMapper.Profile profile)
         {
             profile.CreateMap<UpdateOrderStatusDto, UpdateStatusCommand>()
-                .ForMember(to => to.NewStatus, 
+                .ForMember(to => to.NewStatus,
                 opt => opt.MapFrom(from => Enum.Parse(typeof(OrderStatus), from.NewStatus)));
         }
     }
