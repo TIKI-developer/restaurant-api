@@ -40,7 +40,8 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("role")]
         public async Task<ActionResult<string>> GetRole()
         {
-            await Task.Run(() => {
+            await Task.Run(() =>
+            {
                 return Ok(UserRole);
             });
             return Ok(UserRole);

@@ -28,7 +28,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.Create
                 Image = request.Image,
                 Weight = request.Weight,
                 Content = new Domain.Content
-                { 
+                {
                     IsPublished = request.Content.IsPublished
                 },
                 Timestamps = new Domain.Timestamps

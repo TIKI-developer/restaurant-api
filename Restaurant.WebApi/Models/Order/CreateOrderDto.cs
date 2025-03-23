@@ -1,6 +1,7 @@
 ﻿using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Entities.Order.Commands.Create;
 using Restaurant.Domain;
+using Restaurant.WebApi.Models.Cart;
 
 namespace Restaurant.WebApi.Models.Order
 {
@@ -14,6 +15,7 @@ namespace Restaurant.WebApi.Models.Order
         public required DateTime ReceiptAt { get; set; }
         public required string ReceiptMethod { get; set; }
         public string? Comment { get; set; }
+        public CartBodyDto? Cart { get; set; }
 
         public void Mapping(AutoMapper.Profile profile)
         {

@@ -17,7 +17,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetGroupedByCategory
 
         public async Task<DishListGroupedByCategory> Handle(GetGroupedByCategoryQuery request, CancellationToken cancellationToken)
         {
-            var categories = await 
+            var categories = await
                 _dbContext
                 .Categories
                 .OrderBy(e => e.Timestamps.UpdatedAt)

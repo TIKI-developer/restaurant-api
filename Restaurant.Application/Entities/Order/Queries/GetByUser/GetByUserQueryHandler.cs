@@ -29,7 +29,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetByUser
                 _dbContext
                 .Orders
                 .Include(e => e.Timestamps)
-                .OrderBy(e => e.Timestamps.CreatedAt)
+                .OrderByDescending(e => e.Timestamps.CreatedAt)
                 .Where(e => e.User.Id == request.UserId)
                 .AsNoTracking()
                 .ProjectTo<OrderLookup>(_mapper.ConfigurationProvider)

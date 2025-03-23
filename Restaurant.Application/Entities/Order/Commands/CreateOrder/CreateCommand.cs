@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Restaurant.Application.Models.Cart;
 using Restaurant.Domain;
 
 namespace Restaurant.Application.Entities.Order.Commands.Create
@@ -14,5 +15,6 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
         public string? Comment { get; set; }
         public required DateTime ReceiptAt { get; set; }
         public required PaymentMethod PaymentMethod { get; set; }
+        public CartDto? Cart { get; set; }
     }
 }
