@@ -7,6 +7,7 @@ using Restaurant.Application.Entities.User.Commands.PrepareVerifyNumber;
 using Restaurant.Application.Entities.User.Commands.VerifyNumber;
 using Restaurant.Verification;
 using Restaurant.WebApi.Models.User;
+using System.Text.RegularExpressions;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -103,17 +104,28 @@ namespace Restaurant.WebApi.Controllers
         }
         private static string NormalizePhoneNumber(string? phoneNumber)
         {
-            if (string.IsNullOrEmpty(phoneNumber)) return "";
+            if (string.IsNullOrWhiteSpace(phoneNumber)) return "";
+
+            phoneNumber = Regex.Replace(phoneNumber, @"\D", "");
+
             if (phoneNumber.StartsWith("89"))
             {
-                return string.Concat("+7", phoneNumber.AsSpan(1));
+                return "+7" + phoneNumber[1..]; 
             }
-            if (phoneNumber.StartsWith("+79"))
+
+            if (phoneNumber.StartsWith("7"))
             {
-                return string.Concat("+7", phoneNumber.AsSpan(2));
+                return "+7" + phoneNumber[1..];
             }
+
+            if (phoneNumber.StartsWith("+7"))
+            {
+                return phoneNumber; // Уже правильный формат
+            }
+
             return phoneNumber;
         }
+
         public class NotificationData
         {
             [FromForm(Name = "data")]
