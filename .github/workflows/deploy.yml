@@ -21,6 +21,14 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
+      - name: Clean up Docker on server
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@109.196.101.168 << 'EOF'
+            # Очистка неиспользуемых образов, контейнеров и кэша сборки
+            sudo docker system prune -af
+            sudo docker volume prune -f
+          EOF
+
       # Шаг 3: Развертывание приложения на сервере
       - name: Deploy to server
         run: ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@109.196.101.168 "cd /var/www/chipipi/restaurant-api/ && sudo git pull origin main && cd .. && sudo docker-compose down restaurant-api && sudo docker-compose up -d --build restaurant-api"
