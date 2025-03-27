@@ -6,16 +6,22 @@ using Restaurant.Application.Interfaces;
 
 namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
 {
-    public class UpdateStatusCommandHandler(IRestaurantDbContext dbContext, IMapper mapper) : IRequestHandler<UpdateStatusCommand>
+    public class UpdateStatusCommandHandler
+        (IRestaurantDbContext dbContext, 
+        IMapper mapper,
+        INotificationService notificationService) 
+        : IRequestHandler<UpdateStatusCommand>
     {
         private readonly IRestaurantDbContext _dbContext = dbContext;
         private readonly IMapper _mapper = mapper;
+        private readonly INotificationService _notificationService = notificationService;
 
         public async Task Handle(UpdateStatusCommand request, CancellationToken cancellationToken)
         {
             var order = await
                 _dbContext
                     .Orders
+                    .Include(e => e.User)
                     .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken)
                     ?? throw new NotFoundException(nameof(Domain.Order), request.Id);
 
@@ -25,6 +31,8 @@ namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
             order.Timestamps.UpdatedAt = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
+
+            _notificationService.Send(order.Status.ToString(), $"Статус заказа {order.Code}, обновлен", "");
         }
     }
 }
