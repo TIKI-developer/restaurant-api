@@ -7,5 +7,6 @@ namespace Restaurant.Application.Entities.User.Commands.Login
     {
         public string? Name { get; set; }
         public required string PhoneNumber { get; set; }
+        public string? FncToken { get; set; }
     }
 }
