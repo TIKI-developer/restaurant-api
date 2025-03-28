@@ -32,7 +32,7 @@ namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            _notificationService.Send(order.Status.ToString(), $"Статус заказа {order.Code}, обновлен", "");
+            _notificationService.Send(order.Status.ToString(), $"Статус заказа {order.Code}, обновлен", "172802");
         }
     }
 }
