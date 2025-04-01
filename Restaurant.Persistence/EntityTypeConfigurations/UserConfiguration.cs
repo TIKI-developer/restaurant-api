@@ -21,7 +21,10 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 .HasMany(c => c.Orders)
                 .WithOne(o => o.User);
             builder
-                .HasMany(c => c.FncTokens);
+                .OwnsMany(c => c.FncTokens, fncTokens =>
+                {
+                    fncTokens.WithOwner(o => o.User);
+                });
 
             builder
                 .OwnsOne(c => c.Profile, profile =>

@@ -11,6 +11,7 @@ namespace Restaurant.Application.ViewModels
         public required string UserPhoneNumber { get; set; }
         public required string Status { get; set; }
         public required string ReceiptMethod { get; set; }
+        public required float Cost { get; set; }
         public required DateTime ReceiptAt { get; set; }
         public required Timestamps Timestamps { get; set; }
         public required Guid UserId { get; set; }

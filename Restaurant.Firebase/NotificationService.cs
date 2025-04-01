@@ -5,7 +5,7 @@ namespace Restaurant.Firebase
 {
     public class NotificationService : INotificationService
     {
-        public async void Send(string messageTitle, string messageBody, string fcmToken)
+        public async Task Send(string messageTitle, string messageBody, string fcmToken)
         {
             var message = new Message()
             {
@@ -14,9 +14,17 @@ namespace Restaurant.Firebase
                 {
                     Title = messageTitle,
                     Body = messageBody
-                }
+                },
             };
-            string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+
+            try
+            {
+                string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
     }
 }

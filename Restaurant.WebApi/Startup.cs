@@ -28,8 +28,8 @@ namespace Restaurant.WebApi
             services.AddValidation(Configuration);
             services.AddSecurity(Configuration);
             services.AddVerification(Configuration);
-            services.AddFirebase();
             services.AddPersistence(Configuration);
+            services.AddFirebase();
             services.AddApplication();
             services.AddControllers();
 

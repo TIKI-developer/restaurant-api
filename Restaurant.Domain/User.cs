@@ -7,7 +7,7 @@ namespace Restaurant.Domain
         public abstract List<UserPermission> Permissions { get; }
         public Cart? Cart { get; set; }
         public List<Order>? Orders { get; set; } = [];
-        public List<string> FncTokens { get; set; } = [];
+        public List<FncToken> FncTokens { get; set; } = [];
     }
     public class UserProfile
     {

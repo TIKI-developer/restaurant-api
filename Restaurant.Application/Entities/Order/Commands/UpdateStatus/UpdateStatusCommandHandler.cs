@@ -36,7 +36,7 @@ namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
             {
                 foreach (var fncToken in order.User.FncTokens)
                 {
-                    _notificationService.Send(order.Status.ToString(), $"Статус заказа {order.Code}, обновлен", fncToken);
+                    await _notificationService.Send(order.Status.ToString(), $"Статус заказа {order.Code}, обновлен", fncToken.Value);
                 }
             }
         }

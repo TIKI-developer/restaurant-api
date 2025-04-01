@@ -10,10 +10,14 @@ namespace Restaurant.Firebase
         public static IServiceCollection AddFirebase(this IServiceCollection services)
         {
             services.AddScoped<INotificationService, NotificationService>();
-            FirebaseApp.Create(new AppOptions()
+
+            if (FirebaseApp.DefaultInstance == null)
             {
-                Credential = GoogleCredential.FromFile("chipipi-51eec-firebase-adminsdk-fbsvc-9e781c9737.json")
-            });
+                FirebaseApp.Create(new AppOptions()
+                {
+                    Credential = GoogleCredential.FromFile("chipipi-51eec-firebase-adminsdk-fbsvc-9e781c9737.json")
+                });
+            }
 
 
             return services;

@@ -8,6 +8,7 @@ namespace Restaurant.WebApi.Models.User
     {
         public string? Name { get; set; }
         public required string PhoneNumber { get; set; }
+        public string? FncToken { get; set; }
 
         public void Mapping(Profile profile)
         {
