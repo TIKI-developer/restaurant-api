@@ -8,7 +8,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
     {
         public required Guid UserId { get; set; }
         public required ReceiptMethod ReceiptMethod { get; set; }
-        public Address? Address { get; set; }
+        public Guid? AddressId { get; set; }
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }
         public required bool AddChopsticks { get; set; }

@@ -7,7 +7,7 @@ namespace Restaurant.WebApi.Models.Order
 {
     public class CreateOrderDto : IMapWith<CreateCommand>
     {
-        public Address? Address { get; set; }
+        public Guid? AddressId { get; set; }
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }
         public required bool AddChopsticks { get; set; }

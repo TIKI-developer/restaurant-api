@@ -12,6 +12,7 @@ namespace Restaurant.Application.Interfaces
         DbSet<Order> Orders { get; set; }
         DbSet<Cart> Carts { get; set; }
         DbSet<Promotion> Promotions { get; set; }
+        DbSet<Address> Addresses { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

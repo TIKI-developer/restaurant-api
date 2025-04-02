@@ -15,10 +15,7 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 .HasMany(e => e.Items)
                 .WithOne(e => e.Order);
             builder
-                .OwnsOne(e => e.Address, a =>
-                {
-                    a.WithOwner();
-                });
+                .HasOne(e => e.Address);
         }
     }
 }

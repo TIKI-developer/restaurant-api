@@ -8,6 +8,6 @@ namespace Restaurant.Application.Entities.User.Commands.Update
         public required Guid Id { get; set; }
         public string? Name { get; set; }
         public string? PhoneNumber { get; set; }
-        public Address? Address { get; set; }
+        public Guid? DefaultAddressId { get; set; }
     }
 }

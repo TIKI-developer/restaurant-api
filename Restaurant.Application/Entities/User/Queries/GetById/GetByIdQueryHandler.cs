@@ -22,7 +22,6 @@ namespace Restaurant.Application.Entities.User.Queries.GetById
                 _dbContext
                 .Users
                 .Include(e => e.Profile)
-                .ThenInclude(e => e.Address)
                 .FirstOrDefaultAsync(user =>
                 user.Id == request.Id, cancellationToken)
                 ?? throw new NotFoundException(nameof(Domain.User), request.Id);

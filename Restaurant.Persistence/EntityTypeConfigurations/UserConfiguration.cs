@@ -25,15 +25,14 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 {
                     fncTokens.WithOwner(o => o.User);
                 });
+            builder
+                .HasMany(e => e.Addresses)
+                .WithOne(e => e.User);
 
             builder
                 .OwnsOne(c => c.Profile, profile =>
                 {
                     profile.WithOwner();
-                    profile.OwnsOne(p => p.Address, address =>
-                    {
-                        address.WithOwner();
-                    });
                     profile
                         .Property(e => e.Name)
                         .HasMaxLength(50);

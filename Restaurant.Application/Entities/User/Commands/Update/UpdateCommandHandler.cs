@@ -14,19 +14,17 @@ namespace Restaurant.Application.Entities.User.Commands.Update
 
         public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
         {
-            var entity = await
+            var user = await
                 _dbContext
                 .Users
                 .Include(e => e.Profile)
-                .ThenInclude(e => e.Address)
                 .Include(e => e.Timestamps)
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
                 ?? throw new NotFoundException(nameof(Domain.User), request.Id);
 
-            entity.Profile.Name = request.Name ?? entity.Profile.Name;
-            entity.Profile.Address = request.Address ?? entity.Profile.Address;
-            entity.PhoneNumber = request.PhoneNumber ?? entity.PhoneNumber;
-            entity.Timestamps.UpdatedAt = DateTime.UtcNow;
+            user.Profile.Name = request.Name ?? user.Profile.Name;
+            user.DefaultAddressId = request.DefaultAddressId ?? user.DefaultAddressId;
+            user.Timestamps.UpdatedAt = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

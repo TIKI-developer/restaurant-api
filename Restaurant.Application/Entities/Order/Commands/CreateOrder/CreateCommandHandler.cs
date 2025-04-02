@@ -19,7 +19,6 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                 _dbContext
                     .Users
                     .Include(e => e.Profile)
-                    .ThenInclude(e => e.Address)
                     .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken)
                     ?? throw new NotFoundException(nameof(Domain.User), request.UserId);
 
@@ -46,10 +45,16 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                 throw new Exception("Корзина пустая!");
             }
 
-            if (user.Profile.Address == null && request.Address == null && request.ReceiptMethod == ReceiptMethod.Delivery)
+
+            if (user.DefaultAddressId == null && request.AddressId == null && request.ReceiptMethod == ReceiptMethod.Delivery)
             {
                 throw new Exception("Введите адрес доставки!");
             }
+            var address = await
+                _dbContext
+                .Addresses
+                .FirstOrDefaultAsync(e => e.Id == request.AddressId, cancellationToken)
+                ?? throw new NotFoundException(nameof(Domain.Address), request.AddressId);
 
             var dishIds = cart.Items.Select(ci => ci.DishId).ToList();
 
@@ -70,7 +75,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                 PersonQuantity = request.PersonQuantity,
                 Status = OrderStatus.Pending,
                 Comment = request.Comment,
-                Address = request.Address ?? user.Profile.Address,
+                Address = address,
                 Timestamps = new Timestamps
                 {
                     CreatedAt = DateTime.UtcNow,
@@ -95,11 +100,6 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
             await _dbContext.Orders.AddAsync(order, cancellationToken);
 
             cart.Items.Clear();
-
-            if (user.Profile.Address == null)
-            {
-                user.Profile.Address = order.Address;
-            }
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
