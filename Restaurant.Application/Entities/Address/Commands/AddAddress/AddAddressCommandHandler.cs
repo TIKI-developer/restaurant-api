@@ -30,6 +30,7 @@ namespace Restaurant.Application.Entities.Address.Commands.AddAddress
                 ApartmentNumber = request.ApartmentNumber,
                 Entrance = request.Entrance,
                 Floor = request.Floor,
+                UserId = user.Id,
                 User = user,
             };
 

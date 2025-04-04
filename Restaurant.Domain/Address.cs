@@ -9,5 +9,6 @@
         public string? Entrance { get; set; }
         public required int Floor { get; set; }
         public required User User { get; set; }
+        public Guid UserId { get; set; }
     }
 }

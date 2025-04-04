@@ -27,7 +27,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 });
             builder
                 .HasMany(e => e.Addresses)
-                .WithOne(e => e.User);
+                .WithOne(e => e.User)
+                .HasForeignKey(e => e.UserId);
 
             builder
                 .OwnsOne(c => c.Profile, profile =>

@@ -143,12 +143,7 @@ namespace Restaurant.Persistence.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("UserId1")
-                        .HasColumnType("uuid");
-
                     b.HasIndex("UserId");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("Addresses");
                 });
@@ -423,14 +418,10 @@ namespace Restaurant.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Restaurant.Domain.User", "User")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Restaurant.Domain.User", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("UserId1");
 
                     b.Navigation("User");
                 });
