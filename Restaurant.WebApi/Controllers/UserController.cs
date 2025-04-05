@@ -75,7 +75,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok(vm);
         }
         [Authorize(Roles = "Client, Admin")]
-        [HttpGet("address")]
+        [HttpGet("addresses")]
         public async Task<ActionResult<AddressList>> GetAddresses()
         {
             var query = new Application.Entities.Address.Queries.GetByUser.GetByUserQuery
@@ -86,7 +86,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok(vm);
         }
         [Authorize(Roles = "Client, Admin")]
-        [HttpGet("address/{id}")]
+        [HttpGet("addresses/{id}")]
         public async Task<ActionResult<AddressDetails>> GetAddressBy(Guid id)
         {
             var query = new Application.Entities.Address.Queries.GetById.GetByIdQuery
@@ -97,7 +97,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok(vm);
         }
         [Authorize(Roles = "Client, Admin")]
-        [HttpPost("address")]
+        [HttpPost("addresses")]
         public async Task<IActionResult> CreateAddress([FromBody] AddAddressDto dto)
         {
             var command = _mapper.Map<Application.Entities.Address.Commands.AddAddress.AddAddressCommand>(dto);
@@ -107,7 +107,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok(id);
         }
         [Authorize(Roles = "Client, Admin")]
-        [HttpPut("address/{id}")]
+        [HttpPut("addresses/{id}")]
         public async Task<IActionResult> UpdateAddress(Guid id, [FromBody] UpdateAddressDto dto)
         {
             var command = _mapper.Map<Application.Entities.Address.Commands.UpdateAddress.UpdateAddressCommand>(dto);
@@ -117,7 +117,7 @@ namespace Restaurant.WebApi.Controllers
             return Ok();
         }
         [Authorize(Roles = "Client, Admin")]
-        [HttpDelete("address/{id}")]
+        [HttpDelete("addresses/{id}")]
         public async Task<IActionResult> DeleteAddress(Guid id)
         {
             var command = new Application.Entities.Address.Commands.RemoveAddress.RemoveAddressCommand

@@ -21,6 +21,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetById
             var order = await
                 _dbContext
                 .Orders
+                .Include(o => o.Address)
                 .Include(o => o.Items)
                 .ThenInclude(i => i.Dish)
                 .Include(o => o.User)
