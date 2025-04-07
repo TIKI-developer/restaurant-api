@@ -6,7 +6,6 @@ using Restaurant.Application.Interfaces;
 using Restaurant.Application.Models.Cart;
 using Restaurant.Domain.Entities;
 using Restaurant.Domain.ValueObjects;
-using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Commands
 {

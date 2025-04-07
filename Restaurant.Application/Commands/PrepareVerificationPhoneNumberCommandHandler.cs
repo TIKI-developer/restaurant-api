@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain.ValueObjects;
 using Restaurant.Domain.Entities;
+using Restaurant.Domain.ValueObjects;
 
 namespace Restaurant.Application.Commands
 {

@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{24A8D4E7-45D0-4F9C-84AC-24E6193F5CE4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3E027A58-B968-4399-8B33-9DBEE9DBBE56}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Validation", "Restaurant.Services\Restaurant.Validation.csproj", "{B8F4E37D-69B8-4021-8ADF-3E4EE7D8EC3D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8} = {EDD6F6F9-1BDA-49C9-B104-3F00AF3620A8}
@@ -28,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Persistence", "R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Verification", "Restaurant.Verification\Restaurant.Verification.csproj", "{D4E8A677-B433-43DF-A5A2-73558DC0DC2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Firebase", "Restaurant.Firebase\Restaurant.Firebase.csproj", "{B5B0E453-9E44-494C-BD1B-F05EEB4223B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Firebase", "Restaurant.Firebase\Restaurant.Firebase.csproj", "{B5B0E453-9E44-494C-BD1B-F05EEB4223B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

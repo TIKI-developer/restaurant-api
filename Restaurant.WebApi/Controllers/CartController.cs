@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.ViewModels;
-using Restaurant.Application.Queries;
 using Restaurant.Application.Commands;
+using Restaurant.Application.Queries;
+using Restaurant.Application.ViewModels;
 
 
 namespace Restaurant.WebApi.Controllers
