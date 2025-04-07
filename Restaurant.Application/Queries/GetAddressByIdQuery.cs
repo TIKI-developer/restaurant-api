@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Restaurant.Application.ViewModels;
 
-namespace Restaurant.Application.Entities.Address.Queries.GetById
+namespace Restaurant.Application.Queries
 {
     public class GetAddressByIdQuery : IRequest<AddressDetails>
     {

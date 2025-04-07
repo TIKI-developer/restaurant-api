@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Entities.Order.Queries.GetByIdByUser;
-using Restaurant.Application.Entities.Order.Queries.GetByUser;
-using Restaurant.Application.Entities.User.Commands.Update;
-using Restaurant.Application.Entities.User.Queries.GetById;
-using Restaurant.Application.Entities.Address;
-using Restaurant.Application.ViewModels;
-using Restaurant.WebApi.Models.User;
-using Restaurant.WebApi.Models.Address;
 using Restaurant.Application.Commands;
+using Restaurant.Application.Queries;
+using Restaurant.Application.ViewModels;
+using Restaurant.WebApi.Models;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -22,7 +17,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("profile")]
         public async Task<ActionResult<UserDetails>> GetProfile()
         {
-            var query = new GetByIdQuery
+            var query = new GetUserByIdQuery
             {
                 Id = UserId
             };
@@ -33,7 +28,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPut("profile")]
         public async Task<IActionResult> Update([FromBody] UpdateUserDto dto)
         {
-            var command = _mapper.Map<UpdateCommand>(dto);
+            var command = _mapper.Map<UpdateUserProfileCommand>(dto);
             command.Id = UserId;
 
             await Mediator.Send(command);
@@ -53,7 +48,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("orders")]
         public async Task<ActionResult<OrderList>> GetByUser()
         {
-            var query = new GetByUserQuery
+            var query = new GetOrderByUserQuery
             {
                 UserId = UserId
             };
@@ -66,7 +61,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("orders/{id}")]
         public async Task<ActionResult<OrderDetails>> GetUserOrder(Guid id)
         {
-            var query = new GetByIdByUserQuery
+            var query = new GetOrderByIdByUserQuery
             {
                 Id = id,
                 UserId = UserId
@@ -79,7 +74,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("addresses")]
         public async Task<ActionResult<AddressList>> GetAddresses()
         {
-            var query = new Application.Entities.Address.Queries.GetByUser.GetAddressListByUserQuery
+            var query = new GetAddressListByUserQuery
             {
                 UserId = UserId
             };
@@ -90,7 +85,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("addresses/{id}")]
         public async Task<ActionResult<AddressDetails>> GetAddressBy(Guid id)
         {
-            var query = new Application.Entities.Address.Queries.GetById.GetAddressByIdQuery
+            var query = new GetAddressByIdQuery
             {
                 Id = id
             };
@@ -121,8 +116,8 @@ namespace Restaurant.WebApi.Controllers
         [HttpDelete("addresses/{id}")]
         public async Task<IActionResult> DeleteAddress(Guid id)
         {
-            var command = new Application.Entities.Address.Commands.RemoveAddress.RemoveAddressCommand
-            { 
+            var command = new DeleteAddressCommand
+            {
                 Id = id
             };
             await Mediator.Send(command);

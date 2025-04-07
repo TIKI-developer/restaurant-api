@@ -50,14 +50,14 @@ namespace Restaurant.Application.ViewModels
                     opt => opt.MapFrom(from => from.User.PhoneNumber));
         }
 
-        public class OrderItemLookup : IMapWith<OrderItem>
+        public class OrderItemLookup : IMapWith<Domain.Entities.OrderItem>
         {
             public required string DishName { get; set; }
             public required int Count { get; set; }
 
             public void Mapping(AutoMapper.Profile profile)
             {
-                profile.CreateMap<OrderItem, OrderItemLookup>()
+                profile.CreateMap<Domain.Entities.OrderItem, OrderItemLookup>()
                     .ForMember(to => to.DishName,
                         opt => opt.MapFrom(from => from.Dish.Name));
             }

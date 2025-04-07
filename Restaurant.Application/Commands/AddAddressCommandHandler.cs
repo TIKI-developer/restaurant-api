@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
+using Restaurant.Domain.Entities;
+using Restaurant.Domain.ValueObjects;
+
 
 namespace Restaurant.Application.Commands
 {
@@ -17,12 +20,12 @@ namespace Restaurant.Application.Commands
                 _dbContext
                 .Users
                 .FirstOrDefaultAsync(e => e.Id == request.UserId, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Entities.User), request.UserId);
+                ?? throw new NotFoundException(nameof(User), request.UserId);
 
-            var newAddress = new Domain.Address
+            var newAddress = new Address
             {
                 Id = Guid.NewGuid(),
-                Timestamps = new Domain.Timestamps
+                Timestamps = new Timestamps
                 { CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
                 City = request.City,
                 Street = request.Street,

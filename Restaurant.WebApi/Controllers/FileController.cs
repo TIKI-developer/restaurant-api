@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.WebApi.Models.File;
+using Restaurant.WebApi.Models;
 
 namespace Restaurant.WebApi.Controllers
 {

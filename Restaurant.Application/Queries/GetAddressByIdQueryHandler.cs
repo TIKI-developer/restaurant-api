@@ -5,9 +5,9 @@ using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
 using Restaurant.Application.ViewModels;
 
-namespace Restaurant.Application.Entities.Address.Queries.GetById
+namespace Restaurant.Application.Queries
 {
-    public class GetAddressByIdQueryHandler 
+    public class GetAddressByIdQueryHandler
         (IRestaurantDbContext dbContext,
         IMapper mapper)
         : IRequestHandler<GetAddressByIdQuery, AddressDetails>

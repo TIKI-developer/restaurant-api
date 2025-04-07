@@ -1,0 +1,49 @@
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Restaurant.Application.Common.Exceptions;
+using Restaurant.Application.Interfaces;
+
+namespace Restaurant.Application.Commands
+{
+    public class UpdateDishCommandHandler
+        (IRestaurantDbContext dbContext)
+        :
+        IRequestHandler<UpdateDishCommand>
+    {
+        private readonly IRestaurantDbContext _dbContext = dbContext;
+
+        public async Task Handle(UpdateDishCommand request, CancellationToken cancellationToken)
+        {
+            var entity = await
+                _dbContext
+                .Dishes
+                .Include(e => e.Content)
+                .Include(e => e.Timestamps)
+                .Include(e => e.Categories)
+                .FirstOrDefaultAsync(dish => dish.Id == request.Id, cancellationToken)
+                ?? throw new NotFoundException(nameof(Domain.Entities.Dish), request.Id);
+
+            var categories = await
+                _dbContext
+                .Categories
+                .Include(e => e.Content)
+                .Include(e => e.Timestamps)
+                .Where(c => request.Categories.Contains(c.Id))
+                .ToListAsync(cancellationToken) ?? [];
+
+            entity.Name = request.Name ?? entity.Name;
+            entity.Description = request.Description ?? entity.Description;
+            entity.Price = request.Price ?? entity.Price;
+            entity.Image = request.Image ?? entity.Image;
+            entity.Weight = request.Weight ?? entity.Weight;
+            entity.Categories = categories ?? entity.Categories;
+            if (request.Content != null)
+            {
+                entity.Content.IsPublished = request.Content.IsPublished ?? entity.Content.IsPublished;
+            }
+            entity.Timestamps.UpdatedAt = DateTime.UtcNow;
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+    }
+}

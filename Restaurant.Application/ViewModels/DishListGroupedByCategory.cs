@@ -8,6 +8,6 @@
     public class CategoryDishesDto
     {
         public required Guid CategoryId { get; set; }
-        public ICollection<DishLookup>? Dishes { get; set; }
+        public ICollection<DishItem>? Dishes { get; set; }
     }
 }

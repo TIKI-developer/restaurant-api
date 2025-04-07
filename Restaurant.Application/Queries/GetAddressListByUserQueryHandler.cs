@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Application.ViewModels;
 
-namespace Restaurant.Application.Entities.Address.Queries.GetByUser
+namespace Restaurant.Application.Queries
 {
-    public class GetAddressListByUserQueryHandler 
+    public class GetAddressListByUserQueryHandler
         (IRestaurantDbContext dbContext,
         IMapper mapper)
         : IRequestHandler<GetAddressListByUserQuery, AddressList>

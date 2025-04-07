@@ -5,4 +5,3 @@
         public ICollection<AddressDetails>? Addresses { get; set; }
     }
 }
-    

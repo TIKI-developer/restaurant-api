@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Entities.Category.Commands.Create;
-using Restaurant.Application.Entities.Category.Commands.Delete;
-using Restaurant.Application.Entities.Category.Commands.Update;
-using Restaurant.Application.Entities.Category.Queries.Get;
-using Restaurant.Application.Entities.Category.Queries.GetById;
+using Restaurant.Application.Commands;
+using Restaurant.Application.Queries;
 using Restaurant.Application.ViewModels;
-using Restaurant.WebApi.Models.Category;
+using Restaurant.WebApi.Models;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -20,7 +17,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryDto createCategory)
         {
-            var command = _mapper.Map<CreateCommand>(createCategory);
+            var command = _mapper.Map<CreateCategoryCommand>(createCategory);
 
             var categoryId = await Mediator.Send(command);
 
@@ -31,7 +28,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(Guid id, [FromBody] UpdateCategoryDto updateCategoryDto)
         {
-            var command = _mapper.Map<UpdateCommand>(updateCategoryDto);
+            var command = _mapper.Map<UpdateCategoryCommand>(updateCategoryDto);
 
             command.Id = id;
 
@@ -44,7 +41,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var command = new DeleteCommand
+            var command = new DeleteCategoryCommand
             {
                 Id = id,
             };
@@ -56,7 +53,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDetails>> GetById(Guid id)
         {
-            var query = new GetByIdQuery
+            var query = new GetCategoryByIdQuery
             {
                 Id = id
             };
@@ -69,7 +66,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<CategoryList>> Get()
         {
-            var query = new GetQuery();
+            var query = new GetCategoryListQuery();
 
             var vm = await Mediator.Send(query);
 
@@ -79,7 +76,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("published")]
         public async Task<ActionResult<CategoryList>> GetPublished()
         {
-            var query = new GetPublishedQuery();
+            var query = new GetPublishedCategoryListQuery();
 
             var vm = await Mediator.Send(query);
 
