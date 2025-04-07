@@ -18,7 +18,7 @@ namespace Restaurant.Application.Entities.Category.Commands.Delete
                 _dbContext
                     .Categories
                     .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.Category), request.Id);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.Category), request.Id);
 
             _dbContext.Categories.Remove(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);

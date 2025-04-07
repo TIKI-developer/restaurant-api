@@ -18,7 +18,7 @@ namespace Restaurant.Application.Entities.Promotion.Command.Delete
                 _dbContext
                 .Promotions
                 .FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Promotion), request.Id);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Promotion), request.Id);
 
             _dbContext.Promotions.Remove(promotion);
             await _dbContext.SaveChangesAsync(cancellationToken);

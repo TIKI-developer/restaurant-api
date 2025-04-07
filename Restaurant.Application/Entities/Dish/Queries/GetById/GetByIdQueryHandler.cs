@@ -21,10 +21,10 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetById
             var entity = await
                 _dbContext
                 .Dishes
-                .Include<Domain.Dish, List<Domain.Category>>(d => d.Categories)
+                .Include<Domain.Entities.Dish, List<Domain.Entities.Category>>(d => d.Categories)
                 .FirstOrDefaultAsync(dish =>
                 dish.Id == request.Id, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Dish), request.Id);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Dish), request.Id);
 
             return _mapper.Map<DishDetails>(entity);
         }

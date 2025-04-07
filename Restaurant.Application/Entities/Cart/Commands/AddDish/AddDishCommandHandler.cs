@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Entities.Cart.Commands.AddDish
 {
@@ -20,7 +20,7 @@ namespace Restaurant.Application.Entities.Cart.Commands.AddDish
                 .Carts
                 .Include(c => c.Items)
                 .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Cart), request.UserId);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Cart), request.UserId);
 
             var dishId = request.DishId;
 
@@ -39,7 +39,7 @@ namespace Restaurant.Application.Entities.Cart.Commands.AddDish
                     _dbContext
                     .Dishes
                     .FindAsync([dishId], cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.Dish), dishId);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.Dish), dishId);
 
                 var cartDish = new CartItem
                 {

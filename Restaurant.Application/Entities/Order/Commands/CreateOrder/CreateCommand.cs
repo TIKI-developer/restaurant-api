@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Restaurant.Application.Models.Cart;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Entities.Order.Commands.Create
 {

@@ -23,7 +23,7 @@ namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
                     .Orders
                     .Include(e => e.User)
                     .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.Order), request.Id);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.Order), request.Id);
 
             order.Status = request.NewStatus ?? order.Status;
             order.DeliveryCost = request.DeliveryCost ?? order.DeliveryCost;

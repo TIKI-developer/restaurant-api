@@ -21,7 +21,7 @@ namespace Restaurant.Application.Entities.Category.Commands.Update
                     .Include(e => e.Timestamps)
                     .FirstOrDefaultAsync(dish =>
                     dish.Id == request.Id, cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.Category), request.Id);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.Category), request.Id);
 
             entity.Name = request.Name ?? entity.Name;
             entity.Image = request.Image ?? entity.Image;

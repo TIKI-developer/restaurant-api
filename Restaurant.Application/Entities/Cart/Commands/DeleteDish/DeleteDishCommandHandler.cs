@@ -18,11 +18,11 @@ namespace Restaurant.Application.Entities.Cart.Commands.DeleteDish
                 _dbContext.Carts
                 .Include(c => c.Items)
                 .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Cart), request.UserId);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Cart), request.UserId);
 
             var cartDish = cart.Items
                 .FirstOrDefault(d => d.DishId == request.DishId)
-                ?? throw new NotFoundException(nameof(Domain.Dish), request.DishId);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Dish), request.DishId);
 
             if (cartDish.Count > 1)
             {

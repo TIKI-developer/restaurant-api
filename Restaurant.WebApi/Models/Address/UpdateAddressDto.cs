@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Restaurant.Application.Commands;
 using Restaurant.Application.Common.Mappings;
-using Restaurant.Application.Entities.Address.Commands.UpdateAddress;
 
 namespace Restaurant.WebApi.Models.Address
 {

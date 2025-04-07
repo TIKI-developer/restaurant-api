@@ -23,7 +23,7 @@ namespace Restaurant.Application.Entities.Promotion.Queries.GetById
                 .Promotions
                 .Include(e => e.Content)
                 .FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Promotion), request.Id);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Promotion), request.Id);
 
             return _mapper.Map<PromotionDetails>(promotion);
         }

@@ -9,6 +9,7 @@ using Restaurant.Application.Entities.Address;
 using Restaurant.Application.ViewModels;
 using Restaurant.WebApi.Models.User;
 using Restaurant.WebApi.Models.Address;
+using Restaurant.Application.Commands;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -78,7 +79,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("addresses")]
         public async Task<ActionResult<AddressList>> GetAddresses()
         {
-            var query = new Application.Entities.Address.Queries.GetByUser.GetByUserQuery
+            var query = new Application.Entities.Address.Queries.GetByUser.GetAddressListByUserQuery
             {
                 UserId = UserId
             };
@@ -89,7 +90,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("addresses/{id}")]
         public async Task<ActionResult<AddressDetails>> GetAddressBy(Guid id)
         {
-            var query = new Application.Entities.Address.Queries.GetById.GetByIdQuery
+            var query = new Application.Entities.Address.Queries.GetById.GetAddressByIdQuery
             {
                 Id = id
             };
@@ -100,7 +101,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost("addresses")]
         public async Task<IActionResult> CreateAddress([FromBody] AddAddressDto dto)
         {
-            var command = _mapper.Map<Application.Entities.Address.Commands.AddAddress.AddAddressCommand>(dto);
+            var command = _mapper.Map<AddAddressCommand>(dto);
             command.UserId = UserId;
             var id = await Mediator.Send(command);
 
@@ -110,7 +111,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPut("addresses/{id}")]
         public async Task<IActionResult> UpdateAddress(Guid id, [FromBody] UpdateAddressDto dto)
         {
-            var command = _mapper.Map<Application.Entities.Address.Commands.UpdateAddress.UpdateAddressCommand>(dto);
+            var command = _mapper.Map<UpdateAddressCommand>(dto);
             command.Id = id;
             await Mediator.Send(command);
 

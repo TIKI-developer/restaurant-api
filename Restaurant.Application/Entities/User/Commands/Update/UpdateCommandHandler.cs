@@ -20,7 +20,7 @@ namespace Restaurant.Application.Entities.User.Commands.Update
                 .Include(e => e.Profile)
                 .Include(e => e.Timestamps)
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.User), request.Id);
+                ?? throw new NotFoundException(nameof(Domain.Entities.User), request.Id);
 
             user.Profile.Name = request.Name ?? user.Profile.Name;
             user.DefaultAddressId = request.DefaultAddressId ?? user.DefaultAddressId;

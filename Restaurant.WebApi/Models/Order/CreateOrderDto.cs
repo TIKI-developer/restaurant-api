@@ -1,6 +1,6 @@
 ﻿using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Entities.Order.Commands.Create;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 using Restaurant.WebApi.Models.Cart;
 
 namespace Restaurant.WebApi.Models.Order

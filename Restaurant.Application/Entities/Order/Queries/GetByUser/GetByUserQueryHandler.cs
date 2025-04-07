@@ -23,7 +23,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetByUser
                 _dbContext
                     .Users
                     .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.User), request.UserId);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.User), request.UserId);
 
             var orders = await
                 _dbContext

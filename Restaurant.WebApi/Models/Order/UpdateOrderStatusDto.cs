@@ -1,6 +1,6 @@
 ﻿using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Entities.Order.Commands.UpdateStatus;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.WebApi.Models.Order
 {

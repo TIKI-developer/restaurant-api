@@ -24,7 +24,7 @@ namespace Restaurant.Application.Entities.Category.Queries.GetById
                     .Include(e => e.Content)
                     .Include(e => e.Timestamps)
                     .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.Category), request.Id);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.Category), request.Id);
 
             return _mapper.Map<CategoryDetails>(entity);
         }

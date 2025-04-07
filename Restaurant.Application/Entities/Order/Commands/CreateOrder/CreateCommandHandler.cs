@@ -5,6 +5,7 @@ using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
 using Restaurant.Application.Models.Cart;
 using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Entities.Order.Commands.Create
 {
@@ -20,7 +21,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                     .Users
                     .Include(e => e.Profile)
                     .FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.User), request.UserId);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.User), request.UserId);
 
             ICart cart;
 
@@ -35,7 +36,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                         .Carts
                         .Include(c => c.Items)
                         .FirstOrDefaultAsync(c => c.UserId == request.UserId, cancellationToken)
-                        ?? throw new NotFoundException(nameof(Domain.Cart), request.UserId);
+                        ?? throw new NotFoundException(nameof(Domain.Entities.Cart), request.UserId);
 
                 cart = _mapper.Map<CartDto>(remoteCart);
             }
@@ -54,7 +55,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
                 _dbContext
                 .Addresses
                 .FirstOrDefaultAsync(e => e.Id == request.AddressId, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Address), request.AddressId);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Address), request.AddressId);
 
             var dishIds = cart.Items.Select(ci => ci.DishId).ToList();
 
@@ -106,7 +107,7 @@ namespace Restaurant.Application.Entities.Order.Commands.Create
             return order.Id;
         }
 
-        private static float CalculateCost(ICart cart, List<Domain.Dish> dishes)
+        private static float CalculateCost(ICart cart, List<Domain.Entities.Dish> dishes)
         {
             float totalCost = 0;
 

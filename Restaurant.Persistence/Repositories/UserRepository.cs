@@ -1,6 +1,6 @@
 ﻿using Restaurant.Application.Interfaces;
 using Restaurant.Application.Interfaces.Repositories;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Persistence.Repositories
 {

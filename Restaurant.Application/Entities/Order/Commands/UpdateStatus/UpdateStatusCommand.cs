@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Entities.Order.Commands.UpdateStatus
 {

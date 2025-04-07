@@ -28,7 +28,7 @@ namespace Restaurant.Application.Entities.Dish.Queries.GetByCategory
                     .ProjectTo<DishLookup>(_mapper.ConfigurationProvider)
                     .AsNoTracking()
                     .ToListAsync(cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.Dish), request.CategoryId);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.Dish), request.CategoryId);
             return new DishList { Dishes = dishList };
         }
     }

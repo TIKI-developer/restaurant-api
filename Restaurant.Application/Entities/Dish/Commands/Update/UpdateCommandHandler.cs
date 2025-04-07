@@ -21,7 +21,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.Update
                 .Include(e => e.Timestamps)
                 .Include(e => e.Categories)
                 .FirstOrDefaultAsync(dish => dish.Id == request.Id, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Dish), request.Id);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Dish), request.Id);
 
             var categories = await
                 _dbContext

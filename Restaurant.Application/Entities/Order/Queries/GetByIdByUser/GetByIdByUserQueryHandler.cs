@@ -27,7 +27,7 @@ namespace Restaurant.Application.Entities.Order.Queries.GetByIdByUser
                 .ThenInclude(u => u.Profile)
                 .Where(o => o.User.Id == request.UserId)
                 .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Order), request.Id);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Order), request.Id);
 
             return _mapper.Map<OrderDetails>(order);
         }

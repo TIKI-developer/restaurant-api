@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain;
 
 namespace Restaurant.Application.Entities.Promotion.Command.Update
 {
@@ -29,7 +28,7 @@ namespace Restaurant.Application.Entities.Promotion.Command.Update
                 .Include(e => e.Content)
                 .Include(e => e.Timestamps)
                 .FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Promotion), request.Id);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Promotion), request.Id);
 
             promotion.Title = request.Title ?? promotion.Title;
             promotion.Description = request.Description ?? promotion.Description;

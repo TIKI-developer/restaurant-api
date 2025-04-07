@@ -18,7 +18,7 @@ namespace Restaurant.Application.Entities.Dish.Commands.Delete
                 _dbContext
                 .Dishes
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
-                ?? throw new NotFoundException(nameof(Domain.Dish), request.Id);
+                ?? throw new NotFoundException(nameof(Domain.Entities.Dish), request.Id);
 
             _dbContext.Dishes.Remove(entity);
 

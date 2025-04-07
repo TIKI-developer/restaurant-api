@@ -24,7 +24,7 @@ namespace Restaurant.Application.Entities.Cart.Queries.GetDetails
                     .Include(c => c.Items)
                     .ThenInclude(i => i.Dish)
                     .FirstOrDefaultAsync(e => e.UserId == request.UserId, cancellationToken)
-                    ?? throw new NotFoundException(nameof(Domain.Cart), request.UserId);
+                    ?? throw new NotFoundException(nameof(Domain.Entities.Cart), request.UserId);
 
             return _mapper.Map<CartDetails>(cart);
         }

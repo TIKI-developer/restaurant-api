@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Entities.User.Commands.Login
 {
@@ -41,7 +42,7 @@ namespace Restaurant.Application.Entities.User.Commands.Login
                 {
                     Name = request.Name
                 };
-                Domain.User newUser;
+                Domain.Entities.User newUser;
 
                 if (_adminIdentityProvider.IsAdmin(request))
                 {
