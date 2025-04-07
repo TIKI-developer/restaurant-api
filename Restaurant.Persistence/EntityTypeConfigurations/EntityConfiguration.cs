@@ -8,6 +8,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Entity> builder)
         {
+            builder
+                .ToTable("Entities");
             builder.UseTptMappingStrategy();
 
             builder

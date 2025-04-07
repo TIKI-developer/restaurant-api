@@ -9,6 +9,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
             builder
+                .ToTable("Carts");
+            builder
                 .HasIndex(x => x.UserId);
             builder
                 .HasOne(c => c.User)

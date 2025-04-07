@@ -1,9 +1,9 @@
 ﻿using Restaurant.Application.Common.Mappings;
 using Restaurant.Domain.Entities;
 
-namespace Restaurant.Application.ViewModels
+namespace Restaurant.Application.Models
 {
-    public class CartItemLookup : IMapWith<CartItem>
+    public class CartItemDto : IMapWith<CartDishItem>
     {
         public required Guid Id { get; set; }
         public required string Name { get; set; }
@@ -13,7 +13,7 @@ namespace Restaurant.Application.ViewModels
 
         public void Mapping(AutoMapper.Profile profile)
         {
-            profile.CreateMap<CartItem, CartItemLookup>()
+            profile.CreateMap<CartDishItem, CartItemDto>()
                 .ForMember(dto => dto.Id,
                 opt => opt.MapFrom(cartDish => cartDish.Dish.Id))
                 .ForMember(dto => dto.Name,

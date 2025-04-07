@@ -41,7 +41,7 @@ namespace Restaurant.Application.Commands
                     .FindAsync([dishId], cancellationToken)
                     ?? throw new NotFoundException(nameof(Dish), dishId);
 
-                var cartDish = new CartItem
+                var cartDish = new CartDishItem
                 {
                     DishId = dishId,
                     Dish = dish,

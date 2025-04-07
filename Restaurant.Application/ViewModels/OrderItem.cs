@@ -16,7 +16,7 @@ namespace Restaurant.Application.ViewModels
         public required DateTime ReceiptAt { get; set; }
         public required Timestamps Timestamps { get; set; }
         public required Guid UserId { get; set; }
-        public required ICollection<OrderDetails.OrderItemLookup> Dishes { get; set; }
+        public required ICollection<OrderDetails.OrderDishItemDto> Dishes { get; set; }
 
         public void Mapping(AutoMapper.Profile profile)
         {

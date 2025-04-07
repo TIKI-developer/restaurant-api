@@ -4,10 +4,13 @@ using Restaurant.Domain.Entities;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
+    public class OrderItemConfiguration : IEntityTypeConfiguration<OrderDishItem>
     {
-        public void Configure(EntityTypeBuilder<OrderItem> builder)
+        public void Configure(EntityTypeBuilder<OrderDishItem> builder)
         {
+            builder
+                .ToTable("OrderDishItems");
+
             builder.HasKey(e => new { e.OrderId, e.DishId });
 
             builder

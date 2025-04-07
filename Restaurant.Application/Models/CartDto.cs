@@ -9,14 +9,14 @@ namespace Restaurant.Application.Models.Cart
     {
         public required ICollection<CartItemDto> Items { get; set; }
 
-        public class CartItemDto : IMapWith<CartItem>
+        public class CartItemDto : IMapWith<CartDishItem>
         {
             public required Guid DishId { get; set; }
             public required int Count { get; set; }
 
             public void Mapping(Profile profile)
             {
-                profile.CreateMap<CartItem, CartItemDto>();
+                profile.CreateMap<CartDishItem, CartItemDto>();
             }
         }
         public void Mapping(Profile profile)

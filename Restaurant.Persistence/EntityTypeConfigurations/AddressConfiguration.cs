@@ -9,6 +9,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder
+                .ToTable("Addresses");
+            builder
                 .HasOne(e => e.User)
                 .WithMany(e => e.Addresses)
                 .HasForeignKey(e => e.UserId);

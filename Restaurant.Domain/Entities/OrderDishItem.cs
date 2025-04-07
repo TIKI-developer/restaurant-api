@@ -1,6 +1,6 @@
 ﻿namespace Restaurant.Domain.Entities
 {
-    public class OrderItem
+    public class OrderDishItem
     {
         public required Guid OrderId { get; set; }
         public required Order Order { get; set; }

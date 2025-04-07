@@ -9,6 +9,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Promotion> builder)
         {
             builder
+                .ToTable("Promotions");
+            builder
                 .OwnsOne(e => e.Content, c =>
                 {
                     c.WithOwner();

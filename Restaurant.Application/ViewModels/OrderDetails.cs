@@ -4,7 +4,7 @@ using Restaurant.Domain.ValueObjects;
 
 namespace Restaurant.Application.ViewModels
 {
-    public class OrderDetails : IMapWith<Order>
+    public partial class OrderDetails : IMapWith<Order>
     {
         public required string Status { get; set; }
         public required Content Content { get; set; }
@@ -22,7 +22,7 @@ namespace Restaurant.Application.ViewModels
         public string? Comment { get; set; }
         public required string UserName { get; set; }
         public required string UserNumber { get; set; }
-        public required ICollection<OrderItemLookup> Dishes { get; set; }
+        public required ICollection<OrderDishItemDto> Dishes { get; set; }
 
         public void Mapping(AutoMapper.Profile profile)
         {
@@ -48,19 +48,6 @@ namespace Restaurant.Application.ViewModels
 
                 .ForMember(to => to.UserNumber,
                     opt => opt.MapFrom(from => from.User.PhoneNumber));
-        }
-
-        public class OrderItemLookup : IMapWith<Domain.Entities.OrderItem>
-        {
-            public required string DishName { get; set; }
-            public required int Count { get; set; }
-
-            public void Mapping(AutoMapper.Profile profile)
-            {
-                profile.CreateMap<Domain.Entities.OrderItem, OrderItemLookup>()
-                    .ForMember(to => to.DishName,
-                        opt => opt.MapFrom(from => from.Dish.Name));
-            }
         }
     }
 }

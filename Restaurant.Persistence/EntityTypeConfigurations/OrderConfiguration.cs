@@ -9,6 +9,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder
+                .ToTable("Orders");
+            builder
                 .HasOne(o => o.User)
                 .WithMany(c => c.Orders);
             builder

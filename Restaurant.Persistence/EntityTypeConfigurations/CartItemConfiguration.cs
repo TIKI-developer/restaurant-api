@@ -4,10 +4,12 @@ using Restaurant.Domain.Entities;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
+    public class CartItemConfiguration : IEntityTypeConfiguration<CartDishItem>
     {
-        public void Configure(EntityTypeBuilder<CartItem> builder)
+        public void Configure(EntityTypeBuilder<CartDishItem> builder)
         {
+            builder
+                .ToTable("CartDishItems");
             builder
                 .HasKey(e => new { e.CartId, e.DishId });
 

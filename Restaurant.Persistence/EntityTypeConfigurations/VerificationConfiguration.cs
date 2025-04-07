@@ -9,6 +9,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Verification> builder)
         {
             builder
+                .ToTable("Verifications");
+            builder
                 .HasKey(e => e.Number);
             builder
                 .HasIndex(e => e.Number)

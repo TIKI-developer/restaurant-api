@@ -1,11 +1,12 @@
 ﻿using Restaurant.Application.Common.Mappings;
+using Restaurant.Application.Models;
 using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.ViewModels
 {
     public class CartDetails : IMapWith<Cart>
     {
-        public ICollection<CartItemLookup>? Dishes { get; set; }
+        public ICollection<CartItemDto>? Dishes { get; set; }
 
         public void Mapping(AutoMapper.Profile profile)
         {

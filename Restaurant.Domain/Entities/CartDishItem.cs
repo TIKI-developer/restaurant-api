@@ -1,6 +1,6 @@
 namespace Restaurant.Domain.Entities
 {
-    public class CartItem
+    public class CartDishItem
     {
         public required Guid CartId { get; set; }
         public required Cart Cart { get; set; }

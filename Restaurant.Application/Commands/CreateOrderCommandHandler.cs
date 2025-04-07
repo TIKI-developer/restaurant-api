@@ -89,7 +89,7 @@ namespace Restaurant.Application.Commands
                 Cost = totalCost
             };
 
-            order.Items = cart.Items.Select(ci => new OrderItem
+            order.Items = cart.Items.Select(ci => new OrderDishItem
             {
                 Order = order,
                 OrderId = order.Id,

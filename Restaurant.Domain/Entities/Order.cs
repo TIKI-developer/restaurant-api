@@ -15,7 +15,7 @@
         public string? Comment { get; set; }
         public required DateTime ReceiptAt { get; set; }
         public required User User { get; set; }
-        public List<OrderItem> Items { get; set; } = [];
+        public List<OrderDishItem> Items { get; set; } = [];
     }
     public enum OrderStatus
     {

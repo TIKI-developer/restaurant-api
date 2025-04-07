@@ -9,6 +9,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder
+                .ToTable("Users");
+            builder
                 .HasIndex(e => e.PhoneNumber)
                 .IsUnique();
             builder
