@@ -92,8 +92,8 @@ namespace Restaurant.Application.Commands
 
                 user = newUser;
             }
-
-            if (request.FncToken != null) user.FncTokens.Add(new FncToken { Value = request.FncToken, User = user });
+            if (request.FncToken != null && !user.FncTokens.Select(e => e.Value).Contains(request.FncToken)) 
+                user.FncTokens.Add(new FncToken { Value = request.FncToken, User = user });
             token = _jwtProvider.Generate(user);
             verification.CanLogin = false;
             verification.CheckId = null;
