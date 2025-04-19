@@ -47,15 +47,10 @@ namespace Restaurant.Application.Commands
             }
 
 
-            if (user.DefaultAddressId == null && request.AddressId == null && request.ReceiptMethod == ReceiptMethod.Delivery)
+            if (request.Address == null && request.ReceiptMethod == ReceiptMethod.Delivery)
             {
                 throw new Exception("Введите адрес доставки!");
             }
-            var address = await
-                _dbContext
-                .Addresses
-                .FirstOrDefaultAsync(e => e.Id == request.AddressId, cancellationToken)
-                ?? throw new NotFoundException(nameof(Address), request.AddressId);
 
             var dishIds = cart.Items.Select(ci => ci.DishId).ToList();
 
@@ -76,7 +71,7 @@ namespace Restaurant.Application.Commands
                 PersonQuantity = request.PersonQuantity,
                 Status = OrderStatus.Pending,
                 Comment = request.Comment,
-                Address = address,
+                Address = request.Address,
                 Timestamps = new Timestamps
                 {
                     CreatedAt = DateTime.UtcNow,

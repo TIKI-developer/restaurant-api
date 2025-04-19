@@ -12,8 +12,8 @@ using Restaurant.Persistence;
 namespace Restaurant.Persistence.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20250404140555_AddedAddressList")]
-    partial class AddedAddressList
+    [Migration("20250419043604_SavedAddresses")]
+    partial class SavedAddresses
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace Restaurant.Persistence.Migrations
                     b.ToTable("CategoryDish");
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.CartItem", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.CartDishItem", b =>
                 {
                     b.Property<Guid>("CartId")
                         .HasColumnType("uuid");
@@ -57,10 +57,10 @@ namespace Restaurant.Persistence.Migrations
 
                     b.HasIndex("DishId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartItem", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Entity", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Entity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,12 +71,12 @@ namespace Restaurant.Persistence.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Entities");
+                    b.ToTable("Entities", (string)null);
 
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.OrderItem", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.OrderDishItem", b =>
                 {
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uuid");
@@ -93,10 +93,10 @@ namespace Restaurant.Persistence.Migrations
 
                     b.HasIndex("DishId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItem", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Verification", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Verification", b =>
                 {
                     b.Property<string>("Number")
                         .HasColumnType("text");
@@ -114,46 +114,12 @@ namespace Restaurant.Persistence.Migrations
                     b.HasIndex("Number")
                         .IsUnique();
 
-                    b.ToTable("Verifications");
+                    b.ToTable("Verifications", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Address", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Cart", b =>
                 {
-                    b.HasBaseType("Restaurant.Domain.Entity");
-
-                    b.Property<string>("ApartmentNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("BuildingNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Entrance")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Floor")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("Restaurant.Domain.Cart", b =>
-                {
-                    b.HasBaseType("Restaurant.Domain.Entity");
+                    b.HasBaseType("Restaurant.Domain.Entities.Entity");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -161,12 +127,12 @@ namespace Restaurant.Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Category", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Category", b =>
                 {
-                    b.HasBaseType("Restaurant.Domain.Entity");
+                    b.HasBaseType("Restaurant.Domain.Entities.Entity");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -174,14 +140,15 @@ namespace Restaurant.Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Dish", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Dish", b =>
                 {
-                    b.HasBaseType("Restaurant.Domain.Entity");
+                    b.HasBaseType("Restaurant.Domain.Entities.Entity");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -201,21 +168,18 @@ namespace Restaurant.Persistence.Migrations
                     b.Property<float>("Weight")
                         .HasColumnType("real");
 
-                    b.ToTable("Dishes");
+                    b.ToTable("Dishes", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Order", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Order", b =>
                 {
-                    b.HasBaseType("Restaurant.Domain.Entity");
+                    b.HasBaseType("Restaurant.Domain.Entities.Entity");
 
                     b.Property<bool>("AddChopsticks")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("AddForks")
                         .HasColumnType("boolean");
-
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -248,38 +212,57 @@ namespace Restaurant.Persistence.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Promotion", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Promotion", b =>
                 {
-                    b.HasBaseType("Restaurant.Domain.Entity");
+                    b.HasBaseType("Restaurant.Domain.Entities.Entity");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
 
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("IsAdvanced")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
-                    b.ToTable("Promotions");
+                    b.ToTable("Promotions", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.User", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.SavedAddress", b =>
                 {
-                    b.HasBaseType("Restaurant.Domain.Entity");
+                    b.HasBaseType("Restaurant.Domain.Entities.Entity");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SavedAddresses", (string)null);
+                });
+
+            modelBuilder.Entity("Restaurant.Domain.Entities.User", b =>
+                {
+                    b.HasBaseType("Restaurant.Domain.Entities.Entity");
 
                     b.Property<Guid?>("DefaultAddressId")
                         .HasColumnType("uuid");
@@ -292,47 +275,47 @@ namespace Restaurant.Persistence.Migrations
                     b.HasIndex("PhoneNumber")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Admin", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Admin", b =>
                 {
-                    b.HasBaseType("Restaurant.Domain.User");
+                    b.HasBaseType("Restaurant.Domain.Entities.User");
 
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Client", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Client", b =>
                 {
-                    b.HasBaseType("Restaurant.Domain.User");
+                    b.HasBaseType("Restaurant.Domain.Entities.User");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("CategoryDish", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Category", null)
+                    b.HasOne("Restaurant.Domain.Entities.Category", null)
                         .WithMany()
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Restaurant.Domain.Dish", null)
+                    b.HasOne("Restaurant.Domain.Entities.Dish", null)
                         .WithMany()
                         .HasForeignKey("DishesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.CartItem", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.CartDishItem", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Cart", "Cart")
+                    b.HasOne("Restaurant.Domain.Entities.Cart", "Cart")
                         .WithMany("Items")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Restaurant.Domain.Dish", "Dish")
+                    b.HasOne("Restaurant.Domain.Entities.Dish", "Dish")
                         .WithMany()
                         .HasForeignKey("DishId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -343,9 +326,9 @@ namespace Restaurant.Persistence.Migrations
                     b.Navigation("Dish");
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Entity", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Entity", b =>
                 {
-                    b.OwnsOne("Restaurant.Domain.Timestamps", "Timestamps", b1 =>
+                    b.OwnsOne("Restaurant.Domain.ValueObjects.Timestamps", "Timestamps", b1 =>
                         {
                             b1.Property<Guid>("EntityId")
                                 .HasColumnType("uuid");
@@ -368,15 +351,15 @@ namespace Restaurant.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.OrderItem", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.OrderDishItem", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Dish", "Dish")
+                    b.HasOne("Restaurant.Domain.Entities.Dish", "Dish")
                         .WithMany()
                         .HasForeignKey("DishId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Restaurant.Domain.Order", "Order")
+                    b.HasOne("Restaurant.Domain.Entities.Order", "Order")
                         .WithMany("Items")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -387,9 +370,9 @@ namespace Restaurant.Persistence.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Verification", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Verification", b =>
                 {
-                    b.OwnsOne("Restaurant.Domain.Timestamps", "Timestamps", b1 =>
+                    b.OwnsOne("Restaurant.Domain.ValueObjects.Timestamps", "Timestamps", b1 =>
                         {
                             b1.Property<string>("VerificationNumber")
                                 .HasColumnType("text");
@@ -412,49 +395,32 @@ namespace Restaurant.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Address", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Cart", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Entity", null)
+                    b.HasOne("Restaurant.Domain.Entities.Entity", null)
                         .WithOne()
-                        .HasForeignKey("Restaurant.Domain.Address", "Id")
+                        .HasForeignKey("Restaurant.Domain.Entities.Cart", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Restaurant.Domain.User", "User")
-                        .WithMany("Addresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Restaurant.Domain.Cart", b =>
-                {
-                    b.HasOne("Restaurant.Domain.Entity", null)
-                        .WithOne()
-                        .HasForeignKey("Restaurant.Domain.Cart", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Restaurant.Domain.User", "User")
+                    b.HasOne("Restaurant.Domain.Entities.User", "User")
                         .WithOne("Cart")
-                        .HasForeignKey("Restaurant.Domain.Cart", "UserId")
+                        .HasForeignKey("Restaurant.Domain.Entities.Cart", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Category", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Category", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Entity", null)
+                    b.HasOne("Restaurant.Domain.Entities.Entity", null)
                         .WithOne()
-                        .HasForeignKey("Restaurant.Domain.Category", "Id")
+                        .HasForeignKey("Restaurant.Domain.Entities.Category", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Restaurant.Domain.Content", "Content", b1 =>
+                    b.OwnsOne("Restaurant.Domain.ValueObjects.Content", "Content", b1 =>
                         {
                             b1.Property<Guid>("CategoryId")
                                 .HasColumnType("uuid");
@@ -474,15 +440,15 @@ namespace Restaurant.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Dish", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Dish", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Entity", null)
+                    b.HasOne("Restaurant.Domain.Entities.Entity", null)
                         .WithOne()
-                        .HasForeignKey("Restaurant.Domain.Dish", "Id")
+                        .HasForeignKey("Restaurant.Domain.Entities.Dish", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Restaurant.Domain.Content", "Content", b1 =>
+                    b.OwnsOne("Restaurant.Domain.ValueObjects.Content", "Content", b1 =>
                         {
                             b1.Property<Guid>("DishId")
                                 .HasColumnType("uuid");
@@ -502,38 +468,69 @@ namespace Restaurant.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Order", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Order", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.HasOne("Restaurant.Domain.Entity", null)
+                    b.HasOne("Restaurant.Domain.Entities.Entity", null)
                         .WithOne()
-                        .HasForeignKey("Restaurant.Domain.Order", "Id")
+                        .HasForeignKey("Restaurant.Domain.Entities.Order", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Restaurant.Domain.User", "User")
+                    b.HasOne("Restaurant.Domain.Entities.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.OwnsOne("Restaurant.Domain.ValueObjects.Address", "Address", b1 =>
+                        {
+                            b1.Property<Guid>("OrderId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("ApartmentNumber")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("BuildingNumber")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("Entrance")
+                                .HasColumnType("text");
+
+                            b1.Property<int>("Floor")
+                                .HasColumnType("integer");
+
+                            b1.Property<string>("Street")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
 
                     b.Navigation("Address");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Promotion", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Promotion", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Entity", null)
+                    b.HasOne("Restaurant.Domain.Entities.Entity", null)
                         .WithOne()
-                        .HasForeignKey("Restaurant.Domain.Promotion", "Id")
+                        .HasForeignKey("Restaurant.Domain.Entities.Promotion", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Restaurant.Domain.Content", "Content", b1 =>
+                    b.OwnsOne("Restaurant.Domain.ValueObjects.Content", "Content", b1 =>
                         {
                             b1.Property<Guid>("PromotionId")
                                 .HasColumnType("uuid");
@@ -553,15 +550,70 @@ namespace Restaurant.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.User", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.SavedAddress", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Entity", null)
+                    b.HasOne("Restaurant.Domain.Entities.Entity", null)
                         .WithOne()
-                        .HasForeignKey("Restaurant.Domain.User", "Id")
+                        .HasForeignKey("Restaurant.Domain.Entities.SavedAddress", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsMany("Restaurant.Domain.FncToken", "FncTokens", b1 =>
+                    b.HasOne("Restaurant.Domain.Entities.User", "User")
+                        .WithMany("SavedAddresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("Restaurant.Domain.ValueObjects.Address", "Address", b1 =>
+                        {
+                            b1.Property<Guid>("SavedAddressId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("ApartmentNumber")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("BuildingNumber")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("Entrance")
+                                .HasColumnType("text");
+
+                            b1.Property<int>("Floor")
+                                .HasColumnType("integer");
+
+                            b1.Property<string>("Street")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.HasKey("SavedAddressId");
+
+                            b1.ToTable("SavedAddresses");
+
+                            b1.WithOwner()
+                                .HasForeignKey("SavedAddressId");
+                        });
+
+                    b.Navigation("Address")
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Restaurant.Domain.Entities.User", b =>
+                {
+                    b.HasOne("Restaurant.Domain.Entities.Entity", null)
+                        .WithOne()
+                        .HasForeignKey("Restaurant.Domain.Entities.User", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsMany("Restaurant.Domain.Entities.FncToken", "FncTokens", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -586,7 +638,7 @@ namespace Restaurant.Persistence.Migrations
                             b1.Navigation("User");
                         });
 
-                    b.OwnsOne("Restaurant.Domain.UserProfile", "Profile", b1 =>
+                    b.OwnsOne("Restaurant.Domain.Entities.UserProfile", "Profile", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -609,41 +661,41 @@ namespace Restaurant.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Admin", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Admin", b =>
                 {
-                    b.HasOne("Restaurant.Domain.User", null)
+                    b.HasOne("Restaurant.Domain.Entities.User", null)
                         .WithOne()
-                        .HasForeignKey("Restaurant.Domain.Admin", "Id")
+                        .HasForeignKey("Restaurant.Domain.Entities.Admin", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Client", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Client", b =>
                 {
-                    b.HasOne("Restaurant.Domain.User", null)
+                    b.HasOne("Restaurant.Domain.Entities.User", null)
                         .WithOne()
-                        .HasForeignKey("Restaurant.Domain.Client", "Id")
+                        .HasForeignKey("Restaurant.Domain.Entities.Client", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Cart", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Cart", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.Order", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.Order", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("Restaurant.Domain.User", b =>
+            modelBuilder.Entity("Restaurant.Domain.Entities.User", b =>
                 {
-                    b.Navigation("Addresses");
-
                     b.Navigation("Cart");
 
                     b.Navigation("Orders");
+
+                    b.Navigation("SavedAddresses");
                 });
 #pragma warning restore 612, 618
         }

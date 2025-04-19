@@ -9,7 +9,7 @@ namespace Restaurant.Domain.Entities
         public List<Order>? Orders { get; set; } = [];
         public List<FncToken> FncTokens { get; set; } = [];
         public Guid? DefaultAddressId { get; set; }
-        public List<Address>? Addresses { get; set; }
+        public List<SavedAddress>? SavedAddresses { get; set; }
     }
     public class UserProfile
     {

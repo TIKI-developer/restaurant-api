@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Restaurant.Application.Models.Cart;
 using Restaurant.Domain.Entities;
+using Restaurant.Domain.ValueObjects;
 
 namespace Restaurant.Application.Commands
 {
@@ -8,7 +9,7 @@ namespace Restaurant.Application.Commands
     {
         public required Guid UserId { get; set; }
         public required ReceiptMethod ReceiptMethod { get; set; }
-        public Guid? AddressId { get; set; }
+        public Address? Address { get; set; }
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }
         public required bool AddChopsticks { get; set; }

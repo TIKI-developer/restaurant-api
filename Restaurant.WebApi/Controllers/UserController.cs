@@ -72,9 +72,9 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client, Admin")]
         [HttpGet("addresses")]
-        public async Task<ActionResult<AddressList>> GetAddresses()
+        public async Task<ActionResult<SavedAddressList>> GetAddresses()
         {
-            var query = new GetAddressListByUserQuery
+            var query = new GetSavedAddressListByUserQuery
             {
                 UserId = UserId
             };
@@ -83,9 +83,9 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client, Admin")]
         [HttpGet("addresses/{id}")]
-        public async Task<ActionResult<AddressDetails>> GetAddressBy(Guid id)
+        public async Task<ActionResult<SavedAddressDetails>> GetAddressBy(Guid id)
         {
-            var query = new GetAddressByIdQuery
+            var query = new GetSavedAddressByIdQuery
             {
                 Id = id
             };
@@ -94,9 +94,9 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client, Admin")]
         [HttpPost("addresses")]
-        public async Task<IActionResult> CreateAddress([FromBody] AddAddressDto dto)
+        public async Task<IActionResult> CreateAddress([FromBody] AddSavedAddressDto dto)
         {
-            var command = _mapper.Map<AddAddressCommand>(dto);
+            var command = _mapper.Map<AddSavedAddressCommand>(dto);
             command.UserId = UserId;
             var id = await Mediator.Send(command);
 
@@ -104,9 +104,9 @@ namespace Restaurant.WebApi.Controllers
         }
         [Authorize(Roles = "Client, Admin")]
         [HttpPut("addresses/{id}")]
-        public async Task<IActionResult> UpdateAddress(Guid id, [FromBody] UpdateAddressDto dto)
+        public async Task<IActionResult> UpdateAddress(Guid id, [FromBody] UpdateSavedAddressDto dto)
         {
-            var command = _mapper.Map<UpdateAddressCommand>(dto);
+            var command = _mapper.Map<UpdateSavedAddressCommand>(dto);
             command.Id = id;
             await Mediator.Send(command);
 
@@ -116,10 +116,20 @@ namespace Restaurant.WebApi.Controllers
         [HttpDelete("addresses/{id}")]
         public async Task<IActionResult> DeleteAddress(Guid id)
         {
-            var command = new DeleteAddressCommand
+            var command = new DeleteSavedAddressCommand
             {
                 Id = id
             };
+            await Mediator.Send(command);
+
+            return Ok();
+        }
+        [Authorize(Roles = "Client, Admin")]
+        [HttpPatch("addresses/set-default")]
+        public async Task<IActionResult> SetDefaultAddress([FromBody] UpdateUserDefaultAddressDto dto)
+        {
+            var command = _mapper.Map<UpdateUserDefaultAddressCommand>(dto);
+            command.UserId = UserId;
             await Mediator.Send(command);
 
             return Ok();

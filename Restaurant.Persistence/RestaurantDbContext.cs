@@ -20,7 +20,7 @@ namespace Restaurant.Persistence
         public DbSet<Order> Orders { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        public DbSet<SavedAddress> SavedAddresses { get; set; }
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace Restaurant.Persistence
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
-            modelBuilder.ApplyConfiguration(new AddressConfiguration());
+            modelBuilder.ApplyConfiguration(new SavedAddressConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Restaurant.Application.Commands
 {
-    public class DeleteAddressCommand : IRequest
+    public class DeleteSavedAddressCommand : IRequest
     {
         public required Guid Id { get; set; }
     }

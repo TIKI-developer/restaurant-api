@@ -8,7 +8,6 @@ namespace Restaurant.WebApi.Models
     {
         public string? Name { get; set; }
         public string? PhoneNumber { get; set; }
-        public Guid? DefaultAddressId { get; set; }
 
         public void Mapping(Profile profile)
         {

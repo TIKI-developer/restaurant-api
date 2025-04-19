@@ -11,6 +11,9 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
             builder
                 .ToTable("Categories");
             builder
+                .Property(e => e.Name)
+                .HasMaxLength(100);
+            builder
                 .HasMany(e => e.Dishes)
                 .WithMany(e => e.Categories);
             builder

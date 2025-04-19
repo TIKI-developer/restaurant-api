@@ -1,4 +1,6 @@
-﻿namespace Restaurant.Domain.Entities
+﻿using Restaurant.Domain.ValueObjects;
+
+namespace Restaurant.Domain.Entities
 {
     public class Order : Entity
     {

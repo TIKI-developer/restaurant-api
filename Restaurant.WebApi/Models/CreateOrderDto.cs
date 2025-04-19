@@ -1,12 +1,13 @@
 ﻿using Restaurant.Application.Commands;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Domain.Entities;
+using Restaurant.Domain.ValueObjects;
 
 namespace Restaurant.WebApi.Models
 {
     public class CreateOrderDto : IMapWith<CreateOrderCommand>
     {
-        public Guid? AddressId { get; set; }
+        public Address? Address { get; set; }
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }
         public required bool AddChopsticks { get; set; }

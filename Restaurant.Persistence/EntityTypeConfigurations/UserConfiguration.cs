@@ -28,7 +28,7 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                     fncTokens.WithOwner(o => o.User);
                 });
             builder
-                .HasMany(e => e.Addresses)
+                .HasMany(e => e.SavedAddresses)
                 .WithOne(e => e.User)
                 .HasForeignKey(e => e.UserId);
 

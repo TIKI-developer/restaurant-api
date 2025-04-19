@@ -23,7 +23,6 @@ namespace Restaurant.Application.Commands
                 ?? throw new NotFoundException(nameof(Domain.Entities.User), request.Id);
 
             user.Profile.Name = request.Name ?? user.Profile.Name;
-            user.DefaultAddressId = request.DefaultAddressId ?? user.DefaultAddressId;
             user.Timestamps.UpdatedAt = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken);

@@ -9,7 +9,7 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<OrderDishItem> builder)
         {
             builder
-                .ToTable("OrderDishItems");
+                .ToTable("OrderItem");
 
             builder.HasKey(e => new { e.OrderId, e.DishId });
 
