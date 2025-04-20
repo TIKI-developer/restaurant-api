@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Restaurant.Persistence;
@@ -11,9 +12,11 @@ using Restaurant.Persistence;
 namespace Restaurant.Persistence.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    partial class RestaurantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250419143654_AddedBranchFeature")]
+    partial class AddedBranchFeature
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,9 +202,6 @@ namespace Restaurant.Persistence.Migrations
                     b.Property<bool>("AddForks")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid?>("BranchId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("text");
@@ -232,8 +232,6 @@ namespace Restaurant.Persistence.Migrations
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
-
-                    b.HasIndex("BranchId");
 
                     b.HasIndex("UserId");
 
@@ -608,10 +606,6 @@ namespace Restaurant.Persistence.Migrations
 
             modelBuilder.Entity("Restaurant.Domain.Entities.Order", b =>
                 {
-                    b.HasOne("Restaurant.Domain.Entities.Branch", "Branch")
-                        .WithMany("Orders")
-                        .HasForeignKey("BranchId");
-
                     b.HasOne("Restaurant.Domain.Entities.Entity", null)
                         .WithOne()
                         .HasForeignKey("Restaurant.Domain.Entities.Order", "Id")
@@ -660,8 +654,6 @@ namespace Restaurant.Persistence.Migrations
                         });
 
                     b.Navigation("Address");
-
-                    b.Navigation("Branch");
 
                     b.Navigation("User");
                 });
@@ -821,11 +813,6 @@ namespace Restaurant.Persistence.Migrations
                         .HasForeignKey("Restaurant.Domain.Entities.Client", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Restaurant.Domain.Entities.Branch", b =>
-                {
-                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Restaurant.Domain.Entities.Cart", b =>

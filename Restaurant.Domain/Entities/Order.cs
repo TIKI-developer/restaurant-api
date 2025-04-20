@@ -6,6 +6,7 @@ namespace Restaurant.Domain.Entities
     {
         public required string Code { get; set; }
         public Address? Address { get; set; }
+        public Branch? Branch { get; set; }
         public required OrderStatus Status { get; set; }
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }

@@ -28,6 +28,7 @@ namespace Restaurant.Application.Queries
             var orders = await
                 _dbContext
                 .Orders
+                .Include(e => e.Branch)
                 .Include(e => e.Timestamps)
                 .OrderByDescending(e => e.Timestamps.CreatedAt)
                 .Where(e => e.User.Id == request.UserId)

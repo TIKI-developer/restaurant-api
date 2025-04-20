@@ -52,6 +52,16 @@ namespace Restaurant.Application.Commands
                 throw new Exception("Введите адрес доставки!");
             }
 
+            var branch = await
+                _dbContext
+                .Branches
+                .FirstOrDefaultAsync(e => e.Id == request.BranchId, cancellationToken);
+
+            if (request.ReceiptMethod == ReceiptMethod.SelfPickup && branch == null)
+            {
+                throw new Exception("Выберите ресторан!");
+            }
+
             var dishIds = cart.Items.Select(ci => ci.DishId).ToList();
 
             var dishes = await
@@ -72,6 +82,7 @@ namespace Restaurant.Application.Commands
                 Status = OrderStatus.Pending,
                 Comment = request.Comment,
                 Address = request.Address,
+                Branch = branch,
                 Timestamps = new Timestamps
                 {
                     CreatedAt = DateTime.UtcNow,

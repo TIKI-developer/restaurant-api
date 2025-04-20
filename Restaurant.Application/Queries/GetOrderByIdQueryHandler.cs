@@ -21,6 +21,7 @@ namespace Restaurant.Application.Queries
             var order = await
                 _dbContext
                 .Orders
+                .Include(e => e.Branch)
                 .Include(o => o.Address)
                 .Include(o => o.Items)
                 .ThenInclude(i => i.Dish)

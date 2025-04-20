@@ -9,6 +9,7 @@ namespace Restaurant.Application.Commands
     {
         public required Guid UserId { get; set; }
         public required ReceiptMethod ReceiptMethod { get; set; }
+        public Guid? BranchId { get; set; }
         public Address? Address { get; set; }
         public required int PersonQuantity { get; set; }
         public required bool AddForks { get; set; }

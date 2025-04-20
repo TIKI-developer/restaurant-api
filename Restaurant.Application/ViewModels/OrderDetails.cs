@@ -9,6 +9,7 @@ namespace Restaurant.Application.ViewModels
         public required string Status { get; set; }
         public required Content Content { get; set; }
         public required Timestamps Timestamps { get; set; }
+        public BranchDetails? Branch { get; set; }
         public Address? Address { get; set; }
         public required string Code { get; set; }
         public required int PersonQuantity { get; set; }

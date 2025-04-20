@@ -14,6 +14,9 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 .HasOne(o => o.User)
                 .WithMany(c => c.Orders);
             builder
+                .HasOne(o => o.Branch)
+                .WithMany(b => b.Orders);
+            builder
                 .HasMany(e => e.Items)
                 .WithOne(e => e.Order);
             builder

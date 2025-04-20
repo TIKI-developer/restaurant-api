@@ -8,6 +8,8 @@ namespace Restaurant.Application.ViewModels
     {
         public required Guid Id { get; set; }
         public required string Code { get; set; }
+        public BranchDetails? Branch { get; set; }
+        public Address? Address { get; set; }
         public required string UserName { get; set; }
         public required string UserPhoneNumber { get; set; }
         public required string Status { get; set; }

@@ -18,13 +18,18 @@ namespace Restaurant.Application.Queries
 
         public async Task<OrderList> Handle(GetOrderListQuery request, CancellationToken cancellationToken)
         {
-            var query = _dbContext.Orders
+            var query =
+                _dbContext
+                .Orders
+                .Include(e => e.Branch)
+                .Include(e => e.Address)
                 .Include(o => o.Items)
                 .Include(e => e.User)
                 .ThenInclude(e => e.Profile)
                 .Include(e => e.Timestamps)
                 .AsNoTracking()
-                .ProjectTo<OrderItem>(_mapper.ConfigurationProvider);
+                .ProjectTo<OrderItem>(_mapper.ConfigurationProvider)
+                .AsQueryable();
 
             if (request.ByLastDays.HasValue)
             {
