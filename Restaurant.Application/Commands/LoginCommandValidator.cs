@@ -9,7 +9,7 @@ namespace Restaurant.Application.Commands
             (AuthRules authRules,
             ProfileRules profileRules)
         {
-            profileRules.Name(RuleFor(x => x.Name));
+            //profileRules.Name(RuleFor(x => x.Name));
             //authRules.Number(RuleFor(c => c.Number));
         }
     }
