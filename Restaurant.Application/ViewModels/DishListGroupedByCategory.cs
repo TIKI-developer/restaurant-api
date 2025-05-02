@@ -8,6 +8,7 @@
     public class CategoryDishesDto
     {
         public required Guid CategoryId { get; set; }
+        public required string CategoryName { get; set; }
         public ICollection<DishItem>? Dishes { get; set; }
     }
 }

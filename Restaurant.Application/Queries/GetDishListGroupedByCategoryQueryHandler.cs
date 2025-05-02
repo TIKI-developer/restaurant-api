@@ -34,7 +34,7 @@ namespace Restaurant.Application.Queries
                      .ProjectTo<DishItem>(_mapper.ConfigurationProvider)
                      .AsNoTracking()
                      .ToListAsync();
-                vm.CategoriesDishes.Add(new CategoryDishesDto { CategoryId = category.Id, Dishes = categoryDishes });
+                vm.CategoriesDishes.Add(new CategoryDishesDto { CategoryId = category.Id, CategoryName = category.Name, Dishes = categoryDishes });
             }
 
             return vm;

@@ -9,11 +9,9 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Promotion> builder)
         {
             builder
-                .Property(e => e.Title)
-                .HasMaxLength(100);
+                .Property(e => e.Title);
             builder
-                .Property(e => e.Description)
-                .HasMaxLength(300);
+                .Property(e => e.Description);
             builder
                 .Property(e => e.IsAdvanced)
                 .HasDefaultValue(false);

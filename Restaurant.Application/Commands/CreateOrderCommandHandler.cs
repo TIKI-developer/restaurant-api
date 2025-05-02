@@ -24,6 +24,7 @@ namespace Restaurant.Application.Commands
                     ?? throw new NotFoundException(nameof(User), request.UserId);
 
             ICart cart;
+            Cart? remoteCart = null;
 
             if (request.Cart != null)
             {
@@ -31,7 +32,7 @@ namespace Restaurant.Application.Commands
             }
             else
             {
-                var remoteCart = await
+                remoteCart = await
                     _dbContext
                         .Carts
                         .Include(c => c.Items)
@@ -106,6 +107,10 @@ namespace Restaurant.Application.Commands
 
             await _dbContext.Orders.AddAsync(order, cancellationToken);
 
+            if (remoteCart != null)
+            {
+                remoteCart.Items.Clear();
+            }
             cart.Items.Clear();
 
             await _dbContext.SaveChangesAsync(cancellationToken);

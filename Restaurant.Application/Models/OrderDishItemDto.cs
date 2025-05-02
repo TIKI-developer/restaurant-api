@@ -7,14 +7,12 @@ namespace Restaurant.Application.ViewModels
     {
         public class OrderDishItemDto : IMapWith<OrderDishItem>
         {
-            public required string DishName { get; set; }
+            public required OrderDish Dish { get; set; }
             public required int Count { get; set; }
 
             public void Mapping(AutoMapper.Profile profile)
             {
-                profile.CreateMap<Domain.Entities.OrderDishItem, OrderDishItemDto>()
-                    .ForMember(to => to.DishName,
-                        opt => opt.MapFrom(from => from.Dish.Name));
+                profile.CreateMap<OrderDishItem, OrderDishItemDto>();
             }
         }
     }

@@ -38,8 +38,7 @@ namespace Restaurant.Persistence.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Description",
                 table: "Promotions",
-                type: "character varying(300)",
-                maxLength: 300,
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "text");
@@ -111,7 +110,10 @@ namespace Restaurant.Persistence.Migrations
                     FROM ""Users"" u
                     WHERE 
                         u.""Profile_Address_City"" IS NOT NULL AND
-                        u.""Profile_Address_Street"" IS NOT NULL
+                        u.""Profile_Address_Street"" IS NOT NULL AND
+                        u.""Profile_Address_BuildingNumber"" IS NOT NULL AND
+                        u.""Profile_Address_ApartmentNumber"" IS NOT NULL AND
+                        u.""Profile_Address_Floor"" IS NOT NULL
                 ),
                 insert_entities AS (
                     INSERT INTO ""Entities"" (""Id"", ""Timestamps_CreatedAt"", ""Timestamps_UpdatedAt"")
@@ -218,7 +220,7 @@ namespace Restaurant.Persistence.Migrations
                     ""Profile_Address_Floor"" = sa.""Address_Floor""
                 FROM (
                     SELECT DISTINCT ON (""UserId"") *
-                    FROM ""SavedAddresses""
+                    FROM ""SavedAddresses"" 
                     ORDER BY ""UserId"", ""Name""
                 ) sa
                 WHERE sa.""UserId"" = u.""Id"";
@@ -259,11 +261,10 @@ namespace Restaurant.Persistence.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Description",
                 table: "Promotions",
-                type: "text",
+                type: "text", 
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "character varying(300)",
-                oldMaxLength: 300);
+                oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
