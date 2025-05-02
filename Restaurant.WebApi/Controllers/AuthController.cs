@@ -2,11 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Restaurant.Application.Entities.User.Commands.Login;
-using Restaurant.Application.Entities.User.Commands.PrepareVerifyNumber;
-using Restaurant.Application.Entities.User.Commands.VerifyNumber;
+using Restaurant.Application.Commands;
 using Restaurant.Verification;
-using Restaurant.WebApi.Models.User;
+using Restaurant.WebApi.Models;
 using System.Text.RegularExpressions;
 
 namespace Restaurant.WebApi.Controllers
@@ -110,7 +108,7 @@ namespace Restaurant.WebApi.Controllers
 
             if (phoneNumber.StartsWith("89"))
             {
-                return "+7" + phoneNumber[1..]; 
+                return "+7" + phoneNumber[1..];
             }
 
             if (phoneNumber.StartsWith("7"))

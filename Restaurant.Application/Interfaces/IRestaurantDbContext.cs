@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Interfaces
 {
@@ -12,6 +12,9 @@ namespace Restaurant.Application.Interfaces
         DbSet<Order> Orders { get; set; }
         DbSet<Cart> Carts { get; set; }
         DbSet<Promotion> Promotions { get; set; }
+        DbSet<SavedAddress> SavedAddresses { get; set; }
+        DbSet<Branch> Branches { get; set; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

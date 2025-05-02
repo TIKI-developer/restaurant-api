@@ -1,9 +1,0 @@
-﻿namespace Restaurant.Domain
-{
-    public class Cart : Entity
-    {
-        public Guid UserId { get; set; }
-        public required User User { get; set; }
-        public List<CartItem> Items { get; set; } = [];
-    }
-}

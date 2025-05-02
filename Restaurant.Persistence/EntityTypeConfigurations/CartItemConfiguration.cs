@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
-    public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
+    public class CartItemConfiguration : IEntityTypeConfiguration<CartDishItem>
     {
-        public void Configure(EntityTypeBuilder<CartItem> builder)
+        public void Configure(EntityTypeBuilder<CartDishItem> builder)
         {
+            builder
+                .ToTable("CartItem");
             builder
                 .HasKey(e => new { e.CartId, e.DishId });
 

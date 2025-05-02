@@ -2,6 +2,6 @@
 {
     public class OrderList
     {
-        public required ICollection<OrderLookup> Orders { get; set; }
+        public required ICollection<OrderItem> Orders { get; set; }
     }
 }

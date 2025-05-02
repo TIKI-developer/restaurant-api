@@ -2,6 +2,6 @@
 {
     public class DishList
     {
-        public ICollection<DishLookup>? Dishes { get; set; }
+        public ICollection<DishItem>? Dishes { get; set; }
     }
 }

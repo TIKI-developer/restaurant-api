@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Entities.Dish.Commands.Create;
-using Restaurant.Application.Entities.Dish.Commands.Delete;
-using Restaurant.Application.Entities.Dish.Commands.Update;
-using Restaurant.Application.Entities.Dish.Queries.Get;
-using Restaurant.Application.Entities.Dish.Queries.GetByCategory;
-using Restaurant.Application.Entities.Dish.Queries.GetById;
-using Restaurant.Application.Entities.Dish.Queries.GetGroupedByCategory;
-using Restaurant.Application.Entities.Dish.Queries.GetPublished;
+using Restaurant.Application.Commands;
+using Restaurant.Application.Queries;
 using Restaurant.Application.ViewModels;
-using Restaurant.WebApi.Models.Dish;
+using Restaurant.WebApi.Models;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -23,7 +17,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateDishDto createDishDto)
         {
-            var command = _mapper.Map<CreateCommand>(createDishDto);
+            var command = _mapper.Map<CreateDishCommand>(createDishDto);
             var dishId = await Mediator.Send(command);
 
             return Ok(dishId);
@@ -33,7 +27,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateDishDto updateDishDto)
         {
-            var command = _mapper.Map<UpdateCommand>(updateDishDto);
+            var command = _mapper.Map<UpdateDishCommand>(updateDishDto);
             command.Id = id;
             await Mediator.Send(command);
 
@@ -44,7 +38,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var command = new DeleteCommand
+            var command = new DeleteDishCommand
             {
                 Id = id,
             };
@@ -55,7 +49,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<DishList>> Get()
         {
-            var query = new GetQuery();
+            var query = new GetDishListQuery();
 
             var vm = await Mediator.Send(query);
 
@@ -64,7 +58,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<DishDetails>> GetById(Guid id)
         {
-            var query = new GetByIdQuery
+            var query = new GetDishByIdQuery
             {
                 Id = id
             };
@@ -74,7 +68,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("categories/{id}")]
         public async Task<ActionResult<DishList>> GetByCategory(Guid id)
         {
-            var query = new GetByCategoryQuery
+            var query = new GetDishListByCategoryQuery
             {
                 CategoryId = id
             };
@@ -86,7 +80,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("categories")]
         public async Task<ActionResult<DishListGroupedByCategory>> GetGroupedByCategory()
         {
-            var query = new GetGroupedByCategoryQuery();
+            var query = new GetDishListGroupedByCategoryQuery();
             var vm = await Mediator.Send(query);
 
             return Ok(vm);
@@ -94,7 +88,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet("published")]
         public async Task<ActionResult<CategoryList>> GetPublished()
         {
-            var query = new GetPublishedQuery();
+            var query = new GetPublishedDishListQuery();
 
             var vm = await Mediator.Send(query);
 
