@@ -11,6 +11,7 @@ namespace Restaurant.Application.ViewModels
         public required Timestamps Timestamps { get; set; }
         public required string Name { get; set; }
         public required bool IsActive { get; set; }
+        public required bool IsOpen { get; set; }
         public required Address Address { get; set; }
         public required string PhoneNumber { get; set; }
         public required Schedule Schedule { get; set; }
