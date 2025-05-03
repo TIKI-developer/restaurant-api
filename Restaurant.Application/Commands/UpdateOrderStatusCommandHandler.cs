@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Commands
 {
@@ -34,9 +35,20 @@ namespace Restaurant.Application.Commands
 
             if (order.User.FncTokens.Count > 0)
             {
+                var messageBody = order.Status switch
+                {
+                    OrderStatus.Pending => "Скоро возьмем ваш заказ в работу",
+                    OrderStatus.Adopted => "Заказ принят, ожидайте звонка оператора",
+                    OrderStatus.Working => "Начали готовить ваш заказ",
+                    OrderStatus.Delivering => "Заказ передан в доставку",
+                    OrderStatus.Completed => "Ваш заказ завершен",
+                    OrderStatus.Rejected => "Заказ был отменен отменён",
+                    _ => "Неизвестный статус"
+                };
+
                 foreach (var fncToken in order.User.FncTokens)
                 {
-                    await _notificationService.Send(order.Status.ToString(), $"Статус заказа {order.Code}, обновлен", fncToken.Value);
+                    await _notificationService.Send($"Статус заказа {order.Code}, обновлен", messageBody, fncToken.Value);
                 }
             }
         }
