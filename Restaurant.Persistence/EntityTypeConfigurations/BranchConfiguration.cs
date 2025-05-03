@@ -8,6 +8,7 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Branch> builder)
         {
+            builder.Ignore(b => b.IsOpen);
             builder
                 .OwnsOne(e => e.Address, a =>
                 {

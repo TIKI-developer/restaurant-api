@@ -12,5 +12,24 @@ namespace Restaurant.Domain.Entities
         public required ulong AverageCookingTime { get; set; }
         public required Content Content { get; set; }
         public List<Order>? Orders { get; set; }
+
+        public bool IsOpen => CalculateIsOpen();
+
+        private bool CalculateIsOpen()
+        {
+            if (!IsActive || Schedule == null)
+                return false;
+
+            var now = DateTime.Now;
+            var today = now.DayOfWeek;
+            var timeNow = TimeOnly.FromDateTime(now);
+
+            var todaySchedule = Schedule.Days.FirstOrDefault(d => d.Day == today);
+
+            if (todaySchedule == null || todaySchedule.IsClosed)
+                return false;
+
+            return timeNow >= todaySchedule.OpenTime && timeNow <= todaySchedule.CloseTime;
+        }
     }
 }
