@@ -20,7 +20,9 @@ namespace Restaurant.Domain.Entities
             if (!IsActive || Schedule == null)
                 return false;
 
-            var now = DateTime.Now;
+            var tz = TimeZoneInfo.FindSystemTimeZoneById("Europe/Moscow");
+            var now = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, tz);
+
             var today = now.DayOfWeek;
             var timeNow = TimeOnly.FromDateTime(now);
 
@@ -31,5 +33,6 @@ namespace Restaurant.Domain.Entities
 
             return timeNow >= todaySchedule.OpenTime && timeNow <= todaySchedule.CloseTime;
         }
+
     }
 }
