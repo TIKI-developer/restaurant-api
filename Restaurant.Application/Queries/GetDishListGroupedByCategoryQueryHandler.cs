@@ -20,6 +20,7 @@ namespace Restaurant.Application.Queries
             var categories = await
                 _dbContext
                 .Categories
+                .Include(e => e.Content)
                 .OrderBy(e => e.Timestamps.UpdatedAt)
                 .Where(e => e.Content.IsPublished == true)
                 .AsNoTracking()
