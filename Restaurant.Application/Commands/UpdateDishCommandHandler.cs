@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Common.Exceptions;
 using Restaurant.Application.Interfaces;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Application.Commands
 {
@@ -14,7 +15,7 @@ namespace Restaurant.Application.Commands
 
         public async Task Handle(UpdateDishCommand request, CancellationToken cancellationToken)
         {
-            var entity = await
+            var dish = await
                 _dbContext
                 .Dishes
                 .Include(e => e.Content)
@@ -31,17 +32,27 @@ namespace Restaurant.Application.Commands
                 .Where(c => request.Categories.Contains(c.Id))
                 .ToListAsync(cancellationToken) ?? [];
 
-            entity.Name = request.Name ?? entity.Name;
-            entity.Description = request.Description ?? entity.Description;
-            entity.Price = request.Price ?? entity.Price;
-            entity.Image = request.Image ?? entity.Image;
-            entity.Weight = request.Weight ?? entity.Weight;
-            entity.Categories = categories ?? entity.Categories;
+            dish.Name = request.Name ?? dish.Name;
+            dish.Description = request.Description ?? dish.Description;
+            dish.Price = request.Price ?? dish.Price;
+            dish.Image = request.Image ?? dish.Image;
+            dish.Weight = request.Weight ?? dish.Weight;
+            dish.Categories = categories ?? dish.Categories;
             if (request.Content != null)
             {
-                entity.Content.IsPublished = request.Content.IsPublished ?? entity.Content.IsPublished;
+                dish.Content.IsPublished = request.Content.IsPublished ?? dish.Content.IsPublished;
+
+                var cartsWithDish = await _dbContext.Carts
+                    .Include(c => c.Items)
+                    .Where(c => c.Items.Any(i => i.DishId == dish.Id))
+                    .ToListAsync(cancellationToken);
+
+                foreach (var cart in cartsWithDish)
+                {
+                    cart.Items.RemoveAll(i => i.DishId == dish.Id);
+                }
             }
-            entity.Timestamps.UpdatedAt = DateTime.UtcNow;
+            dish.Timestamps.UpdatedAt = DateTime.UtcNow;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
