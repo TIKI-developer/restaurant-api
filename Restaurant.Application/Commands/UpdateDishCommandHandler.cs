@@ -42,14 +42,17 @@ namespace Restaurant.Application.Commands
             {
                 dish.Content.IsPublished = request.Content.IsPublished ?? dish.Content.IsPublished;
 
-                var cartsWithDish = await _dbContext.Carts
-                    .Include(c => c.Items)
-                    .Where(c => c.Items.Any(i => i.DishId == dish.Id))
-                    .ToListAsync(cancellationToken);
-
-                foreach (var cart in cartsWithDish)
+                if (dish.Content.IsPublished == false)
                 {
-                    cart.Items.RemoveAll(i => i.DishId == dish.Id);
+                    var cartsWithDish = await _dbContext.Carts
+                        .Include(c => c.Items)
+                        .Where(c => c.Items.Any(i => i.DishId == dish.Id))
+                        .ToListAsync(cancellationToken);
+
+                    foreach (var cart in cartsWithDish)
+                    {
+                        cart.Items.RemoveAll(i => i.DishId == dish.Id);
+                    }
                 }
             }
             dish.Timestamps.UpdatedAt = DateTime.UtcNow;
