@@ -31,7 +31,7 @@ namespace Restaurant.Application.Queries
             foreach (var category in categories)
             {
                 var categoryDishes = await _dbContext.Dishes
-                     .Where(d => d.Categories.Any(c => c.Id == category.Id))
+                     .Where(d => d.Categories.Any(c => c.Id == category.Id) && d.Content.IsPublished == true)
                      .ProjectTo<DishItem>(_mapper.ConfigurationProvider)
                      .AsNoTracking()
                      .ToListAsync();
