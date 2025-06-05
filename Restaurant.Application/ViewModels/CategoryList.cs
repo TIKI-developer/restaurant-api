@@ -2,6 +2,6 @@
 {
     public class CategoryList
     {
-        public ICollection<CategoryLookup>? Categories { get; set; }
+        public ICollection<CategoryItem>? Categories { get; set; }
     }
 }

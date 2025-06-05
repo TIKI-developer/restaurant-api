@@ -1,4 +1,4 @@
-﻿using Restaurant.Application.Entities.User.Commands.Login;
+﻿using Restaurant.Application.Commands;
 
 namespace Restaurant.Application.Interfaces
 {

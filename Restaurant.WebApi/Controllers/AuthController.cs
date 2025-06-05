@@ -2,13 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Restaurant.Application.Entities.User.Commands.CodeCall;
-using Restaurant.Application.Entities.User.Commands.Login;
-using Restaurant.Application.Entities.User.Commands.PrepareVerifyNumber;
-using Restaurant.Application.Entities.User.Commands.VerifyNumber;
+using Restaurant.Application.Commands;
 using Restaurant.Verification;
 using Restaurant.WebApi.Models;
-using Restaurant.WebApi.Models.User;
+using System.Text.RegularExpressions;
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -31,7 +28,8 @@ namespace Restaurant.WebApi.Controllers
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            await Task.Run(() => {
+            await Task.Run(() =>
+            {
                 HttpContext.Response.Cookies.Delete("creeper");
             });
 
@@ -158,17 +156,28 @@ namespace Restaurant.WebApi.Controllers
         }
         private static string NormalizePhoneNumber(string? phoneNumber)
         {
-            if (string.IsNullOrEmpty(phoneNumber)) return "";
+            if (string.IsNullOrWhiteSpace(phoneNumber)) return "";
+
+            phoneNumber = Regex.Replace(phoneNumber, @"\D", "");
+
             if (phoneNumber.StartsWith("89"))
             {
-                return string.Concat("+7", phoneNumber.AsSpan(1));
+                return "+7" + phoneNumber[1..];
             }
-            if (phoneNumber.StartsWith("+79"))
+
+            if (phoneNumber.StartsWith("7"))
             {
-                return string.Concat("+7", phoneNumber.AsSpan(2));
+                return "+7" + phoneNumber[1..];
             }
+
+            if (phoneNumber.StartsWith("+7"))
+            {
+                return phoneNumber; // Уже правильный формат
+            }
+
             return phoneNumber;
         }
+
         public class NotificationData
         {
             [FromForm(Name = "data")]

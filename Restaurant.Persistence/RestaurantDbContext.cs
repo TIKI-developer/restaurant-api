@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 using Restaurant.Persistence.EntityTypeConfigurations;
 
 
 namespace Restaurant.Persistence
 {
-    public class RestaurantDbContext 
+    public class RestaurantDbContext
         :
         DbContext, IRestaurantDbContext
     {
@@ -20,6 +20,9 @@ namespace Restaurant.Persistence
         public DbSet<Order> Orders { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
+        public DbSet<SavedAddress> SavedAddresses { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,6 +38,8 @@ namespace Restaurant.Persistence
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
+            modelBuilder.ApplyConfiguration(new SavedAddressConfiguration());
+            modelBuilder.ApplyConfiguration(new BranchConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

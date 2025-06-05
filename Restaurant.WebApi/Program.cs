@@ -17,7 +17,10 @@ namespace Restaurant.WebApi
                     var restaurantContext = serviceProvider.GetRequiredService<RestaurantDbContext>();
                     DbInitializer.Initialize(restaurantContext);
                 }
-                catch (Exception exception) { }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                }
             }
 
             host.Run();

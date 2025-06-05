@@ -1,5 +1,6 @@
 ﻿using Restaurant.Application.Common.Mappings;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
+using Restaurant.Domain.ValueObjects;
 
 namespace Restaurant.Application.ViewModels
 {

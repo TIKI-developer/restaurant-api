@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
@@ -8,6 +8,8 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder
+                .ToTable("Users");
             builder
                 .HasIndex(e => e.PhoneNumber)
                 .IsUnique();
@@ -21,13 +23,19 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
                 .HasMany(c => c.Orders)
                 .WithOne(o => o.User);
             builder
+                .OwnsMany(c => c.FncTokens, fncTokens =>
+                {
+                    fncTokens.WithOwner(o => o.User);
+                });
+            builder
+                .HasMany(e => e.SavedAddresses)
+                .WithOne(e => e.User)
+                .HasForeignKey(e => e.UserId);
+
+            builder
                 .OwnsOne(c => c.Profile, profile =>
                 {
                     profile.WithOwner();
-                    profile.OwnsOne(p => p.Address, address =>
-                    {
-                        address.WithOwner();
-                    });
                     profile
                         .Property(e => e.Name)
                         .HasMaxLength(50);

@@ -2,6 +2,6 @@
 {
     public class PromotionList
     {
-        public ICollection<PromotionLookup>? Promotions { get; set; }
+        public ICollection<PromotionItem>? Promotions { get; set; }
     }
 }

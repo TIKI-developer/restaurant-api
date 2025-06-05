@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
 
 namespace Restaurant.Persistence.EntityTypeConfigurations
 {
@@ -8,6 +8,11 @@ namespace Restaurant.Persistence.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
+            builder
+                .ToTable("Categories");
+            builder
+                .Property(e => e.Name)
+                .HasMaxLength(100);
             builder
                 .HasMany(e => e.Dishes)
                 .WithMany(e => e.Categories);

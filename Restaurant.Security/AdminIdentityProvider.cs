@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-using Restaurant.Application.Entities.User.Commands.Login;
+using Restaurant.Application.Commands;
 using Restaurant.Application.Interfaces;
 
 namespace Restaurant.Security

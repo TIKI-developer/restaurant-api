@@ -2,6 +2,7 @@
 using Restaurant.Application;
 using Restaurant.Application.Common.Mappings;
 using Restaurant.Application.Interfaces;
+using Restaurant.Firebase;
 using Restaurant.Persistence;
 using Restaurant.Security;
 using Restaurant.Validation;
@@ -28,6 +29,7 @@ namespace Restaurant.WebApi
             services.AddSecurity(Configuration);
             services.AddVerification(Configuration);
             services.AddPersistence(Configuration);
+            services.AddFirebase();
             services.AddApplication();
             services.AddControllers();
 

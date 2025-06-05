@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Application.Entities.Cart.Commands.AddDish;
-using Restaurant.Application.Entities.Cart.Commands.DeleteDish;
-using Restaurant.Application.Entities.Cart.Queries.GetDetails;
+using Restaurant.Application.Commands;
+using Restaurant.Application.Queries;
 using Restaurant.Application.ViewModels;
+
 
 namespace Restaurant.WebApi.Controllers
 {
@@ -14,7 +14,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpPatch("dishes/{id}")]
         public async Task<IActionResult> AddDish(Guid id)
         {
-            var command = new AddDishCommand
+            var command = new AddDishToCartCommand
             {
                 UserId = UserId,
                 DishId = id
@@ -27,7 +27,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpDelete("dishes/{id}")]
         public async Task<IActionResult> RemoveDish(Guid id)
         {
-            var command = new DeleteDishCommand
+            var command = new DeleteDishFromCartCommand
             {
                 UserId = UserId,
                 DishId = id
@@ -41,7 +41,7 @@ namespace Restaurant.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<CartDetails>> Get()
         {
-            var query = new GetByUserQuery
+            var query = new GetCartByUserQuery
             {
                 UserId = UserId
             };
