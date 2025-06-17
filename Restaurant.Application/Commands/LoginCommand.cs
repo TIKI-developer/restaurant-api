@@ -7,6 +7,7 @@ namespace Restaurant.Application.Commands
     {
         public string? Name { get; set; }
         public required string PhoneNumber { get; set; }
+        public string? CallCode { get; set; }
         public string? FncToken { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Restaurant.Verification
         {
             services.AddScoped<INumberVerifier, NumberVerifier>();
             services.Configure<SmsRuOptions>(configuration.GetSection(nameof(SmsRuOptions)));
+            services.Configure<PlusofonOptions>(configuration.GetSection(nameof(PlusofonOptions)));
 
             return services;
         }

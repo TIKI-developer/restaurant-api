@@ -98,6 +98,12 @@ namespace Restaurant.Persistence.Migrations
                     b.Property<string>("Number")
                         .HasColumnType("text");
 
+                    b.Property<string>("CallCode")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CallId")
+                        .HasColumnType("text");
+
                     b.Property<bool>("CanLogin")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")

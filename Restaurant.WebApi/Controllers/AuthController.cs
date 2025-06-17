@@ -5,14 +5,21 @@ using Newtonsoft.Json;
 using Restaurant.Application.Commands;
 using Restaurant.Verification;
 using Restaurant.WebApi.Models;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Restaurant.WebApi.Controllers
 {
     [Route("auth")]
-    public class AuthController(IMapper mapper, IOptions<SmsRuOptions> options) : BaseController
+    public class AuthController
+        (IMapper mapper, 
+        IOptions<SmsRuOptions> options, 
+        IOptions<PlusofonOptions> plusofonOptions) 
+        : BaseController
     {
         private readonly SmsRuOptions _smsRuOptions = options.Value;
+        private readonly PlusofonOptions _plusofonOptions = plusofonOptions.Value;
         private readonly IMapper _mapper = mapper;
 
         [HttpPost("login")]
@@ -92,6 +99,56 @@ namespace Restaurant.WebApi.Controllers
                     return BadRequest(new
                     {
                         result?.StatusCode,
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Произошла ошибка", details = ex.Message });
+            }
+        }
+        [HttpPost("code/call")]
+        public async Task<IActionResult> CodeCall([FromBody] CodeCallDto dto)
+        {
+            dto.UserPhoneNumber = NormalizePhoneNumber(dto.UserPhoneNumber);
+            var url = "https://restapi.plusofon.ru/api/v1/flash-call/send";
+            string json = "{\"phone\":\"" + dto.UserPhoneNumber + "\"}";
+            var jsonContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            using var httpClient = new HttpClient();
+            try
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _plusofonOptions.AccessToken);
+                var response = await httpClient.PostAsync(url, jsonContent);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = await response.Content.ReadAsStringAsync();
+                    return BadRequest(new { message = "Ошибка при отправке запроса", details = error });
+                }
+
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<CodeCallResponse>(jsonResponse);
+
+                if (result != null && result.Success == true)
+                {
+                    Console.WriteLine("Phone: " + dto.UserPhoneNumber + " Code: " + result.Data.Pin + " CallId: " + result.Data.Key);
+                    var command = new CodeCallCommand
+                    {
+                        PhoneNumber = dto.UserPhoneNumber,
+                        Code = result.Data.Pin,
+                        CallId = result.Data.Key
+                    };
+
+                    await Mediator.Send(command);
+
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest(new
+                    {
+                        result?.Success,
                     });
                 }
             }
