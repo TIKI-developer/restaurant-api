@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Application.Interfaces;
-using Restaurant.Domain;
+using Restaurant.Domain.Entities;
+using Restaurant.Domain.ValueObjects;
 
-namespace Restaurant.Application.Entities.User.Commands.CodeCall
+namespace Restaurant.Application.Commands
 {
-    public class CodeCallCommandHandler 
+    public class CodeCallCommandHandler
         (IRestaurantDbContext dbContext)
         : IRequestHandler<CodeCallCommand>
     {
@@ -31,7 +32,7 @@ namespace Restaurant.Application.Entities.User.Commands.CodeCall
                 };
 
                 await _dbContext.Verifications.AddAsync(newVerification, cancellationToken);
-            } 
+            }
             else
             {
                 verification.Number = request.PhoneNumber;

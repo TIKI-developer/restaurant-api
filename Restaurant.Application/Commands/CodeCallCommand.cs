@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Restaurant.Application.Entities.User.Commands.CodeCall
+namespace Restaurant.Application.Commands
 {
     public class CodeCallCommand : IRequest
     {

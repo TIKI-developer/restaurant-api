@@ -4,19 +4,20 @@ namespace Restaurant.WebApi.Models
 {
     public class CodeCallResponse
     {
-        [JsonProperty("status")]
-        public required string Status {  get; set; }
+        [JsonProperty("success")]
+        public required bool Success { get; set; }
 
-        [JsonProperty("code")]
-        public required string Code { get; set; }
+        [JsonProperty("data")]
+        public required CodeCallResponseData Data { get; set; }
 
-        [JsonProperty("call_id")]
-        public required string CallId { get; set; }
-
-        [JsonProperty("cost")]
-        public required float Cost { get; set; }
-
-        [JsonProperty("balance")]
-        public required float Balance { get; set; }
+        public class CodeCallResponseData
+        {
+            [JsonProperty("pin")]
+            public required string Pin { get; set; }
+            [JsonProperty("key")]
+            public required string Key { get; set; }
+            [JsonProperty("operator")]
+            public required string Operator { get; set; }
+        }
     }
 }

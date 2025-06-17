@@ -5,14 +5,21 @@ using Newtonsoft.Json;
 using Restaurant.Application.Commands;
 using Restaurant.Verification;
 using Restaurant.WebApi.Models;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Restaurant.WebApi.Controllers
 {
     [Route("auth")]
-    public class AuthController(IMapper mapper, IOptions<SmsRuOptions> options) : BaseController
+    public class AuthController
+        (IMapper mapper, 
+        IOptions<SmsRuOptions> options, 
+        IOptions<PlusofonOptions> plusofonOptions) 
+        : BaseController
     {
         private readonly SmsRuOptions _smsRuOptions = options.Value;
+        private readonly PlusofonOptions _plusofonOptions = plusofonOptions.Value;
         private readonly IMapper _mapper = mapper;
 
         [HttpPost("login")]
@@ -104,20 +111,15 @@ namespace Restaurant.WebApi.Controllers
         public async Task<IActionResult> CodeCall([FromBody] CodeCallDto dto)
         {
             dto.UserPhoneNumber = NormalizePhoneNumber(dto.UserPhoneNumber);
-            var url = "https://sms.ru/code/call";
-            var clientIp = HttpContext.Connection.RemoteIpAddress?.ToString() ?? Request.Headers["X-Forwarded-For"].ToString();
-
-            var requestData = new Dictionary<string, string>
-            {
-                { "api_id", _smsRuOptions.ApiKey },
-                { "phone", dto.UserPhoneNumber },
-                { "ip",  clientIp }
-            };
+            var url = "https://restapi.plusofon.ru/api/v1/flash-call/send";
+            string json = "{\"phone\":\"" + dto.UserPhoneNumber + "\"}";
+            var jsonContent = new StringContent(json, Encoding.UTF8, "application/json");
 
             using var httpClient = new HttpClient();
             try
             {
-                var response = await httpClient.PostAsync(url, new FormUrlEncodedContent(requestData));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _plusofonOptions.AccessToken);
+                var response = await httpClient.PostAsync(url, jsonContent);
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -128,13 +130,14 @@ namespace Restaurant.WebApi.Controllers
                 var jsonResponse = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<CodeCallResponse>(jsonResponse);
 
-                if (result != null && result.Status == "OK")
+                if (result != null && result.Success == true)
                 {
+                    Console.WriteLine("Phone: " + dto.UserPhoneNumber + " Code: " + result.Data.Pin + " CallId: " + result.Data.Key);
                     var command = new CodeCallCommand
                     {
                         PhoneNumber = dto.UserPhoneNumber,
-                        Code = result.Code,
-                        CallId = result.CallId
+                        Code = result.Data.Pin,
+                        CallId = result.Data.Key
                     };
 
                     await Mediator.Send(command);
@@ -145,7 +148,7 @@ namespace Restaurant.WebApi.Controllers
                 {
                     return BadRequest(new
                     {
-                        result?.Status,
+                        result?.Success,
                     });
                 }
             }
